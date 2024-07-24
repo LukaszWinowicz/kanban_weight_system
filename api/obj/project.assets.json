@@ -428,24 +428,31 @@
     ]
   },
   "packageFolders": {
-    "/home/lwinowicz/.nuget/packages/": {}
+    "C:\\Users\\lwino\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/mnt/d/kanban_weight_system/api/api.csproj",
+      "projectUniqueName": "D:\\projekt\\api\\api.csproj",
       "projectName": "api",
-      "projectPath": "/mnt/d/kanban_weight_system/api/api.csproj",
-      "packagesPath": "/home/lwinowicz/.nuget/packages/",
-      "outputPath": "/mnt/d/kanban_weight_system/api/obj/",
+      "projectPath": "D:\\projekt\\api\\api.csproj",
+      "packagesPath": "C:\\Users\\lwino\\.nuget\\packages\\",
+      "outputPath": "D:\\projekt\\api\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "/home/lwinowicz/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\lwino\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -485,20 +492,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[8.0.7, 8.0.7]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Host.linux-x64",
-            "version": "[8.0.7, 8.0.7]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[8.0.7, 8.0.7]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -507,7 +500,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.303/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
