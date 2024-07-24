@@ -1,20 +1,7 @@
 # .gitignore
 
-# C++ build artifacts
-Cpp/build/
-Cpp/bin/
-Cpp/*.o
-Cpp/*.obj
-Cpp/*.exe
-Cpp/*.out
-
-# Python
-Python/__pycache__/
-Python/*.pyc
-Python/env/
-Python/.venv/
-Python/.idea/
-Python/.vscode/
+# Visual Studio
+.vs/
 
 # ASP.NET Core
 AspNetCore/bin/
