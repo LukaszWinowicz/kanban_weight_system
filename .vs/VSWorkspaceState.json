@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\api"
   ],
-  "SelectedNode": "\\.gitignore",
+  "SelectedNode": "\\api\\Program.cs",
   "PreviewInSolutionExplorer": false
 }
