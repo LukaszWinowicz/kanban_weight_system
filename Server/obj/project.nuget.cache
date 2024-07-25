@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "nIgOOcxJzLX3oCV7BeiuNE4Ljg7GDv8Re2qtIQGAoTExqRZkXbaZ46G1aUD5gNxKhKxbErez7wTRQfU6/3lkNw==",
+  "success": true,
+  "projectFilePath": "D:\\projekt\\Server\\Server.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\lwino\\.nuget\\packages\\mqttnet\\4.3.6.1152\\mqttnet.4.3.6.1152.nupkg.sha512"
+  ],
+  "logs": []
+}
