@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "D:\\projekt\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\projekt\\MosquittoLauncher\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MosquittoLauncher\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\projekt\\python\\mqtt_rec.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:python\\mqtt_rec.py||{8B382828-6202-11D1-8870-0000F87579D2}"
     }
   ],
   "DocumentGroupContainers": [
@@ -19,14 +19,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\projekt\\MosquittoLauncher\\Program.cs",
-              "RelativeDocumentMoniker": "MosquittoLauncher\\Program.cs",
-              "ToolTip": "D:\\projekt\\MosquittoLauncher\\Program.cs",
-              "RelativeToolTip": "MosquittoLauncher\\Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAcAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-24T16:44:22.316Z",
+              "Title": "mqtt_rec.py",
+              "DocumentMoniker": "D:\\projekt\\python\\mqtt_rec.py",
+              "RelativeDocumentMoniker": "python\\mqtt_rec.py",
+              "ToolTip": "D:\\projekt\\python\\mqtt_rec.py",
+              "RelativeToolTip": "python\\mqtt_rec.py",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAsAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2024-07-24T16:47:38.426Z",
               "EditorCaption": ""
             }
           ]

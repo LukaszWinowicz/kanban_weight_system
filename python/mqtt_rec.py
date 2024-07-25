@@ -2,7 +2,7 @@ import paho.mqtt.client as mqtt
 import time
 
 # Adres IP brokera MQTT
-mqtt_server = ""
+mqtt_server = "" # [!] tutaj wpisać poprawne dane
 mqtt_user = "mqtt_user"
 mqtt_pass = "mqtt_pass"
 

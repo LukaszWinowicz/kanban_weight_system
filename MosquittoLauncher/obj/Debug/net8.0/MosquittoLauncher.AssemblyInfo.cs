@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MosquittoLauncher")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fe3e4148914f3b604be9c59948af5cdd1416359f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+484e5a4131dea9a05b4031cebae17f80c6a8e07d")]
 [assembly: System.Reflection.AssemblyProductAttribute("MosquittoLauncher")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MosquittoLauncher")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\api"
+    "\\MosquittoLauncher",
+    "\\python"
   ],
-  "SelectedNode": "\\api\\Program.cs",
+  "SelectedNode": "\\python\\mqtt_rec.py",
   "PreviewInSolutionExplorer": false
 }
