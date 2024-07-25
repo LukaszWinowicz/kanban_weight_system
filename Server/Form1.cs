@@ -9,7 +9,7 @@ namespace Server
         {
             InitializeComponent();
             _mosquittoService = new MosquittoService();
-            _esp32DataService = new Esp32DataService("192.168.1.32", 1883, "mqtt_user", "mqtt_pass");
+            _esp32DataService = new Esp32DataService("192.168.1.32", "mqtt_user", "mqtt_pass");
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -30,7 +30,13 @@ namespace Server
 
         private async void subBtn_Click(object sender, EventArgs e)
         {
-            await _esp32DataService.StartListeningAsync();
+            await _esp32DataService.StartAsync();
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _esp32DataService.Dispose();
+            _mosquittoService.Dispose();
         }
     }
 }

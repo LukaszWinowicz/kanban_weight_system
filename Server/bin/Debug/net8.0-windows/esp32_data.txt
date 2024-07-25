@@ -1,0 +1,2 @@
+2024-07-25 08:51:09 - esp32_c3_01: Device: esp32_c3_01, ID: ESP32_8C45BD3BDAEC, Number: 6
+2024-07-25 08:51:19 - esp32_c3_01: Device: esp32_c3_01, ID: ESP32_8C45BD3BDAEC, Number: 8
