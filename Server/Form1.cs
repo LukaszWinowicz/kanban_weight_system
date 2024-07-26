@@ -4,12 +4,14 @@ namespace Server
     {
         private readonly MosquittoService _mosquittoService;
         private readonly Esp32DataService _esp32DataService;
+        private readonly CmdExecutorService _cmdExecutor;
 
         public Form1()
         {
             InitializeComponent();
             _mosquittoService = new MosquittoService();
             _esp32DataService = new Esp32DataService("192.168.1.32", "mqtt_user", "mqtt_pass");
+            _cmdExecutor = new CmdExecutorService();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -37,6 +39,11 @@ namespace Server
         {
             _esp32DataService.Dispose();
             _mosquittoService.Dispose();
+        }
+
+        private void cmdBtn_Click(object sender, EventArgs e)
+        {
+            _cmdExecutor.ExecuteCommand("netstat -an | find \"1883\"");
         }
     }
 }

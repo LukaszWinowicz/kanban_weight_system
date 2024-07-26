@@ -31,6 +31,7 @@
             button1 = new Button();
             closeBtn = new Button();
             subBtn = new Button();
+            cmdBtn = new Button();
             SuspendLayout();
             // 
             // button1
@@ -63,11 +64,22 @@
             subBtn.UseVisualStyleBackColor = true;
             subBtn.Click += subBtn_Click;
             // 
+            // cmdBtn
+            // 
+            cmdBtn.Location = new Point(644, 39);
+            cmdBtn.Name = "cmdBtn";
+            cmdBtn.Size = new Size(97, 45);
+            cmdBtn.TabIndex = 3;
+            cmdBtn.Text = "CMD";
+            cmdBtn.UseVisualStyleBackColor = true;
+            cmdBtn.Click += cmdBtn_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(cmdBtn);
             Controls.Add(subBtn);
             Controls.Add(closeBtn);
             Controls.Add(button1);
@@ -82,5 +94,6 @@
         private Button button1;
         private Button closeBtn;
         private Button subBtn;
+        private Button cmdBtn;
     }
 }
