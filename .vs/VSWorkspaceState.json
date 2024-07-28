@@ -1,9 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\MosquittoLauncher",
-    "\\python"
+    "\\WpfDashboardApp"
   ],
-  "SelectedNode": "\\python\\mqtt_rec.py",
+  "SelectedNode": "\\WpfDashboardApp",
   "PreviewInSolutionExplorer": false
 }
