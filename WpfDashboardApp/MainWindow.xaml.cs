@@ -19,6 +19,7 @@ namespace WpfDashboardApp
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new ReadDataViewModel();
         }
     }
 }
