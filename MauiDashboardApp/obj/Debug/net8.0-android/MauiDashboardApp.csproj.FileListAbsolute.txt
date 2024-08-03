@@ -33,7 +33,6 @@ D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-android\resizetizer\r\
 D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-android\resizetizer\r\drawable-xxxhdpi\dotnet_bot.png
 D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-android\resizetizer\r\drawable\database.png
 D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-android\resizetizer\r\drawable\home.png
-D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-android\resizetizer\r\drawable\menu.png
 D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-android\resizetizer\r\drawable\minimize.png
 D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-android\resizetizer\r\drawable\settings.png
 D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-android\resizetizer\r\mipmap-anydpi-v26\appicon.xml
@@ -1043,3 +1042,5 @@ D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-android\stamp\_Convert
 D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-android\stamp\_GenerateJavaStubs.stamp
 D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-android\stamp\_GeneratePackageManagerJava.stamp
 D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-android\stamp\_ResolveLibraryProjectImports.stamp
+D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-android\resizetizer\r\drawable\burger.png
+D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-android\resizetizer\r\drawable\maximize.png

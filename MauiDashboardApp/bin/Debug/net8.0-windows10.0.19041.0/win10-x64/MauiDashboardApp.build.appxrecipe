@@ -199,6 +199,9 @@
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-400.png">
       <PackagePath>appiconWideTile.scale-400.png</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\burger.scale-100.png">
+      <PackagePath>burger.scale-100.png</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\database.scale-100.png">
       <PackagePath>database.scale-100.png</PackagePath>
     </AppxPackagedFile>
@@ -220,8 +223,8 @@
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\home.scale-100.png">
       <PackagePath>home.scale-100.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\menu.scale-100.png">
-      <PackagePath>menu.scale-100.png</PackagePath>
+    <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\maximize.scale-100.png">
+      <PackagePath>maximize.scale-100.png</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\minimize.scale-100.png">
       <PackagePath>minimize.scale-100.png</PackagePath>

@@ -46,6 +46,7 @@ appiconWideTile.scale-125.png
 appiconWideTile.scale-150.png
 appiconWideTile.scale-200.png
 appiconWideTile.scale-400.png
+burger.scale-100.png
 database.scale-100.png
 dotnet_bot.scale-100.png
 dotnet_bot.scale-125.png
@@ -53,7 +54,7 @@ dotnet_bot.scale-150.png
 dotnet_bot.scale-200.png
 dotnet_bot.scale-400.png
 home.scale-100.png
-menu.scale-100.png
+maximize.scale-100.png
 minimize.scale-100.png
 settings.scale-100.png
 splashSplashScreen.scale-100.png

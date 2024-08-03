@@ -27,12 +27,41 @@
         Route="MainPage" />
 
     <Shell.FlyoutFooter>
-        <Grid Padding="10">
+        <Grid Padding="15" Style="{StaticResource ImageButton}">
             <Grid.GestureRecognizers>
                 <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
             </Grid.GestureRecognizers>
-            <Image x:Name="Expand" Source="menu.png" HeightRequest="24" HorizontalOptions="End"></Image>
-            <Image x:Name="Minimize" IsVisible="False" Source="minimize.png" HeightRequest="24" HorizontalOptions="End"></Image>
+            <Image x:Name="Maximize" Source="maximize.png" HeightRequest="24" HorizontalOptions="Start"></Image>
+            <Image x:Name="Minimize" IsVisible="False" Source="minimize.png" HeightRequest="24" HorizontalOptions="Start"></Image>
         </Grid>
     </Shell.FlyoutFooter>
+
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Style x:Key="ImageButton" TargetType="Grid">
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="Transparent"></Setter>
+                                </VisualState.Setters>
+                            </VisualState>
+
+                            <VisualState x:Name="Focused"></VisualState>
+
+                            <VisualState x:Name="Disabled"></VisualState>
+
+                            <VisualState x:Name="PointerOver">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="LightGrey"></Setter>
+                                </VisualState.Setters>
+                            </VisualState>
+
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </Shell.Resources>
 </Shell>

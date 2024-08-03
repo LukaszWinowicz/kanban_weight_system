@@ -9,7 +9,7 @@
 
         private void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
         {
-            if (Expand.IsVisible)
+            if (Maximize.IsVisible)
             {
                 var animation = new Animation((current) =>
                 {
@@ -18,7 +18,7 @@
 
                 animation.Commit(this, "expond", finished: (value, cancelled) =>
                 {
-                    Expand.IsVisible = false;
+                    Maximize.IsVisible = false;
                     Minimize.IsVisible = true;
                 });
             }
@@ -31,7 +31,7 @@
 
                 animation.Commit(this, "minimize", finished: (value, cancelled) =>
                 {
-                    Expand.IsVisible = true;
+                    Maximize.IsVisible = true;
                     Minimize.IsVisible = false;
                 });
             }

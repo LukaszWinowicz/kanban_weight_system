@@ -29,25 +29,25 @@
     <AppXManifest Include="D:\kanban_weight_system\MauiDashboardApp\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2024-08-03T09:00:59.517</Modified>
+      <Modified>2024-08-03T09:42:52.023</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2024-08-03T09:00:34.692</Modified>
+      <Modified>2024-08-03T09:42:51.899</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\MauiDashboardApp.runtimeconfig.json">
       <PackagePath>MauiDashboardApp.runtimeconfig.json</PackagePath>
-      <Modified>2024-08-03T04:40:10.152</Modified>
+      <Modified>2024-08-03T09:42:51.793</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\MauiDashboardApp.dll">
       <PackagePath>MauiDashboardApp.dll</PackagePath>
-      <Modified>2024-08-03T09:00:59.267</Modified>
+      <Modified>2024-08-03T09:42:51.483</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\apphost.exe">
       <PackagePath>MauiDashboardApp.exe</PackagePath>
-      <Modified>2024-08-03T09:00:59.290</Modified>
+      <Modified>2024-08-03T09:42:51.539</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\Resources\Raw\AboutAssets.txt">
       <PackagePath>AboutAssets.txt</PackagePath>
@@ -83,231 +83,235 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appicon.ico">
       <PackagePath>appicon.ico</PackagePath>
-      <Modified>2024-08-03T08:57:43.153</Modified>
+      <Modified>2024-08-03T09:22:31.879</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLargeTile.scale-100.png">
       <PackagePath>appiconLargeTile.scale-100.png</PackagePath>
-      <Modified>2024-08-03T08:57:43.146</Modified>
+      <Modified>2024-08-03T09:22:31.871</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLargeTile.scale-125.png">
       <PackagePath>appiconLargeTile.scale-125.png</PackagePath>
-      <Modified>2024-08-03T08:57:43.146</Modified>
+      <Modified>2024-08-03T09:22:31.871</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLargeTile.scale-150.png">
       <PackagePath>appiconLargeTile.scale-150.png</PackagePath>
-      <Modified>2024-08-03T08:57:43.146</Modified>
+      <Modified>2024-08-03T09:22:31.871</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLargeTile.scale-200.png">
       <PackagePath>appiconLargeTile.scale-200.png</PackagePath>
-      <Modified>2024-08-03T08:57:43.145</Modified>
+      <Modified>2024-08-03T09:22:31.870</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLargeTile.scale-400.png">
       <PackagePath>appiconLargeTile.scale-400.png</PackagePath>
-      <Modified>2024-08-03T08:57:43.145</Modified>
+      <Modified>2024-08-03T09:22:31.870</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-lightunplated_targetsize-16.png">
       <PackagePath>appiconLogo.altform-lightunplated_targetsize-16.png</PackagePath>
-      <Modified>2024-08-03T08:57:43.150</Modified>
+      <Modified>2024-08-03T09:22:31.876</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-lightunplated_targetsize-24.png">
       <PackagePath>appiconLogo.altform-lightunplated_targetsize-24.png</PackagePath>
-      <Modified>2024-08-03T08:57:43.150</Modified>
+      <Modified>2024-08-03T09:22:31.876</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-lightunplated_targetsize-256.png">
       <PackagePath>appiconLogo.altform-lightunplated_targetsize-256.png</PackagePath>
-      <Modified>2024-08-03T08:57:43.149</Modified>
+      <Modified>2024-08-03T09:22:31.875</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-lightunplated_targetsize-32.png">
       <PackagePath>appiconLogo.altform-lightunplated_targetsize-32.png</PackagePath>
-      <Modified>2024-08-03T08:57:43.150</Modified>
+      <Modified>2024-08-03T09:22:31.876</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-lightunplated_targetsize-48.png">
       <PackagePath>appiconLogo.altform-lightunplated_targetsize-48.png</PackagePath>
-      <Modified>2024-08-03T08:57:43.149</Modified>
+      <Modified>2024-08-03T09:22:31.875</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-unplated_targetsize-16.png">
       <PackagePath>appiconLogo.altform-unplated_targetsize-16.png</PackagePath>
-      <Modified>2024-08-03T08:57:43.151</Modified>
+      <Modified>2024-08-03T09:22:31.877</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-unplated_targetsize-24.png">
       <PackagePath>appiconLogo.altform-unplated_targetsize-24.png</PackagePath>
-      <Modified>2024-08-03T08:57:43.151</Modified>
+      <Modified>2024-08-03T09:22:31.877</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-unplated_targetsize-256.png">
       <PackagePath>appiconLogo.altform-unplated_targetsize-256.png</PackagePath>
-      <Modified>2024-08-03T08:57:43.150</Modified>
+      <Modified>2024-08-03T09:22:31.876</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-unplated_targetsize-32.png">
       <PackagePath>appiconLogo.altform-unplated_targetsize-32.png</PackagePath>
-      <Modified>2024-08-03T08:57:43.150</Modified>
+      <Modified>2024-08-03T09:22:31.876</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-unplated_targetsize-48.png">
       <PackagePath>appiconLogo.altform-unplated_targetsize-48.png</PackagePath>
-      <Modified>2024-08-03T08:57:43.150</Modified>
+      <Modified>2024-08-03T09:22:31.876</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.scale-100.png">
       <PackagePath>appiconLogo.scale-100.png</PackagePath>
-      <Modified>2024-08-03T08:57:43.152</Modified>
+      <Modified>2024-08-03T09:22:31.879</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.scale-125.png">
       <PackagePath>appiconLogo.scale-125.png</PackagePath>
-      <Modified>2024-08-03T08:57:43.152</Modified>
+      <Modified>2024-08-03T09:22:31.878</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.scale-150.png">
       <PackagePath>appiconLogo.scale-150.png</PackagePath>
-      <Modified>2024-08-03T08:57:43.152</Modified>
+      <Modified>2024-08-03T09:22:31.878</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.scale-200.png">
       <PackagePath>appiconLogo.scale-200.png</PackagePath>
-      <Modified>2024-08-03T08:57:43.152</Modified>
+      <Modified>2024-08-03T09:22:31.878</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.scale-400.png">
       <PackagePath>appiconLogo.scale-400.png</PackagePath>
-      <Modified>2024-08-03T08:57:43.152</Modified>
+      <Modified>2024-08-03T09:22:31.878</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.targetsize-16.png">
       <PackagePath>appiconLogo.targetsize-16.png</PackagePath>
-      <Modified>2024-08-03T08:57:43.152</Modified>
+      <Modified>2024-08-03T09:22:31.878</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.targetsize-24.png">
       <PackagePath>appiconLogo.targetsize-24.png</PackagePath>
-      <Modified>2024-08-03T08:57:43.151</Modified>
+      <Modified>2024-08-03T09:22:31.877</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.targetsize-256.png">
       <PackagePath>appiconLogo.targetsize-256.png</PackagePath>
-      <Modified>2024-08-03T08:57:43.151</Modified>
+      <Modified>2024-08-03T09:22:31.877</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.targetsize-32.png">
       <PackagePath>appiconLogo.targetsize-32.png</PackagePath>
-      <Modified>2024-08-03T08:57:43.151</Modified>
+      <Modified>2024-08-03T09:22:31.877</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.targetsize-48.png">
       <PackagePath>appiconLogo.targetsize-48.png</PackagePath>
-      <Modified>2024-08-03T08:57:43.151</Modified>
+      <Modified>2024-08-03T09:22:31.877</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconMediumTile.scale-100.png">
       <PackagePath>appiconMediumTile.scale-100.png</PackagePath>
-      <Modified>2024-08-03T08:57:43.147</Modified>
+      <Modified>2024-08-03T09:22:31.873</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconMediumTile.scale-125.png">
       <PackagePath>appiconMediumTile.scale-125.png</PackagePath>
-      <Modified>2024-08-03T08:57:43.147</Modified>
+      <Modified>2024-08-03T09:22:31.873</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconMediumTile.scale-150.png">
       <PackagePath>appiconMediumTile.scale-150.png</PackagePath>
-      <Modified>2024-08-03T08:57:43.147</Modified>
+      <Modified>2024-08-03T09:22:31.873</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconMediumTile.scale-200.png">
       <PackagePath>appiconMediumTile.scale-200.png</PackagePath>
-      <Modified>2024-08-03T08:57:43.147</Modified>
+      <Modified>2024-08-03T09:22:31.873</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconMediumTile.scale-400.png">
       <PackagePath>appiconMediumTile.scale-400.png</PackagePath>
-      <Modified>2024-08-03T08:57:43.147</Modified>
+      <Modified>2024-08-03T09:22:31.873</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconSmallTile.scale-100.png">
       <PackagePath>appiconSmallTile.scale-100.png</PackagePath>
-      <Modified>2024-08-03T08:57:43.148</Modified>
+      <Modified>2024-08-03T09:22:31.874</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconSmallTile.scale-125.png">
       <PackagePath>appiconSmallTile.scale-125.png</PackagePath>
-      <Modified>2024-08-03T08:57:43.148</Modified>
+      <Modified>2024-08-03T09:22:31.874</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconSmallTile.scale-150.png">
       <PackagePath>appiconSmallTile.scale-150.png</PackagePath>
-      <Modified>2024-08-03T08:57:43.148</Modified>
+      <Modified>2024-08-03T09:22:31.874</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconSmallTile.scale-200.png">
       <PackagePath>appiconSmallTile.scale-200.png</PackagePath>
-      <Modified>2024-08-03T08:57:43.148</Modified>
+      <Modified>2024-08-03T09:22:31.874</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconSmallTile.scale-400.png">
       <PackagePath>appiconSmallTile.scale-400.png</PackagePath>
-      <Modified>2024-08-03T08:57:43.148</Modified>
+      <Modified>2024-08-03T09:22:31.874</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconStoreLogo.scale-100.png">
       <PackagePath>appiconStoreLogo.scale-100.png</PackagePath>
-      <Modified>2024-08-03T08:57:43.149</Modified>
+      <Modified>2024-08-03T09:22:31.875</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconStoreLogo.scale-125.png">
       <PackagePath>appiconStoreLogo.scale-125.png</PackagePath>
-      <Modified>2024-08-03T08:57:43.149</Modified>
+      <Modified>2024-08-03T09:22:31.875</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconStoreLogo.scale-150.png">
       <PackagePath>appiconStoreLogo.scale-150.png</PackagePath>
-      <Modified>2024-08-03T08:57:43.149</Modified>
+      <Modified>2024-08-03T09:22:31.875</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconStoreLogo.scale-200.png">
       <PackagePath>appiconStoreLogo.scale-200.png</PackagePath>
-      <Modified>2024-08-03T08:57:43.149</Modified>
+      <Modified>2024-08-03T09:22:31.875</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconStoreLogo.scale-400.png">
       <PackagePath>appiconStoreLogo.scale-400.png</PackagePath>
-      <Modified>2024-08-03T08:57:43.148</Modified>
+      <Modified>2024-08-03T09:22:31.874</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-100.png">
       <PackagePath>appiconWideTile.scale-100.png</PackagePath>
-      <Modified>2024-08-03T08:57:43.147</Modified>
+      <Modified>2024-08-03T09:22:31.871</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-125.png">
       <PackagePath>appiconWideTile.scale-125.png</PackagePath>
-      <Modified>2024-08-03T08:57:43.146</Modified>
+      <Modified>2024-08-03T09:22:31.871</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-150.png">
       <PackagePath>appiconWideTile.scale-150.png</PackagePath>
-      <Modified>2024-08-03T08:57:43.146</Modified>
+      <Modified>2024-08-03T09:22:31.871</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-200.png">
       <PackagePath>appiconWideTile.scale-200.png</PackagePath>
-      <Modified>2024-08-03T08:57:43.146</Modified>
+      <Modified>2024-08-03T09:22:31.871</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-400.png">
       <PackagePath>appiconWideTile.scale-400.png</PackagePath>
-      <Modified>2024-08-03T08:57:43.146</Modified>
+      <Modified>2024-08-03T09:22:31.871</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\burger.scale-100.png">
+      <PackagePath>burger.scale-100.png</PackagePath>
+      <Modified>2024-08-03T09:22:31.869</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\database.scale-100.png">
       <PackagePath>database.scale-100.png</PackagePath>
-      <Modified>2024-08-03T08:57:43.145</Modified>
+      <Modified>2024-08-03T09:22:31.870</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-100.png">
       <PackagePath>dotnet_bot.scale-100.png</PackagePath>
-      <Modified>2024-08-03T08:57:43.154</Modified>
+      <Modified>2024-08-03T09:22:31.880</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-125.png">
       <PackagePath>dotnet_bot.scale-125.png</PackagePath>
-      <Modified>2024-08-03T08:57:43.153</Modified>
+      <Modified>2024-08-03T09:22:31.880</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-150.png">
       <PackagePath>dotnet_bot.scale-150.png</PackagePath>
-      <Modified>2024-08-03T08:57:43.153</Modified>
+      <Modified>2024-08-03T09:22:31.880</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-200.png">
       <PackagePath>dotnet_bot.scale-200.png</PackagePath>
-      <Modified>2024-08-03T08:57:43.153</Modified>
+      <Modified>2024-08-03T09:22:31.879</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-400.png">
       <PackagePath>dotnet_bot.scale-400.png</PackagePath>
-      <Modified>2024-08-03T08:57:43.153</Modified>
+      <Modified>2024-08-03T09:22:31.879</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\home.scale-100.png">
       <PackagePath>home.scale-100.png</PackagePath>
-      <Modified>2024-08-03T08:57:43.144</Modified>
+      <Modified>2024-08-03T09:22:31.879</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\menu.scale-100.png">
-      <PackagePath>menu.scale-100.png</PackagePath>
-      <Modified>2024-08-03T08:57:43.145</Modified>
+    <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\maximize.scale-100.png">
+      <PackagePath>maximize.scale-100.png</PackagePath>
+      <Modified>2024-08-03T09:22:31.870</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\minimize.scale-100.png">
       <PackagePath>minimize.scale-100.png</PackagePath>
-      <Modified>2024-08-03T08:57:43.145</Modified>
+      <Modified>2024-08-03T09:22:31.869</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\settings.scale-100.png">
       <PackagePath>settings.scale-100.png</PackagePath>
-      <Modified>2024-08-03T08:57:43.145</Modified>
+      <Modified>2024-08-03T09:22:31.870</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\MauiDashboardApp.deps.json">
       <PackagePath>MauiDashboardApp.deps.json</PackagePath>
-      <Modified>2024-08-03T04:40:10.026</Modified>
+      <Modified>2024-08-03T09:42:51.791</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lwino\.nuget\packages\microsoft.windows.sdk.net.ref\10.0.19041.31\lib\net6.0\Microsoft.Windows.SDK.NET.dll">
       <PackagePath>Microsoft.Windows.SDK.NET.dll</PackagePath>
