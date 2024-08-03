@@ -29,13 +29,13 @@
     <AppXManifest Include="D:\kanban_weight_system\MauiDashboardApp\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2024-08-03T09:42:52.023</Modified>
+      <Modified>2024-08-03T10:38:41.011</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2024-08-03T09:42:51.899</Modified>
+      <Modified>2024-08-03T10:38:40.872</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\MauiDashboardApp.runtimeconfig.json">
       <PackagePath>MauiDashboardApp.runtimeconfig.json</PackagePath>
@@ -43,11 +43,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\MauiDashboardApp.dll">
       <PackagePath>MauiDashboardApp.dll</PackagePath>
-      <Modified>2024-08-03T09:42:51.483</Modified>
+      <Modified>2024-08-03T10:38:39.854</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\apphost.exe">
       <PackagePath>MauiDashboardApp.exe</PackagePath>
-      <Modified>2024-08-03T09:42:51.539</Modified>
+      <Modified>2024-08-03T10:38:39.913</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\Resources\Raw\AboutAssets.txt">
       <PackagePath>AboutAssets.txt</PackagePath>
@@ -311,7 +311,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\MauiDashboardApp.deps.json">
       <PackagePath>MauiDashboardApp.deps.json</PackagePath>
-      <Modified>2024-08-03T09:42:51.791</Modified>
+      <Modified>2024-08-03T10:38:40.651</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lwino\.nuget\packages\microsoft.windows.sdk.net.ref\10.0.19041.31\lib\net6.0\Microsoft.Windows.SDK.NET.dll">
       <PackagePath>Microsoft.Windows.SDK.NET.dll</PackagePath>

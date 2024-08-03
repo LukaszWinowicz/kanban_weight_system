@@ -17,14 +17,14 @@
     <ShellContent
         Title="Database"
         Icon="database.png"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
-
-    <ShellContent
+        ContentTemplate="{DataTemplate local:DatabasePage}"
+        Route="DatabasePage" />
+   
+    <ShellContent 
         Title="Settings"
         Icon="settings.png"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+        ContentTemplate="{DataTemplate local:SettingsPage}"
+        Route="SettingsPage" />
 
     <Shell.FlyoutFooter>
         <Grid Padding="15" Style="{StaticResource ImageButton}">
