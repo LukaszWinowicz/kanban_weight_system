@@ -19,7 +19,7 @@
         Icon="database.png"
         ContentTemplate="{DataTemplate local:DatabasePage}"
         Route="DatabasePage" />
-   
+
     <ShellContent 
         Title="Settings"
         Icon="settings.png"

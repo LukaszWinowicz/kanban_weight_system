@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using MauiDashboardApp.Database;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace MauiDashboardApp
 {
@@ -15,9 +17,13 @@ namespace MauiDashboardApp
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
-#if DEBUG
-    		builder.Logging.AddDebug();
-#endif
+            builder.Services.AddDbContext<AppDbContext>(options =>
+                            options.UseSqlServer("server=localhost;database=MyDatabase;trusted_connection=true;TrustServerCertificate=True"));
+            builder.Services.AddTransient<DatabasePage>();
+
+            #if DEBUG
+            builder.Logging.AddDebug();
+            #endif
 
             return builder.Build();
         }

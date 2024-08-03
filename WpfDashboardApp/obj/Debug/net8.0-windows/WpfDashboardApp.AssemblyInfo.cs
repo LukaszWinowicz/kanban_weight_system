@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WpfDashboardApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e92a74deb944637ab16007d9484c886373a5d133")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3a74716e93fd5a674864fdf494754c7f6abab05e")]
 [assembly: System.Reflection.AssemblyProductAttribute("WpfDashboardApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WpfDashboardApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
