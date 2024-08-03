@@ -4,12 +4,35 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:MauiDashboardApp"
-    Shell.FlyoutBehavior="Disabled"
+    Shell.FlyoutBehavior="Locked"
+    Shell.FlyoutWidth="65"
     Title="MauiDashboardApp">
 
     <ShellContent
         Title="Home"
+        Icon="home.png"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
 
+    <ShellContent
+        Title="Database"
+        Icon="database.png"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage" />
+
+    <ShellContent
+        Title="Settings"
+        Icon="settings.png"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage" />
+
+    <Shell.FlyoutFooter>
+        <Grid Padding="10">
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
+            </Grid.GestureRecognizers>
+            <Image x:Name="Expand" Source="menu.png" HeightRequest="24" HorizontalOptions="End"></Image>
+            <Image x:Name="Minimize" IsVisible="False" Source="minimize.png" HeightRequest="24" HorizontalOptions="End"></Image>
+        </Grid>
+    </Shell.FlyoutFooter>
 </Shell>
