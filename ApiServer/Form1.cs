@@ -47,7 +47,7 @@ namespace ApiServer
             _mosquittoService.StopMosquitto();
         }
 
-        private async void subBtn_Click(object sender, EventArgs e)
+        private async void btnSub_Click(object sender, EventArgs e)
         {
             await _esp32DataService.StartAsync();
         }
