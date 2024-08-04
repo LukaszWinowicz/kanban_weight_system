@@ -1,0 +1,17 @@
+D:\kanban_weight_system\ApiServer\ApiServer.WindowsForms\bin\Debug\net8.0-windows\ApiServer.WindowsForms.exe
+D:\kanban_weight_system\ApiServer\ApiServer.WindowsForms\bin\Debug\net8.0-windows\ApiServer.WindowsForms.deps.json
+D:\kanban_weight_system\ApiServer\ApiServer.WindowsForms\bin\Debug\net8.0-windows\ApiServer.WindowsForms.runtimeconfig.json
+D:\kanban_weight_system\ApiServer\ApiServer.WindowsForms\bin\Debug\net8.0-windows\ApiServer.WindowsForms.dll
+D:\kanban_weight_system\ApiServer\ApiServer.WindowsForms\bin\Debug\net8.0-windows\ApiServer.WindowsForms.pdb
+D:\kanban_weight_system\ApiServer\ApiServer.WindowsForms\obj\Debug\net8.0-windows\ApiServer.WindowsForms.Form1.resources
+D:\kanban_weight_system\ApiServer\ApiServer.WindowsForms\obj\Debug\net8.0-windows\ApiServer.WindowsForms.csproj.GenerateResource.cache
+D:\kanban_weight_system\ApiServer\ApiServer.WindowsForms\obj\Debug\net8.0-windows\ApiServer.WindowsForms.GeneratedMSBuildEditorConfig.editorconfig
+D:\kanban_weight_system\ApiServer\ApiServer.WindowsForms\obj\Debug\net8.0-windows\ApiServer.WindowsForms.AssemblyInfoInputs.cache
+D:\kanban_weight_system\ApiServer\ApiServer.WindowsForms\obj\Debug\net8.0-windows\ApiServer.WindowsForms.AssemblyInfo.cs
+D:\kanban_weight_system\ApiServer\ApiServer.WindowsForms\obj\Debug\net8.0-windows\ApiServer.WindowsForms.csproj.CoreCompileInputs.cache
+D:\kanban_weight_system\ApiServer\ApiServer.WindowsForms\obj\Debug\net8.0-windows\ApiServer.WindowsForms.sourcelink.json
+D:\kanban_weight_system\ApiServer\ApiServer.WindowsForms\obj\Debug\net8.0-windows\ApiServer.WindowsForms.dll
+D:\kanban_weight_system\ApiServer\ApiServer.WindowsForms\obj\Debug\net8.0-windows\refint\ApiServer.WindowsForms.dll
+D:\kanban_weight_system\ApiServer\ApiServer.WindowsForms\obj\Debug\net8.0-windows\ApiServer.WindowsForms.pdb
+D:\kanban_weight_system\ApiServer\ApiServer.WindowsForms\obj\Debug\net8.0-windows\ApiServer.WindowsForms.genruntimeconfig.cache
+D:\kanban_weight_system\ApiServer\ApiServer.WindowsForms\obj\Debug\net8.0-windows\ref\ApiServer.WindowsForms.dll
