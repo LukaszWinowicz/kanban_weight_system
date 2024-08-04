@@ -8,10 +8,6 @@ namespace ApiServer.WindowsForms
         static void Main()
         {
             ApplicationConfiguration.Initialize();
-
-            // Uruchom API w osobnym w¹tku
-            Task.Run(() => ApiServer.API.Program.StartApi());
-
             Application.Run(new Form1());
         }
     }

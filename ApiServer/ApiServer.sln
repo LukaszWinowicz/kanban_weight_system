@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiServer.Core", "ApiServer
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiServer.Infrastructure", "ApiServer.Infrastructure\ApiServer.Infrastructure.csproj", "{3849B6C5-F581-45D8-AF3A-0ADD0E088AD5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiServer.API", "ApiServer.API\ApiServer.API.csproj", "{0673592A-4142-4608-BC5C-3B7B21EEE935}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,10 +27,6 @@ Global
 		{3849B6C5-F581-45D8-AF3A-0ADD0E088AD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3849B6C5-F581-45D8-AF3A-0ADD0E088AD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3849B6C5-F581-45D8-AF3A-0ADD0E088AD5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0673592A-4142-4608-BC5C-3B7B21EEE935}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0673592A-4142-4608-BC5C-3B7B21EEE935}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0673592A-4142-4608-BC5C-3B7B21EEE935}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0673592A-4142-4608-BC5C-3B7B21EEE935}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
