@@ -1,5 +1,3 @@
-using ApiServer.API;
-
 namespace ApiServer.WindowsForms
 {
     internal static class Program
