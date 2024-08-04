@@ -18,15 +18,19 @@ namespace ApiServer.API
 
             app.Run();
         }
-
         public static void StartApi()
         {
-            var builder = WebApplication.CreateBuilder();
+            var builder = WebApplication.CreateBuilder(new WebApplicationOptions
+            {
+                Args = new string[] { },
+                ContentRootPath = AppContext.BaseDirectory,
+                ApplicationName = typeof(Program).Assembly.FullName,
+            });
+
+            builder.WebHost.UseUrls("http://localhost:5000", "https://localhost:5001");
 
             ConfigureServices(builder.Services);
-
             var app = builder.Build();
-
             ConfigureApp(app);
 
             app.RunAsync();

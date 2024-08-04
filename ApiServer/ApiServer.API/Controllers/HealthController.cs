@@ -7,7 +7,7 @@ namespace ApiServer.API.Controllers
     [ApiController]
     public class HealthController : ControllerBase
     {
-        [HttpGet]
+        [HttpGet("Get")]
         public IActionResult Get() 
         {
             return Ok("API is running");
