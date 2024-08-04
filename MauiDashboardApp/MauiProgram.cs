@@ -1,14 +1,14 @@
-﻿using MauiDashboardApp.Database;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
+using MauiDashboardApp.Services;
+using MauiDashboardApp.Models;
 
 namespace MauiDashboardApp
 {
     public static class MauiProgram
     {
-        public static MauiApp CreateMauiApp()
+        public static Microsoft.Maui.Hosting.MauiApp CreateMauiApp()
         {
-            var builder = MauiApp.CreateBuilder();
+            var builder = Microsoft.Maui.Hosting.MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
                 .ConfigureFonts(fonts =>
@@ -17,13 +17,13 @@ namespace MauiDashboardApp
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
-            builder.Services.AddDbContext<AppDbContext>(options =>
-                            options.UseSqlServer("server=localhost;database=MyDatabase;trusted_connection=true;TrustServerCertificate=True"));
-            builder.Services.AddTransient<DatabasePage>();
+            builder.Services.AddSingleton<ApiService>();
+            builder.Services.AddTransient<SensorReadingsViewModel>();
+            builder.Services.AddTransient<SensorReadingsPage>();
 
-            #if DEBUG
+#if DEBUG
             builder.Logging.AddDebug();
-            #endif
+#endif
 
             return builder.Build();
         }

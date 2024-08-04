@@ -15,10 +15,10 @@
         Route="MainPage" />
 
     <ShellContent
-        Title="Database"
+        Title="SensorReadingsPage"
         Icon="database.png"
-        ContentTemplate="{DataTemplate local:DatabasePage}"
-        Route="DatabasePage" />
+        ContentTemplate="{DataTemplate local:SensorReadingsPage}"
+        Route="SensorReadingsPage" />
 
     <ShellContent 
         Title="Settings"
