@@ -1,0 +1,15 @@
+D:\kanban_weight_system\ApiServer\ApiServer.API\bin\Debug\net8.0\ApiServer.API.exe
+D:\kanban_weight_system\ApiServer\ApiServer.API\bin\Debug\net8.0\ApiServer.API.deps.json
+D:\kanban_weight_system\ApiServer\ApiServer.API\bin\Debug\net8.0\ApiServer.API.runtimeconfig.json
+D:\kanban_weight_system\ApiServer\ApiServer.API\bin\Debug\net8.0\ApiServer.API.dll
+D:\kanban_weight_system\ApiServer\ApiServer.API\bin\Debug\net8.0\ApiServer.API.pdb
+D:\kanban_weight_system\ApiServer\ApiServer.API\obj\Debug\net8.0\ApiServer.API.GeneratedMSBuildEditorConfig.editorconfig
+D:\kanban_weight_system\ApiServer\ApiServer.API\obj\Debug\net8.0\ApiServer.API.AssemblyInfoInputs.cache
+D:\kanban_weight_system\ApiServer\ApiServer.API\obj\Debug\net8.0\ApiServer.API.AssemblyInfo.cs
+D:\kanban_weight_system\ApiServer\ApiServer.API\obj\Debug\net8.0\ApiServer.API.csproj.CoreCompileInputs.cache
+D:\kanban_weight_system\ApiServer\ApiServer.API\obj\Debug\net8.0\ApiServer.API.sourcelink.json
+D:\kanban_weight_system\ApiServer\ApiServer.API\obj\Debug\net8.0\ApiServer.API.dll
+D:\kanban_weight_system\ApiServer\ApiServer.API\obj\Debug\net8.0\refint\ApiServer.API.dll
+D:\kanban_weight_system\ApiServer\ApiServer.API\obj\Debug\net8.0\ApiServer.API.pdb
+D:\kanban_weight_system\ApiServer\ApiServer.API\obj\Debug\net8.0\ApiServer.API.genruntimeconfig.cache
+D:\kanban_weight_system\ApiServer\ApiServer.API\obj\Debug\net8.0\ref\ApiServer.API.dll
