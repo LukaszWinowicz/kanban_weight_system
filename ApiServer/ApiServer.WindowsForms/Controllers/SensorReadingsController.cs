@@ -33,5 +33,8 @@ namespace ApiServer.WindowsForms.Controllers
             var reading = _context.SensorReadings.FirstOrDefault(x => x.SensorId == sensorId);
             return reading;
         }
+
+        //[HttpPost]
+        // endpoint do wysyłania paczki z danymi, tak żeby można było na innym komputerze mieć już jakąś bazę
     }
 }
