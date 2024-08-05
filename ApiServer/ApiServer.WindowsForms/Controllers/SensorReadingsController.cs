@@ -34,7 +34,18 @@ namespace ApiServer.WindowsForms.Controllers
             return reading;
         }
 
-        //[HttpPost]
-        // endpoint do wysyłania paczki z danymi, tak żeby można było na innym komputerze mieć już jakąś bazę
+        [HttpPost]
+        public ActionResult<SensorReading> CreateSensorReading([FromBody] SensorReading sensorReading)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            _context.SensorReadings.Add(sensorReading);
+            _context.SaveChanges();
+            return Ok(sensorReading.SensorId);
+
+        }
     }
 }
