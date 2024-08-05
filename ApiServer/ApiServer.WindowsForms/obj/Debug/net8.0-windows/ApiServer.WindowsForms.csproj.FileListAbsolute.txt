@@ -128,3 +128,5 @@ D:\kanban_weight_system\ApiServer\ApiServer.WindowsForms\bin\Debug\net8.0-window
 D:\kanban_weight_system\ApiServer\ApiServer.WindowsForms\bin\Debug\net8.0-windows\Swashbuckle.AspNetCore.Swagger.dll
 D:\kanban_weight_system\ApiServer\ApiServer.WindowsForms\bin\Debug\net8.0-windows\Swashbuckle.AspNetCore.SwaggerGen.dll
 D:\kanban_weight_system\ApiServer\ApiServer.WindowsForms\bin\Debug\net8.0-windows\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\kanban_weight_system\ApiServer\ApiServer.WindowsForms\bin\Debug\net8.0-windows\ApiServer.API.dll
+D:\kanban_weight_system\ApiServer\ApiServer.WindowsForms\bin\Debug\net8.0-windows\ApiServer.API.pdb

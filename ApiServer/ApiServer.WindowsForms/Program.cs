@@ -1,7 +1,7 @@
 using ApiServer.Infrastructure.Database;
+using ApiServer.API;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Hosting;
 
 namespace ApiServer.WindowsForms
 {
@@ -14,11 +14,15 @@ namespace ApiServer.WindowsForms
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            var services = new ServiceCollection();
+            ConfigureServices(services);
+
             var builder = WebApplication.CreateBuilder();
             ConfigureServices(builder.Services);
+            ApiConfiguration.ConfigureServices(builder.Services);
 
             var app = builder.Build();
-            ConfigureWebApi(app);
+            ApiConfiguration.Configure(app);
 
             // Uruchom Web API w osobnym w¹tku
             var apiThread = new Thread(() =>
@@ -26,9 +30,6 @@ namespace ApiServer.WindowsForms
                 app.Run("http://localhost:5000");
             });
             apiThread.Start();
-
-            var services = new ServiceCollection();
-            ConfigureServices(services);
 
             // Uruchom aplikacjê WinForms
             using (ServiceProvider serviceProvider = services.BuildServiceProvider())
@@ -45,23 +46,7 @@ namespace ApiServer.WindowsForms
         private static void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApiServerContext>();
-            services.AddControllers();
-            services.AddEndpointsApiExplorer();
-            services.AddSwaggerGen();
             services.AddScoped<Form1>();
-        }
-
-        private static void ConfigureWebApi(WebApplication app)
-        {
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
-
-            app.UseHttpsRedirection();
-            app.UseAuthorization();
-            app.MapControllers();
         }
     }
 }
