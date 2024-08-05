@@ -1,4 +1,5 @@
 ﻿using ApiServer.Core.Entities;
+using ApiServer.Core.Models;
 using ApiServer.Infrastructure.Database;
 using Microsoft.AspNetCore.Mvc;
 
@@ -30,16 +31,16 @@ namespace ApiServer.API.Controllers
         }
 
         [HttpPost]
-        public ActionResult<SensorReading> CreateSensorReading([FromBody] SensorReading sensorReading)
+        public ActionResult<SensorReadingCreateDto> CreateSensorReading([FromBody] SensorReadingCreateDto createDto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _context.SensorReadings.Add(sensorReading);
+            _context.SensorReadings.Add(createDto);
             _context.SaveChanges();
-            return Ok(sensorReading.SensorId);
+            return Ok();
 
         }
     }
