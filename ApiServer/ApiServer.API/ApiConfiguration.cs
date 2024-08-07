@@ -1,8 +1,9 @@
 ﻿using ApiServer.API.Controllers;
+using ApiServer.Core.Interfaces;
+using ApiServer.Core.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System.Reflection.Metadata;
 
 namespace ApiServer.API
 {
@@ -14,6 +15,8 @@ namespace ApiServer.API
                     .AddApplicationPart(typeof(HealthController).Assembly)
                     .AddApplicationPart(typeof(SensorReadingsController).Assembly)
                     .AddControllersAsServices();
+            services.AddScoped<ISensorReadingRepository, SensorReadingRepository>();
+            services.AddScoped<ISensorReadingService, SensorReadingService>();
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
         }

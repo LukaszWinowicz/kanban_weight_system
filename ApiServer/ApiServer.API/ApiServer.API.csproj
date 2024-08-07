@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ApiServer.Infrastructure\ApiServer.Infrastructure.csproj" />
+    <ProjectReference Include="..\ApiServer.Core\ApiServer.Core.csproj" />
   </ItemGroup>
 
 </Project>

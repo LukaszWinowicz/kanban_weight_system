@@ -1,7 +1,4 @@
-﻿using ApiServer.Core.Entities;
-using ApiServer.Core.Models;
-using ApiServer.Infrastructure.Database;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace ApiServer.API.Controllers
 {
@@ -9,21 +6,21 @@ namespace ApiServer.API.Controllers
     [ApiController]
     public class SensorReadingsController : ControllerBase
     {
-        private readonly ApiServerContext _context;
+        private readonly SensorReadingService _sensorReadingService;
 
-        public SensorReadingsController(ApiServerContext context)
+        public SensorReadingsController(SensorReadingService _sensorReadingService)
         {
-            _context = context;
+            _sensorReadingService = sensorReadingService;
         }
 
         [HttpGet("test")]
         public ActionResult<IEnumerable<SensorReadingEntity>> GetAll()
         {           
-            var readings = _context.SensorReadings.ToList();
+            var readings = _sensorReadingService.SensorReadings.ToList();
             return Ok(readings);
         }
 
-        [HttpGet("{sensorId}")]
+        /*[HttpGet("{sensorId}")]
         public ActionResult<SensorReadingEntity> GetById(int sensorId)
         {
             var reading = _context.SensorReadings.FirstOrDefault(x => x.SensorId == sensorId);
@@ -40,8 +37,9 @@ namespace ApiServer.API.Controllers
 
             _context.SensorReadings.Add(createDto);
             _context.SaveChanges();
-            return Ok();
+            return Ok();*/
 
-        }
     }
 }
+
+
