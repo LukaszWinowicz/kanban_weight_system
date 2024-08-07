@@ -2,7 +2,7 @@
 
 namespace ApiServer.Core.Entities
 {
-    public class SensorReading
+    public class SensorReadingEntity
     {
         [Key]
         public int SensorId { get; set; }

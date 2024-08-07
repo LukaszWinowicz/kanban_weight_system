@@ -17,14 +17,14 @@ namespace ApiServer.API.Controllers
         }
 
         [HttpGet("test")]
-        public ActionResult<IEnumerable<SensorReading>> GetAll()
+        public ActionResult<IEnumerable<SensorReadingEntity>> GetAll()
         {           
             var readings = _context.SensorReadings.ToList();
             return Ok(readings);
         }
 
         [HttpGet("{sensorId}")]
-        public ActionResult<SensorReading> GetById(int sensorId)
+        public ActionResult<SensorReadingEntity> GetById(int sensorId)
         {
             var reading = _context.SensorReadings.FirstOrDefault(x => x.SensorId == sensorId);
             return reading;

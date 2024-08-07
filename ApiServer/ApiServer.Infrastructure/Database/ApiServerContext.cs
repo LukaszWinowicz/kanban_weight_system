@@ -5,7 +5,7 @@ namespace ApiServer.Infrastructure.Database
 {
     public class ApiServerContext : DbContext
     {
-        public DbSet<SensorReading> SensorReadings { get; set; }
+        public DbSet<SensorReadingEntity> SensorReadings { get; set; }
         public DbSet<ScaleConfiguration> ScaleConfigurations { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
