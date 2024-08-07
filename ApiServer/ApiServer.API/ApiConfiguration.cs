@@ -1,6 +1,7 @@
 ﻿using ApiServer.API.Controllers;
 using ApiServer.Core.Interfaces;
 using ApiServer.Core.Services;
+using ApiServer.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;

@@ -1,4 +1,5 @@
-﻿using ApiServer.Core.Interfaces;
+﻿using ApiServer.Core.Entities;
+using ApiServer.Core.Interfaces;
 
 namespace ApiServer.Core.Services
 {
@@ -9,6 +10,12 @@ namespace ApiServer.Core.Services
         public SensorReadingService(ISensorReadingRepository repository)
         {
             _repository = repository;
+        }
+
+        public IEnumerable<SensorReadingEntity> GetAll()
+        {
+            var readings = _repository.GetAll();
+            return readings;
         }
     }
 }

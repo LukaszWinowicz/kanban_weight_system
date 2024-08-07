@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ApiServer.Core\ApiServer.Core.csproj" />
+    <ProjectReference Include="..\ApiServer.Infrastructure\ApiServer.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

@@ -16,4 +16,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ApiServer.API\ApiServer.API.csproj" />
+    <ProjectReference Include="..\ApiServer.Infrastructure\ApiServer.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

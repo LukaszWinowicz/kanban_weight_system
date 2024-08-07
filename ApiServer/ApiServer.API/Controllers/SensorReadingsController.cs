@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ApiServer.Core.Entities;
+using ApiServer.Core.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ApiServer.API.Controllers
 {
@@ -6,17 +8,17 @@ namespace ApiServer.API.Controllers
     [ApiController]
     public class SensorReadingsController : ControllerBase
     {
-        private readonly SensorReadingService _sensorReadingService;
+        private readonly ISensorReadingRepository _service;
 
-        public SensorReadingsController(SensorReadingService _sensorReadingService)
+        public SensorReadingsController(ISensorReadingRepository service)
         {
-            _sensorReadingService = sensorReadingService;
+            _service = service;
         }
 
         [HttpGet("test")]
         public ActionResult<IEnumerable<SensorReadingEntity>> GetAll()
-        {           
-            var readings = _sensorReadingService.SensorReadings.ToList();
+        {
+            var readings = _service.GetAll();
             return Ok(readings);
         }
 
