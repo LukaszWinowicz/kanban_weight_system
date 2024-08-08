@@ -23,11 +23,18 @@ namespace ApiServer.API.Controllers
             return Ok(readings);
         }
 
-        [HttpGet("{sensorId}")]
+        [HttpGet("id/{sensorId}")]
         public ActionResult<SensorReadingEntity> GetById(int sensorId)
         {
             var reading = _service.GetById(sensorId);
             return reading;
+        }
+
+        [HttpGet("name/{espName}")]
+        public ActionResult<SensorReadingEntity> GetByName(string espName) 
+        {
+            var value = _service.GetLatestParamByName(espName);
+            return Ok(value);
         }
 
         [HttpPost]

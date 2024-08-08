@@ -27,6 +27,15 @@ namespace ApiServer.Infrastructure.Repositories
             return read;
         }
 
+        public SensorReadingEntity GetLatestParamByName(string espName)
+        {
+            var value = _context.SensorReadings
+                .Where(x => x.EspName == espName)
+                .OrderByDescending(t => t.Date)
+                .FirstOrDefault();
+            return value;
+        }
+
         public int Create(SensorReadingCreateDto dto)
         {
             var entity = SensorReadingMapper.ToEntity(dto);

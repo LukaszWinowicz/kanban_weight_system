@@ -19,11 +19,19 @@ namespace ApiServer.Core.Services
             var readings = _repository.GetAll();
             return readings;
         }
+
         public SensorReadingEntity GetById(int id)
         {
             var read = _repository.GetById(id);
             return read;
         }
+
+        public SensorReadingEntity GetLatestParamByName(string espName)
+        {
+            var value = _repository.GetLatestParamByName(espName);
+            return value;
+        }
+
         public int Create(SensorReadingCreateDto dto)
         {
             var create = _repository.Create(dto);
