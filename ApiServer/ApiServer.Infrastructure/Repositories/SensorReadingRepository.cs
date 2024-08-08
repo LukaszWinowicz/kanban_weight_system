@@ -1,10 +1,6 @@
-﻿using ApiServer.Core.DTOs;
-using ApiServer.Core.Entities;
+﻿using ApiServer.Core.Entities;
 using ApiServer.Core.Interfaces;
-using ApiServer.Core.Mapper;
-using ApiServer.Core.Services;
 using ApiServer.Infrastructure.Database;
-using Microsoft.EntityFrameworkCore;
 
 namespace ApiServer.Infrastructure.Repositories
 {
@@ -30,5 +26,12 @@ namespace ApiServer.Infrastructure.Repositories
             var readings = _context.SensorReadings.ToList();
             return readings;
         }
+
+        public SensorReadingEntity GetById(int id)
+        { 
+            var read = _context.SensorReadings.Find(id);
+            return read;
+        }
+
     }
 }

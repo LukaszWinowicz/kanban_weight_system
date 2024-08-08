@@ -10,5 +10,6 @@ namespace ApiServer.Core.Interfaces
     public interface ISensorReadingRepository
     {
         IEnumerable<SensorReadingEntity> GetAll();
+        SensorReadingEntity GetById(int id);
     }
 }

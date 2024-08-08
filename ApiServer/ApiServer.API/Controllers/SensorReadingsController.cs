@@ -22,24 +22,25 @@ namespace ApiServer.API.Controllers
             return Ok(readings);
         }
 
-        /*[HttpGet("{sensorId}")]
+        [HttpGet("{sensorId}")]
         public ActionResult<SensorReadingEntity> GetById(int sensorId)
         {
-            var reading = _context.SensorReadings.FirstOrDefault(x => x.SensorId == sensorId);
+            var reading = _service.GetById(sensorId);
             return reading;
         }
 
-        [HttpPost]
-        public ActionResult<SensorReadingCreateDto> CreateSensorReading([FromBody] SensorReadingCreateDto createDto)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        /*
+                [HttpPost]
+                public ActionResult<SensorReadingCreateDto> CreateSensorReading([FromBody] SensorReadingCreateDto createDto)
+                {
+                    if (!ModelState.IsValid)
+                    {
+                        return BadRequest(ModelState);
+                    }
 
-            _context.SensorReadings.Add(createDto);
-            _context.SaveChanges();
-            return Ok();*/
+                    _context.SensorReadings.Add(createDto);
+                    _context.SaveChanges();
+                    return Ok();*/
 
     }
 }

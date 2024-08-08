@@ -17,5 +17,10 @@ namespace ApiServer.Core.Services
             var readings = _repository.GetAll();
             return readings;
         }
+        public SensorReadingEntity GetById(int id)
+        {
+            var read = _repository.GetById(id);
+            return read;
+        }
     }
 }
