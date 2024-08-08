@@ -1,5 +1,7 @@
-﻿using ApiServer.Core.Entities;
+﻿using ApiServer.Core.DTOs;
+using ApiServer.Core.Entities;
 using ApiServer.Core.Interfaces;
+using ApiServer.Core.Mapper;
 
 namespace ApiServer.Core.Services
 {
@@ -21,6 +23,11 @@ namespace ApiServer.Core.Services
         {
             var read = _repository.GetById(id);
             return read;
+        }
+        public int Create(SensorReadingCreateDto dto)
+        {
+            var create = _repository.Create(dto);
+            return create;
         }
     }
 }

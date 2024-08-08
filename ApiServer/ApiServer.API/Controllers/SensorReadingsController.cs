@@ -1,4 +1,5 @@
-﻿using ApiServer.Core.Entities;
+﻿using ApiServer.Core.DTOs;
+using ApiServer.Core.Entities;
 using ApiServer.Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -29,19 +30,16 @@ namespace ApiServer.API.Controllers
             return reading;
         }
 
-        /*
-                [HttpPost]
-                public ActionResult<SensorReadingCreateDto> CreateSensorReading([FromBody] SensorReadingCreateDto createDto)
-                {
-                    if (!ModelState.IsValid)
-                    {
-                        return BadRequest(ModelState);
-                    }
-
-                    _context.SensorReadings.Add(createDto);
-                    _context.SaveChanges();
-                    return Ok();*/
-
+        [HttpPost]
+        public ActionResult<SensorReadingCreateDto> CreateSensorReading([FromBody] SensorReadingCreateDto createDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            _service.Create(createDto);
+            return Ok();
+        }
     }
 }
 
