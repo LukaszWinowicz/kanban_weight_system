@@ -36,6 +36,15 @@ namespace ApiServer.Infrastructure.Repositories
             return value;
         }
 
+        public IEnumerable<SensorReadingEntity> GetLatestSensorValue()
+        {
+            var value = _context.SensorReadings
+                            .GroupBy(s => s.EspId)
+                            .Select(g => g.OrderByDescending(d => d.Date).First())
+                            .ToList();
+            return value;
+        }
+
         public int Create(SensorReadingCreateDto dto)
         {
             var entity = SensorReadingMapper.ToEntity(dto);

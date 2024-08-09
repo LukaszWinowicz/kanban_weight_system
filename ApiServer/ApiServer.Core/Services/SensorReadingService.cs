@@ -32,6 +32,12 @@ namespace ApiServer.Core.Services
             return value;
         }
 
+        public IEnumerable<SensorReadingEntity> GetLatestSensorValue()
+        {
+            var value = _repository.GetLatestSensorValue();
+            return value;
+        }
+
         public int Create(SensorReadingCreateDto dto)
         {
             var create = _repository.Create(dto);

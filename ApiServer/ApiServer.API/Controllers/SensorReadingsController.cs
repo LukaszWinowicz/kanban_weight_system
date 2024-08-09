@@ -1,6 +1,7 @@
 ﻿using ApiServer.Core.DTOs;
 using ApiServer.Core.Entities;
 using ApiServer.Core.Interfaces;
+using ApiServer.Infrastructure.Database;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiServer.API.Controllers
@@ -10,10 +11,12 @@ namespace ApiServer.API.Controllers
     public class SensorReadingsController : ControllerBase
     {
         private readonly ISensorReadingRepository _service;
+        private readonly ApiServerContext _context;
 
-        public SensorReadingsController(ISensorReadingRepository service)
+        public SensorReadingsController(ISensorReadingRepository service, ApiServerContext context)
         {
             _service = service;
+            _context = context;
         }
 
         [HttpGet("test")]
@@ -34,6 +37,13 @@ namespace ApiServer.API.Controllers
         public ActionResult<SensorReadingEntity> GetByName(string espName) 
         {
             var value = _service.GetLatestParamByName(espName);
+            return Ok(value);
+        }
+
+        [HttpGet]
+        public ActionResult<IEnumerable<SensorReadingEntity>> GetLatestSensorValue()
+        {
+            var value = _service.GetLatestSensorValue();
             return Ok(value);
         }
 

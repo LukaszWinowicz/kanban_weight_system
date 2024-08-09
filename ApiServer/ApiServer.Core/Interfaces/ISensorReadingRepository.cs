@@ -13,6 +13,7 @@ namespace ApiServer.Core.Interfaces
         IEnumerable<SensorReadingEntity> GetAll();
         SensorReadingEntity GetById(int id);
         SensorReadingEntity GetLatestParamByName(string espName);
+        IEnumerable<SensorReadingEntity> GetLatestSensorValue();
         int Create(SensorReadingCreateDto dto);
     }
 }

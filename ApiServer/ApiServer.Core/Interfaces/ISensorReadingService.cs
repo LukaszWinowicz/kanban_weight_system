@@ -10,9 +10,10 @@ namespace ApiServer.Core.Interfaces
 {
     public interface ISensorReadingService
     {
-        public IEnumerable<SensorReadingEntity> GetAll();
+        IEnumerable<SensorReadingEntity> GetAll();
         SensorReadingEntity GetById(int id);
-        public SensorReadingEntity GetLatestParamByName(string espName);
+        SensorReadingEntity GetLatestParamByName(string espName);
+        IEnumerable<SensorReadingEntity> GetLatestSensorValue();
         int Create(SensorReadingCreateDto dto);
     }
 }
