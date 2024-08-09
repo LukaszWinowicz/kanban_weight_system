@@ -1,5 +1,7 @@
-﻿using ApiServer.Core.Entities;
+﻿using ApiServer.Core.Dtos;
+using ApiServer.Core.Entities;
 using ApiServer.Core.Interfaces;
+using ApiServer.Core.Mapper;
 using ApiServer.Infrastructure.Database;
 
 namespace ApiServer.Infrastructure.Repositories
@@ -40,15 +42,15 @@ namespace ApiServer.Infrastructure.Repositories
                                 .GroupBy(s => s.ScaleId)
                                 .Select(g => g.OrderByDescending(d => d.Date).First())
                                 .ToList();
-            return null; //value;
+            return value;
         }
 
-        /*public int Create(SensorReadingCreateDto dto)
+        public int Create(ReadingCreateDto dto)
         {
-            var entity = SensorReadingMapper.ToEntity(dto);
-            _context.SensorReadings.Add(entity);
+            var entity = ReadingMapper.MapToEntity(dto);
+            _context.ReadingEntities.Add(entity);
             _context.SaveChanges();
-            return entity.SensorId;
-        }*/
+            return entity.ReadId;
+        }
     }
 }

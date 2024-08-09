@@ -1,4 +1,5 @@
-﻿using ApiServer.Core.Entities;
+﻿using ApiServer.Core.Dtos;
+using ApiServer.Core.Entities;
 using ApiServer.Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,11 +7,11 @@ namespace ApiServer.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class SensorReadingsController : ControllerBase
+    public class ReadingsController : ControllerBase
     {
         private readonly IReadingsRepository _service;
 
-        public SensorReadingsController(IReadingsRepository service)
+        public ReadingsController(IReadingsRepository service)
         {
             _service = service;
         }
@@ -43,16 +44,16 @@ namespace ApiServer.API.Controllers
             return Ok(value);
         }
 
-        /*[HttpPost]
-        public ActionResult<SensorReadingCreateDto> CreateSensorReading([FromBody] SensorReadingCreateDto createDto)
+        [HttpPost]
+        public ActionResult<ReadingCreateDto> CreateSensorReading([FromBody] ReadingCreateDto createDto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
             _service.Create(createDto);
-            return Ok();*/
-        //}
+            return Ok();
+        }
     }
 }
 

@@ -1,7 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using static System.Formats.Asn1.AsnWriter;
-
-namespace ApiServer.Core.Entities
+﻿namespace ApiServer.Core.Entities
 {
     public class ReadingEntity
     {

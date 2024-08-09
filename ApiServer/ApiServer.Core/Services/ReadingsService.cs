@@ -1,4 +1,5 @@
-﻿using ApiServer.Core.Entities;
+﻿using ApiServer.Core.Dtos;
+using ApiServer.Core.Entities;
 using ApiServer.Core.Interfaces;
 
 namespace ApiServer.Core.Services
@@ -36,10 +37,10 @@ namespace ApiServer.Core.Services
             return value;
         }
 
-        /*public int Create(SensorReadingCreateDto dto)
+        public int Create(ReadingCreateDto dto)
         {
             var create = _repository.Create(dto);
             return create;
-        }*/
+        }
     }
 }

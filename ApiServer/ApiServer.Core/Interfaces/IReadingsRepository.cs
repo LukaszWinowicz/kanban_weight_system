@@ -1,4 +1,5 @@
-﻿using ApiServer.Core.Entities;
+﻿using ApiServer.Core.Dtos;
+using ApiServer.Core.Entities;
 
 namespace ApiServer.Core.Interfaces
 {
@@ -8,6 +9,6 @@ namespace ApiServer.Core.Interfaces
         ReadingEntity GetById(int id);
         ReadingEntity GetLatestParamByName(int scaleId);
         IEnumerable<ReadingEntity> GetLatestSensorValue();
-       // int Create(SensorReadingCreateDto dto);
+        int Create(ReadingCreateDto dto);
     }
 }
