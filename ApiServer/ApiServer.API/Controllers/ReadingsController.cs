@@ -1,6 +1,7 @@
 ﻿using ApiServer.Core.Dtos;
 using ApiServer.Core.Entities;
 using ApiServer.Core.Interfaces;
+using ApiServer.Core.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiServer.API.Controllers
@@ -9,9 +10,9 @@ namespace ApiServer.API.Controllers
     [ApiController]
     public class ReadingsController : ControllerBase
     {
-        private readonly IReadingsRepository _service;
+        private readonly IReadingsService _service;
 
-        public ReadingsController(IReadingsRepository service)
+        public ReadingsController(IReadingsService service)
         {
             _service = service;
         }
