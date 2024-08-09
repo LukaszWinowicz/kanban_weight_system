@@ -1,7 +1,5 @@
-﻿using ApiServer.Core.DTOs;
-using ApiServer.Core.Entities;
+﻿using ApiServer.Core.Entities;
 using ApiServer.Core.Interfaces;
-using ApiServer.Core.Mapper;
 using ApiServer.Infrastructure.Database;
 
 namespace ApiServer.Infrastructure.Repositories
@@ -15,37 +13,37 @@ namespace ApiServer.Infrastructure.Repositories
             _context = context;
         }
 
-        public IEnumerable<SensorReadingEntity> GetAll()
+        public IEnumerable<ReadingEntity> GetAll()
         {
-            var readings = _context.SensorReadings.ToList();
+            var readings = _context.ReadingEntities.ToList();
             return readings;
         }
 
-        public SensorReadingEntity GetById(int id)
-        { 
-            var read = _context.SensorReadings.Find(id);
+        public ReadingEntity GetById(int id)
+        {
+            var read = _context.ReadingEntities.Find(id);
             return read;
         }
 
-        public SensorReadingEntity GetLatestParamByName(string espName)
+        public ReadingEntity GetLatestParamByName(int scaleId)
         {
-            var value = _context.SensorReadings
-                .Where(x => x.EspName == espName)
-                .OrderByDescending(t => t.Date)
-                .FirstOrDefault();
+            var value = _context.ReadingEntities
+                                .Where(x => x.ScaleId == scaleId)
+                                .OrderByDescending(t => t.Date)
+                                .FirstOrDefault();
             return value;
         }
 
-        public IEnumerable<SensorReadingEntity> GetLatestSensorValue()
+        public IEnumerable<ReadingEntity> GetLatestSensorValue()
         {
-            var value = _context.SensorReadings
-                            .GroupBy(s => s.EspId)
-                            .Select(g => g.OrderByDescending(d => d.Date).First())
-                            .ToList();
-            return value;
+            var value = _context.ReadingEntities
+                                .GroupBy(s => s.ScaleId)
+                                .Select(g => g.OrderByDescending(d => d.Date).First())
+                                .ToList();
+            return null; //value;
         }
 
-      /*  public int Create(SensorReadingCreateDto dto)
+        /*public int Create(SensorReadingCreateDto dto)
         {
             var entity = SensorReadingMapper.ToEntity(dto);
             _context.SensorReadings.Add(entity);

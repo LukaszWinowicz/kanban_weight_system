@@ -13,7 +13,8 @@ namespace ApiServer.Core.Entities
         public string ItemName { get; set; }
         public decimal SingleItemWeight { get; set; }
         public bool IsConnected { get; set; }
-        public string Location { get; set; }
-        public DateTime LastCalibrationDate { get; set; }
+        /*public string Location { get; set; }
+        public DateTime LastCalibrationDate { get; set; }*/
+        public ICollection<ReadingEntity> Readings { get; set; }
     }
 }

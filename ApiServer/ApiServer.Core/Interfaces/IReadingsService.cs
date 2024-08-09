@@ -1,19 +1,13 @@
-﻿using ApiServer.Core.DTOs;
-using ApiServer.Core.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ApiServer.Core.Entities;
 
 namespace ApiServer.Core.Interfaces
 {
     public interface IReadingsService
     {
-        IEnumerable<SensorReadingEntity> GetAll();
-        SensorReadingEntity GetById(int id);
-        SensorReadingEntity GetLatestParamByName(string espName);
-        IEnumerable<SensorReadingEntity> GetLatestSensorValue();
+        IEnumerable<ReadingEntity> GetAll();
+        ReadingEntity GetById(int id);
+        ReadingEntity GetLatestParamByName(int scaleId);
+        IEnumerable<ReadingEntity> GetLatestSensorValue();
        // int Create(SensorReadingCreateDto dto);
     }
 }

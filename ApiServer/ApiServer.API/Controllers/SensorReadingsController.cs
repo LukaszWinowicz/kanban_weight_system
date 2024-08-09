@@ -1,7 +1,5 @@
-﻿using ApiServer.Core.DTOs;
-using ApiServer.Core.Entities;
+﻿using ApiServer.Core.Entities;
 using ApiServer.Core.Interfaces;
-using ApiServer.Infrastructure.Database;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiServer.API.Controllers
@@ -11,37 +9,35 @@ namespace ApiServer.API.Controllers
     public class SensorReadingsController : ControllerBase
     {
         private readonly IReadingsRepository _service;
-        private readonly ApiServerContext _context;
 
-        public SensorReadingsController(IReadingsRepository service, ApiServerContext context)
+        public SensorReadingsController(IReadingsRepository service)
         {
             _service = service;
-            _context = context;
         }
 
         [HttpGet("test")]
-        public ActionResult<IEnumerable<SensorReadingEntity>> GetAll()
+        public ActionResult<IEnumerable<ReadingEntity>> GetAll()
         {
             var readings = _service.GetAll();
             return Ok(readings);
         }
 
         [HttpGet("id/{sensorId}")]
-        public ActionResult<SensorReadingEntity> GetById(int sensorId)
+        public ActionResult<ReadingEntity> GetById(int sensorId)
         {
             var reading = _service.GetById(sensorId);
             return reading;
         }
 
-        [HttpGet("name/{espName}")]
-        public ActionResult<SensorReadingEntity> GetByName(string espName) 
+        [HttpGet("name/{scaleId}")]
+        public ActionResult<ReadingEntity> GetByName(int scaleId) 
         {
-            var value = _service.GetLatestParamByName(espName);
+            var value = _service.GetLatestParamByName(scaleId);
             return Ok(value);
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<SensorReadingEntity>> GetLatestSensorValue()
+        public ActionResult<IEnumerable<ReadingEntity>> GetLatestSensorValue()
         {
             var value = _service.GetLatestSensorValue();
             return Ok(value);
@@ -56,7 +52,7 @@ namespace ApiServer.API.Controllers
             }
             _service.Create(createDto);
             return Ok();*/
-        }
+        //}
     }
 }
 

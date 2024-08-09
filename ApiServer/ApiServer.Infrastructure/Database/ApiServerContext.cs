@@ -5,8 +5,8 @@ namespace ApiServer.Infrastructure.Database
 {
     public class ApiServerContext : DbContext
     {
-        public DbSet<SensorReadingEntity> SensorReadings { get; set; }
-        public DbSet<ScaleConfiguration> ScaleConfigurations { get; set; }
+        public DbSet<ReadingEntity> ReadingEntities { get; set; }
+        public DbSet<ScaleEntity> ScaleEntities { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -20,9 +20,26 @@ namespace ApiServer.Infrastructure.Database
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<ScaleConfiguration>(entity =>
+            modelBuilder.Entity<ReadingEntity>(entity =>
             {
-                entity.Property(e => e.SingleItemWeight).HasColumnType("decimal(18,4)");
+                entity.HasKey(e => e.ReadId);
+                entity.Property(e => e.ReadId).ValueGeneratedOnAdd();
+                entity.Property(e => e.Date).IsRequired();
+                entity.Property(e => e.Value).IsRequired().HasColumnType("decimal(18,2)");
+
+                entity.HasOne(r => r.Scale)
+                      .WithMany(s => s.Readings)
+                      .HasForeignKey(r => r.ScaleId);
+            });
+
+            modelBuilder.Entity<ScaleEntity>(entity =>
+            {
+                entity.HasKey(e => e.ScaleId);
+                entity.Property(e => e.ScaleId).ValueGeneratedOnAdd();
+                entity.Property(e => e.ScaleName).IsRequired().HasMaxLength(50);
+                entity.Property(e => e.ItemName).IsRequired().HasMaxLength(50);
+                entity.Property(e => e.SingleItemWeight).IsRequired().HasColumnType("decimal(18,2)");
+                entity.Property(e => e.IsConnected).IsRequired();
             });
         }
     }

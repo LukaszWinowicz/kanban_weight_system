@@ -1,7 +1,5 @@
-﻿using ApiServer.Core.DTOs;
-using ApiServer.Core.Entities;
+﻿using ApiServer.Core.Entities;
 using ApiServer.Core.Interfaces;
-using ApiServer.Core.Mapper;
 
 namespace ApiServer.Core.Services
 {
@@ -14,25 +12,25 @@ namespace ApiServer.Core.Services
             _repository = repository;
         }
 
-        public IEnumerable<SensorReadingEntity> GetAll()
+        public IEnumerable<ReadingEntity> GetAll()
         {
             var readings = _repository.GetAll();
             return readings;
         }
 
-        public SensorReadingEntity GetById(int id)
+        public ReadingEntity GetById(int id)
         {
             var read = _repository.GetById(id);
             return read;
         }
 
-        public SensorReadingEntity GetLatestParamByName(string espName)
+        public ReadingEntity GetLatestParamByName(int scaleId)
         {
-            var value = _repository.GetLatestParamByName(espName);
+            var value = _repository.GetLatestParamByName(scaleId);
             return value;
         }
 
-        public IEnumerable<SensorReadingEntity> GetLatestSensorValue()
+        public IEnumerable<ReadingEntity> GetLatestSensorValue()
         {
             var value = _repository.GetLatestSensorValue();
             return value;
