@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ApiServer.Core")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1008c11307bbef36646f85f99160c45f92f54d56")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d4a5518461b8aadde3a19f908a6eab214dca2746")]
 [assembly: System.Reflection.AssemblyProductAttribute("ApiServer.Core")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ApiServer.Core")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

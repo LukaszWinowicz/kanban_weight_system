@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace ApiServer.Core.Interfaces
 {
-    public interface ISensorReadingService
+    public interface IReadingsService
     {
         IEnumerable<SensorReadingEntity> GetAll();
         SensorReadingEntity GetById(int id);
         SensorReadingEntity GetLatestParamByName(string espName);
         IEnumerable<SensorReadingEntity> GetLatestSensorValue();
-        int Create(SensorReadingCreateDto dto);
+       // int Create(SensorReadingCreateDto dto);
     }
 }

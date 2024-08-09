@@ -6,11 +6,11 @@ using ApiServer.Infrastructure.Database;
 
 namespace ApiServer.Infrastructure.Repositories
 {
-    public class SensorReadingRepository : ISensorReadingRepository
+    public class ReadingsRepository : IReadingsRepository
     {
         private readonly ApiServerContext _context;
 
-        public SensorReadingRepository(ApiServerContext context)
+        public ReadingsRepository(ApiServerContext context)
         {
             _context = context;
         }
@@ -45,12 +45,12 @@ namespace ApiServer.Infrastructure.Repositories
             return value;
         }
 
-        public int Create(SensorReadingCreateDto dto)
+      /*  public int Create(SensorReadingCreateDto dto)
         {
             var entity = SensorReadingMapper.ToEntity(dto);
             _context.SensorReadings.Add(entity);
             _context.SaveChanges();
             return entity.SensorId;
-        }
+        }*/
     }
 }

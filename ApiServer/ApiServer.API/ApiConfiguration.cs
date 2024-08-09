@@ -16,8 +16,8 @@ namespace ApiServer.API
                     .AddApplicationPart(typeof(HealthController).Assembly)
                     .AddApplicationPart(typeof(SensorReadingsController).Assembly)
                     .AddControllersAsServices();
-            services.AddScoped<ISensorReadingRepository, SensorReadingRepository>();
-            services.AddScoped<ISensorReadingService, SensorReadingService>();
+            services.AddScoped<IReadingsRepository, ReadingsRepository>();
+            services.AddScoped<IReadingsService, ReadingsService>();
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
         }

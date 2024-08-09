@@ -10,10 +10,10 @@ namespace ApiServer.API.Controllers
     [ApiController]
     public class SensorReadingsController : ControllerBase
     {
-        private readonly ISensorReadingRepository _service;
+        private readonly IReadingsRepository _service;
         private readonly ApiServerContext _context;
 
-        public SensorReadingsController(ISensorReadingRepository service, ApiServerContext context)
+        public SensorReadingsController(IReadingsRepository service, ApiServerContext context)
         {
             _service = service;
             _context = context;
@@ -47,7 +47,7 @@ namespace ApiServer.API.Controllers
             return Ok(value);
         }
 
-        [HttpPost]
+        /*[HttpPost]
         public ActionResult<SensorReadingCreateDto> CreateSensorReading([FromBody] SensorReadingCreateDto createDto)
         {
             if (!ModelState.IsValid)
@@ -55,7 +55,7 @@ namespace ApiServer.API.Controllers
                 return BadRequest(ModelState);
             }
             _service.Create(createDto);
-            return Ok();
+            return Ok();*/
         }
     }
 }

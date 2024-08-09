@@ -5,11 +5,11 @@ using ApiServer.Core.Mapper;
 
 namespace ApiServer.Core.Services
 {
-    public class SensorReadingService : ISensorReadingService
+    public class ReadingsService : IReadingsService
     {
-        private readonly ISensorReadingRepository _repository;
+        private readonly IReadingsRepository _repository;
 
-        public SensorReadingService(ISensorReadingRepository repository)
+        public ReadingsService(IReadingsRepository repository)
         {
             _repository = repository;
         }
@@ -38,10 +38,10 @@ namespace ApiServer.Core.Services
             return value;
         }
 
-        public int Create(SensorReadingCreateDto dto)
+        /*public int Create(SensorReadingCreateDto dto)
         {
             var create = _repository.Create(dto);
             return create;
-        }
+        }*/
     }
 }
