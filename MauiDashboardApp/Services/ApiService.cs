@@ -1,45 +1,32 @@
-﻿using System.Diagnostics;
-using System.Net.Http.Json;
+﻿using Azure;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Net.Http;
+using System.Text.Json;
 using MauiDashboardApp.Models;
+
 
 namespace MauiDashboardApp.Services
 {
     public class ApiService
     {
         private readonly HttpClient _httpClient;
+        private readonly string _baseUrl = "http://localhost:5000"; // Zakładając, że API działa na tym samym komputerze
 
-        public ApiService()
+        public ApiService(HttpClient httpClient)
         {
-            _httpClient = new HttpClient
-            {
-                BaseAddress = new Uri("http://localhost:5000/api/SensorReadings/all")  // Adjust this URL as needed
-            };
+            _httpClient = httpClient;
         }
 
-        public async Task<List<SensorReading>> GetSensorReadingsAsync()
+        public async Task<IEnumerable<ScaleWithAllReadingsDto>> GetAllScalesWithReadingsAsync()
         {
-            try
-            {
-                Debug.WriteLine("Attempting to fetch sensor readings from API");
-                var response = await _httpClient.GetAsync("api/SensorReadings");
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var readings = await response.Content.ReadFromJsonAsync<List<SensorReading>>();
-                    Debug.WriteLine($"Successfully fetched {readings?.Count ?? 0} readings from API");
-                    return readings ?? new List<SensorReading>();
-                }
-                else
-                {
-                    Debug.WriteLine($"API request failed with status code: {response.StatusCode}");
-                    return new List<SensorReading>();
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"Exception in GetSensorReadingsAsync: {ex.Message}");
-                return new List<SensorReading>();
-            }
+            var response = await _httpClient.GetAsync($"{_baseUrl}/api/scale/test");
+            response.EnsureSuccessStatusCode();
+            var content = await response.Content.ReadAsStringAsync();
+            return JsonSerializer.Deserialize<IEnumerable<ScaleWithAllReadingsDto>>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
         }
     }
 }

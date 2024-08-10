@@ -17,9 +17,8 @@ namespace MauiDashboardApp
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
+            builder.Services.AddHttpClient();
             builder.Services.AddSingleton<ApiService>();
-            builder.Services.AddTransient<SensorReadingsViewModel>();
-            builder.Services.AddTransient<SensorReadingsPage>();
 
 #if DEBUG
             builder.Logging.AddDebug();
