@@ -2,6 +2,10 @@ using ApiServer.Infrastructure.Database;
 using ApiServer.API;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Hosting;
+using System;
+using System.Threading;
+using System.Windows.Forms;
 
 namespace ApiServer.WindowsForms
 {
@@ -17,7 +21,13 @@ namespace ApiServer.WindowsForms
             var services = new ServiceCollection();
             ConfigureServices(services);
 
-            var builder = WebApplication.CreateBuilder();
+            var builder = WebApplication.CreateBuilder(new WebApplicationOptions
+            {
+                ContentRootPath = AppContext.BaseDirectory,
+                ApplicationName = typeof(Program).Assembly.FullName,
+                EnvironmentName = Environments.Development // Ustawia œrodowisko na Development
+            });
+
             ConfigureServices(builder.Services);
             ApiConfiguration.ConfigureServices(builder.Services);
 
