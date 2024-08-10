@@ -16,6 +16,7 @@ namespace ApiServer.API
                     .AddApplicationPart(typeof(HealthController).Assembly)
                     .AddApplicationPart(typeof(ReadingsController).Assembly)
                     .AddApplicationPart(typeof(ScaleController).Assembly)
+                    .AddApplicationPart(typeof(ScaleReadingsController).Assembly)
                     .AddControllersAsServices();
             services.AddScoped<IReadingsRepository, ReadingsRepository>();
             services.AddScoped<IReadingsService, ReadingsService>();
