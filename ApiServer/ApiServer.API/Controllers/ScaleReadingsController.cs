@@ -54,5 +54,28 @@ namespace ApiServer.API.Controllers
             return Ok(result);
         }
 
+
+        [HttpGet("{scaleId}/readings")]
+        public async Task<ActionResult<IEnumerable<ReadingDto>>> GetReadingsForScale(int scaleId)
+        {
+            var readings = await _context.ReadingEntities
+                                        .Where(r => r.ScaleId == scaleId)
+                                        .OrderByDescending(r => r.Date)
+                                        .Select(r => new ReadingDto
+                                        { 
+                                            ReadId = r.ReadId,
+                                            Date = r.Date,
+                                            Value = r.Value,
+
+                                        }).ToListAsync();
+
+            if (readings == null || !readings.Any()) 
+            {
+                return NotFound($"No readings found for scale with ID {scaleId}");
+            }
+
+            return Ok(readings);
+        }
+
     }
 }

@@ -21,5 +21,6 @@ namespace ApiServer.API.Controllers
             var readings = _service.GetAll();
             return Ok(readings);
         }
+
     }
 }
