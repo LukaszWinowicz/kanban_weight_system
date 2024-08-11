@@ -279,3 +279,8 @@ D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\wi
 D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\MultipleQualifiersPerDimensionFound.txt
 D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\MauiDashboardApp.genpublishdeps.cache
 D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\ProjectArchitectures.txt
+D:\kanban_weight_system\MauiDashboardApp\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\Microsoft.Extensions.Configuration.Binder.dll
+D:\kanban_weight_system\MauiDashboardApp\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\Microsoft.Extensions.Diagnostics.dll
+D:\kanban_weight_system\MauiDashboardApp\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\Microsoft.Extensions.Diagnostics.Abstractions.dll
+D:\kanban_weight_system\MauiDashboardApp\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\Microsoft.Extensions.Http.dll
+D:\kanban_weight_system\MauiDashboardApp\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\Microsoft.Extensions.Options.ConfigurationExtensions.dll

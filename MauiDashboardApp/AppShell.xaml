@@ -17,13 +17,13 @@
     <ShellContent
         Title="SensorReadingsPage"
         Icon="database.png"
-        ContentTemplate="{DataTemplate local:SensorReadingsPage}"
+        ContentTemplate="{DataTemplate local:MainPage}"
         Route="SensorReadingsPage" />
 
     <ShellContent 
         Title="Settings"
         Icon="settings.png"
-        ContentTemplate="{DataTemplate local:SettingsPage}"
+        ContentTemplate="{DataTemplate local:MainPage}"
         Route="SettingsPage" />
 
     <Shell.FlyoutFooter>

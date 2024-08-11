@@ -1,15 +1,32 @@
-﻿namespace MauiDashboardApp
+﻿using MauiDashboardApp.Services;
+
+namespace MauiDashboardApp
 {
     public partial class MainPage : ContentPage
     {
         int count = 0;
+        private readonly ApiService _apiService;
 
-        public MainPage()
+        public MainPage(ApiService apiService)
         {
             InitializeComponent();
+            _apiService = apiService;
         }
 
-        private void OnCounterClicked(object sender, EventArgs e)
+        private async void OnLoadReadingsClicked(object sender, EventArgs e)
+        {
+            try
+            {
+                var readings = await _apiService.GetReadingsAsync();
+                ReadingsListView.ItemsSource = readings;
+            }
+            catch (Exception ex)
+            {
+
+                await DisplayAlert("Error", $"Failed to load readings: {ex.Message}", "OK");
+            }
+        }
+        /*private void OnCounterClicked(object sender, EventArgs e)
         {
             count++;
 
@@ -18,8 +35,9 @@
             else
                 CounterBtn.Text = $"Clicked {count} times";
 
-            SemanticScreenReader.Announce(CounterBtn.Text);
-        }
+            SemanticScreenReader.Announce(CounterBtn.Text);*/
+        //}
+
     }
 
 }

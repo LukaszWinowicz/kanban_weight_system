@@ -1,14 +1,13 @@
 ﻿using Microsoft.Extensions.Logging;
 using MauiDashboardApp.Services;
-using MauiDashboardApp.Models;
 
 namespace MauiDashboardApp
 {
     public static class MauiProgram
     {
-        public static Microsoft.Maui.Hosting.MauiApp CreateMauiApp()
+        public static MauiApp CreateMauiApp()
         {
-            var builder = Microsoft.Maui.Hosting.MauiApp.CreateBuilder();
+            var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
                 .ConfigureFonts(fonts =>
@@ -19,6 +18,7 @@ namespace MauiDashboardApp
 
             builder.Services.AddHttpClient();
             builder.Services.AddSingleton<ApiService>();
+            builder.Services.AddTransient<MainPage>();
 
 #if DEBUG
             builder.Logging.AddDebug();

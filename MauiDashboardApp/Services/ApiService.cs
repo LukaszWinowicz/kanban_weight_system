@@ -14,19 +14,19 @@ namespace MauiDashboardApp.Services
     public class ApiService
     {
         private readonly HttpClient _httpClient;
-        private readonly string _baseUrl = "http://localhost:5000"; // Zakładając, że API działa na tym samym komputerze
+        private readonly string _baseUrl = "http://localhost:5000/api"; // Zakładając, że API działa na tym samym komputerze
 
         public ApiService(HttpClient httpClient)
         {
             _httpClient = httpClient;
         }
 
-        public async Task<IEnumerable<ScaleWithAllReadingsDto>> GetAllScalesWithReadingsAsync()
+        public async Task<IEnumerable<ReadingDto>> GetReadingsAsync()
         {
-            var response = await _httpClient.GetAsync($"{_baseUrl}/api/scale/test");
+            var response = await _httpClient.GetAsync($"{_baseUrl}/Readings");
             response.EnsureSuccessStatusCode();
             var content = await response.Content.ReadAsStringAsync();
-            return JsonSerializer.Deserialize<IEnumerable<ScaleWithAllReadingsDto>>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            return JsonSerializer.Deserialize<IEnumerable<ReadingDto>>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
         }
     }
 }

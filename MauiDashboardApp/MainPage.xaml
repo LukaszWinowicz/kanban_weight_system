@@ -4,6 +4,38 @@
              x:Class="MauiDashboardApp.MainPage">
 
     <ScrollView>
+        <VerticalStackLayout Spacing="25" Padding="30">
+
+            <Button Text="Load Readings"
+                    Clicked="OnLoadReadingsClicked"
+                    HorizontalOptions="Center" />
+
+            <ListView x:Name="ReadingsListView">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <Label Text="{Binding ReadId, StringFormat='Read ID: {0}'}" />
+                                <Label Text="{Binding Date, StringFormat='Date: {0}'}" />
+                                <Label Text="{Binding Value, StringFormat='Value: {0}'}" />
+                                <Label Text="{Binding Scale.Name, StringFormat='Scale: {0}'}" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
+
+<!--<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiDashboardApp.MainPage">
+
+    <ScrollView>
         <VerticalStackLayout
             Padding="30,0"
             Spacing="25">
@@ -33,4 +65,4 @@
         </VerticalStackLayout>
     </ScrollView>
 
-</ContentPage>
+</ContentPage>-->

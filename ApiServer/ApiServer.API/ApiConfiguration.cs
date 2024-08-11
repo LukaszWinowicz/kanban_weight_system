@@ -39,8 +39,8 @@ namespace ApiServer.API
                 });
 
                 // Opcjonalnie: Dodaj komentarze XML do Swaggera
-                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                //var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                //var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
               //  c.IncludeXmlComments(xmlPath);
             });
         }
