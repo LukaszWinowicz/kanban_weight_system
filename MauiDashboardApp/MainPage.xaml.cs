@@ -13,12 +13,12 @@ namespace MauiDashboardApp
             _apiService = apiService;
         }
 
-        private async void OnLoadReadingsClicked(object sender, EventArgs e)
+        private async void OnLoadScalesClicked(object sender, EventArgs e)
         {
             try
             {
-                var readings = await _apiService.GetReadingsAsync();
-                ReadingsListView.ItemsSource = readings;
+                var readings = await _apiService.GetScalesWithLatestReadingsAsync();
+                ScalesCollectionView.ItemsSource = readings;
             }
             catch (Exception ex)
             {

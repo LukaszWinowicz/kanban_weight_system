@@ -29,7 +29,7 @@
     <AppXManifest Include="D:\kanban_weight_system\MauiDashboardApp\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2024-08-11T05:30:33.655</Modified>
+      <Modified>2024-08-11T09:42:08.335</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
@@ -43,11 +43,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\MauiDashboardApp.dll">
       <PackagePath>MauiDashboardApp.dll</PackagePath>
-      <Modified>2024-08-11T05:30:32.565</Modified>
+      <Modified>2024-08-11T09:42:07.981</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\apphost.exe">
       <PackagePath>MauiDashboardApp.exe</PackagePath>
-      <Modified>2024-08-11T05:30:32.596</Modified>
+      <Modified>2024-08-11T09:42:08.006</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\kanban_weight_system\MauiDashboardApp\Resources\Raw\AboutAssets.txt">
       <PackagePath>AboutAssets.txt</PackagePath>

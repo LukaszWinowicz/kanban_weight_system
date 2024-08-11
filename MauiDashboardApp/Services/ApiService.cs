@@ -21,12 +21,13 @@ namespace MauiDashboardApp.Services
             _httpClient = httpClient;
         }
 
-        public async Task<IEnumerable<ReadingDto>> GetReadingsAsync()
+        public async Task<IEnumerable<ScaleWithLatestReadingDto>> GetScalesWithLatestReadingsAsync()
         {
-            var response = await _httpClient.GetAsync($"{_baseUrl}/Readings");
+            var response = await _httpClient.GetAsync($"{_baseUrl}/ScaleReadings/all");
             response.EnsureSuccessStatusCode();
             var content = await response.Content.ReadAsStringAsync();
-            return JsonSerializer.Deserialize<IEnumerable<ReadingDto>>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+var testValue = JsonSerializer.Deserialize<IEnumerable<ScaleWithLatestReadingDto>>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            return testValue;
         }
     }
 }
