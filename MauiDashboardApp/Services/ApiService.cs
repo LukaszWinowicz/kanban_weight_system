@@ -26,8 +26,8 @@ namespace MauiDashboardApp.Services
             var response = await _httpClient.GetAsync($"{_baseUrl}/ScaleReadings/all");
             response.EnsureSuccessStatusCode();
             var content = await response.Content.ReadAsStringAsync();
-var testValue = JsonSerializer.Deserialize<IEnumerable<ScaleWithLatestReadingDto>>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-            return testValue;
+            var json = JsonSerializer.Deserialize<IEnumerable<ScaleWithLatestReadingDto>>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            return json;
         }
     }
 }
