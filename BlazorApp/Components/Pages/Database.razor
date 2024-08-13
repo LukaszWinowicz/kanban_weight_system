@@ -1,0 +1,53 @@
+﻿@page "/database"
+@using BlazorApp.Models
+@using BlazorApp.Services
+@inject ApiService ApiService
+@rendermode InteractiveServer
+
+<PageTitle>Database</PageTitle>
+
+<h1>Database</h1>
+<p>This component demonstrates fetching and displaying data from an API.</p>
+
+<h3>Select a Reading</h3>
+@if (scales == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <FluentCombobox Placeholder="Select a scale..." Items="@scales.Select(r => r.ScaleName)" @bind-Value="@selectedScale" Height="200px" @onchange="OnScaleSelected" />
+}
+
+@if (readings != null)
+{
+    <h3>Readings for @selectedScale</h3>
+    <FluentDataGrid Items="@readings" ResizableColumns="true">
+        <PropertyColumn Property="@(r => r.ReadId)" Title="ReadId" />
+        <PropertyColumn Property="@(r => r.Date)" Title="Date" />
+        <PropertyColumn Property="@(r => r.Value)" Title="Value" />
+    </FluentDataGrid>
+}
+
+@code {
+    private IQueryable<ScaleDto>? scales;
+    private IQueryable<LatestReadingDto>? readings;
+    private string? selectedScale;
+
+    protected override async Task OnInitializedAsync()
+    {
+        scales = (await ApiService.GetAllScales()).AsQueryable();
+    }
+
+    private async Task OnScaleSelected(ChangeEventArgs e)
+    {
+        if (e.Value is string scaleName)
+        {
+            var scale = scales.FirstOrDefault(s => s.ScaleName == scaleName);
+            if (scale != null)
+            {
+                readings = (await ApiService.GetAllReadingsForScale(scale.ScaleId)).AsQueryable();
+            }
+        }
+    }
+}

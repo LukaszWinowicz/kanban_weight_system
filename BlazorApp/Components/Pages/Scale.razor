@@ -3,6 +3,8 @@
 @using BlazorApp.Services
 @inject ApiService ApiService
 @rendermode InteractiveServer
+@* @inject IDialogService DialogService *@
+
 
 <PageTitle>Scale Readings</PageTitle>
 
@@ -23,7 +25,6 @@ else
         <PropertyColumn Title="Reading Date" Property="@(c => c!.LatestReading != null ? c.LatestReading.Date.ToString("yyyy-MM-dd HH:mm:ss") : "N/A")" />
         <PropertyColumn Title="Latest Reading" Property="@(c => c!.LatestReading != null ? c.LatestReading.Value.ToString("F2") : "N/A")" Align="Align.Center" />
     </FluentDataGrid>
-
 }
 
 @code {
