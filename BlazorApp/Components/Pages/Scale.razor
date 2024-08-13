@@ -1,0 +1,36 @@
+﻿@page "/scale"
+@using BlazorApp.Models
+@using BlazorApp.Services
+@inject ApiService ApiService
+@rendermode InteractiveServer
+
+<PageTitle>Scale Readings</PageTitle>
+
+<h1>Scale Readings</h1>
+
+<p>This component demonstrates fetching and displaying data from an API.</p>
+
+@if (scalesWithLatestReadings == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <FluentDataGrid Id="scaleReadingsGrid" Items="@scalesWithLatestReadings" GridTemplateColumns="1fr 1fr 1fr 2fr 1fr" TGridItem="ScaleWithLatestReadingDto" ShowHover="true">
+        <PropertyColumn Title="Scale Name" Property="@(c => c!.ScaleName)" />
+        <PropertyColumn Title="Item Name" Property="@(c => c!.ItemName)" />
+        <PropertyColumn Title="Weight" Property="@(c => c!.SingleItemWeight.ToString("F2"))" Align="Align.Center" />
+        <PropertyColumn Title="Reading Date" Property="@(c => c!.LatestReading != null ? c.LatestReading.Date.ToString("yyyy-MM-dd HH:mm:ss") : "N/A")" />
+        <PropertyColumn Title="Latest Reading" Property="@(c => c!.LatestReading != null ? c.LatestReading.Value.ToString("F2") : "N/A")" Align="Align.Center" />
+    </FluentDataGrid>
+
+}
+
+@code {
+    private IQueryable<ScaleWithLatestReadingDto>? scalesWithLatestReadings;
+
+    protected override async Task OnInitializedAsync()
+    {
+        scalesWithLatestReadings = (await ApiService.GetScalesWithLatestReadingsAsync()).AsQueryable();
+    }
+}
