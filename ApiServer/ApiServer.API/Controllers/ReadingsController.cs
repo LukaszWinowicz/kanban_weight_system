@@ -1,4 +1,5 @@
 ﻿using ApiServer.Core.Dtos;
+using ApiServer.Core.DTOs;
 using ApiServer.Core.Entities;
 using ApiServer.Core.Interfaces;
 using ApiServer.Core.Services;
@@ -18,7 +19,7 @@ namespace ApiServer.API.Controllers
         }
 
         [HttpGet("latest")]
-        public ActionResult<IEnumerable<ReadingEntity>> GetLatestReadingForEveryScale()
+        public ActionResult<IEnumerable<ScaleReadingDto>> GetLatestReadingForEveryScale()
         {
             var value = _service.GetLatestReadingForEveryScale();
             return Ok(value);

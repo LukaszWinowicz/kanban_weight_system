@@ -12,12 +12,12 @@ namespace BlazorApp.Services
         {
             _httpClient = httpClient;
         }
-        public async Task<IEnumerable<ScaleDto>> GetScalesWithLatestReadingsAsync()
+        public async Task<IEnumerable<ScaleReadingDto>> GetLatestReadingForEveryScaleAsync()
         {
-            var response = await _httpClient.GetAsync($"{_baseUrl}/ScaleReadings/all");
+            var response = await _httpClient.GetAsync($"{_baseUrl}/Readings/latest");
             response.EnsureSuccessStatusCode();
             var content = await response.Content.ReadAsStringAsync();
-            var json = JsonSerializer.Deserialize<IEnumerable<ScaleDto>>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            var json = JsonSerializer.Deserialize<IEnumerable<ScaleReadingDto>>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
             return json;
         }
 

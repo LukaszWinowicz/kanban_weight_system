@@ -17,30 +17,38 @@
 }
 else
 {
-    <FluentDataGrid Id="scaleReadingsGrid" Items="@scalesWithLatestReadings" GridTemplateColumns="1fr 1fr 1fr 2fr 1fr" TGridItem="ScaleDto" ShowHover="true">
+    <FluentDataGrid Id="scaleReadingsGrid" Items="@scalesWithLatestReadings" GridTemplateColumns="0.1fr 0.1fr 0.1fr 0.2fr 0.1fr" TGridItem="ScaleReadingDto" ShowHover="true">
         <PropertyColumn Title="Scale Name" Property="@(c => c!.ScaleName)" />
         <PropertyColumn Title="Item Name" Property="@(c => c!.ItemName)" />
-        <PropertyColumn Title="Weight" Property="@(c => c!.SingleItemWeight.ToString("F2"))" Align="Align.Center" />
-        <PropertyColumn Title="Latest Reading Date" Property="@(c => c!.Readings != null ? c.Readings.Date.ToString("yyyy-MM-dd HH:mm:ss") : "N/A")" />
-        <PropertyColumn Title="Value" Property="@(c => c!.Readings != null ? c.Readings.Value.ToString("F2") : "N/A")" Align="Align.Center" />
+        <PropertyColumn Title="Qty in the box" Property="@(c => c!.Quantity != null ? Math.Floor(c.Quantity.Value).ToString() : "N/A")" Align="Align.Center" />
+        <PropertyColumn Title="Latest Reading Date" Property="@(c => c!.LatestReading != null ? c.LatestReading.Date.ToString("yyyy-MM-dd HH:mm:ss") : "N/A")" />
+
+        <!-- Kolumna z Is Connected i kolorem tekstu -->
+        <TemplateColumn Title="Is Connected?">
+                @if (context.IsConnected)
+                {
+                    <span style="color: green;">Connected</span>
+                }
+                else
+                {
+                    <span style="color: red;">Disconnected</span>
+                }
+        </TemplateColumn>
 
          <!-- Kolumna z ikoną dzwonka -->
-    <TemplateColumn Title="Action">
-        <TemplateColumnContent>
-            @{
-                // Użycie FluentIcon do wyświetlenia ikony dzwonka
-                <FluentIcon Value="@(new Icons.Regular.Size24.Alert())" />
-            }
-        </TemplateColumnContent>
-    </TemplateColumn>
-
+        <TemplateColumn Title="Action">
+                @{
+                    // Użycie FluentIcon do wyświetlenia ikony dzwonka
+                <FluentIcon Value="@(new Icons.Regular.Size24.Alert())" @onclick="ReadNewDataFrmScale" />
+                }
+        </TemplateColumn>
     </FluentDataGrid>
   
 }
 
 @code {
 
-    private IQueryable<ScaleDto>? scalesWithLatestReadings;
+    private IQueryable<ScaleReadingDto>? scalesWithLatestReadings;
     private bool isLoading = true;
 
     protected override async Task OnInitializedAsync()
@@ -54,8 +62,12 @@ else
 
         // tutaj dodać walidację
 
-        var result = await ApiService.GetScalesWithLatestReadingsAsync();
+        var result = await ApiService.GetLatestReadingForEveryScaleAsync();
         scalesWithLatestReadings = result.AsQueryable();
+    }
 
+    private void ReadNewDataFrmScale()
+    {
+        
     }
 }
