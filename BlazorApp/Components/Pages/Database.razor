@@ -16,22 +16,22 @@
 }
 else
 {
-    <FluentCombobox Placeholder="Select a scale..." Items="@scales.Select(r => r.ScaleName)" @bind-Value="@selectedScale" Height="200px"/>
+    <FluentCombobox Placeholder="Select a scale..." Items="@scales.Select(r => r.ScaleName)" @bind-Value="@selectedScale" Height="200px" @onchange="OnScaleSelected" />
 }
 
 @if (readings != null)
 {
     <h3>Readings for @selectedScale</h3>
     <FluentDataGrid Items="@readings" ResizableColumns="true">
-        <PropertyColumn Property="@(r => r.ReadId)" Title="ReadId" />
-        <PropertyColumn Property="@(r => r.Date)" Title="Date" />
-        <PropertyColumn Property="@(r => r.Value)" Title="Value" />
+        <PropertyColumn Property="@(r => r.ItemName)" Title="Item Name" />
+        <PropertyColumn Property="@(r => r.Quantity)" Title="Quantity" />
+        <PropertyColumn Property="@(r => r.LatestReading)" Title="Date" />
     </FluentDataGrid>
 }
 
 @code {
     private IQueryable<ScaleDto>? scales;
-    private IQueryable<ReadingDto>? readings;
+    private IQueryable<ScaleReadingDto>? readings;
     private string? selectedScale;
 
     protected override async Task OnInitializedAsync()
@@ -39,17 +39,15 @@ else
         scales = (await ApiService.GetAllScales()).AsQueryable();
     }
     
-    // private async Task OnScaleSelected(ChangeEventArgs e)
-    // {
-    //     if (e.Value is string scaleName)
-    //     {
-    //         var scale = scales.FirstOrDefault(s => s.ScaleName == scaleName);
-    //         if (scale != null)
-    //         {
-    //             readings = (await ApiService.GetAllReadingsForScale(scale.ScaleId)).AsQueryable();
-    //         }
-    //     }
-    // }
-
-    // @* @onchange="OnScaleSelected" *@
+    private async Task OnScaleSelected(ChangeEventArgs e)
+    {
+        if (e.Value is string scaleName)
+        {
+            var scale = scales.FirstOrDefault(s => s.ScaleName == scaleName);
+            if (scale != null)
+            {
+                readings = (await ApiService.GetAllReadingsByScaleId(scale.ScaleId)).AsQueryable();
+            }
+        }
+    }
 }
