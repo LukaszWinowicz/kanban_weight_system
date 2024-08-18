@@ -16,7 +16,7 @@
 }
 else
 {
-    @* <FluentCombobox Placeholder="Select a scale..." Items="@scales.Select(r => r.ScaleName)" @bind-Value="@selectedScale" Height="200px" @onchange="OnScaleSelected" /> *@
+    <FluentCombobox Placeholder="Select a scale..." Items="@scales.Select(r => r.ScaleName)" @bind-Value="@selectedScale" Height="200px"/>
 }
 
 @if (readings != null)
@@ -34,11 +34,11 @@ else
     private IQueryable<ReadingDto>? readings;
     private string? selectedScale;
 
-    // protected override async Task OnInitializedAsync()
-    // {
-    //     scales = (await ApiService.GetAllScales()).AsQueryable();
-    // }
-
+    protected override async Task OnInitializedAsync()
+    {
+        scales = (await ApiService.GetAllScales()).AsQueryable();
+    }
+    
     // private async Task OnScaleSelected(ChangeEventArgs e)
     // {
     //     if (e.Value is string scaleName)
@@ -50,4 +50,6 @@ else
     //         }
     //     }
     // }
+
+    // @* @onchange="OnScaleSelected" *@
 }
