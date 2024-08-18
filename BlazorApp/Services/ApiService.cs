@@ -46,9 +46,8 @@ namespace BlazorApp.Services
         {
             var response = await _httpClient.GetAsync($"{_baseUrl}/Readings/getByScaleId/{scaleId}");
             response.EnsureSuccessStatusCode();
-            var content = await response.Content.ReadAsStringAsync();
-            var json = JsonSerializer.Deserialize<IList<ScaleReadingDto>>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-            return json;
+
+            return await response.Content.ReadFromJsonAsync<IEnumerable<ScaleReadingDto>>();
         }
     }
 }
