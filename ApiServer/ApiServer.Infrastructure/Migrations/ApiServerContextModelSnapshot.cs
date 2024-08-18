@@ -43,7 +43,7 @@ namespace ApiServer.Infrastructure.Migrations
 
                     b.HasIndex("ScaleId");
 
-                    b.ToTable("ReadingEntities");
+                    b.ToTable("Reading");
                 });
 
             modelBuilder.Entity("ApiServer.Core.Entities.ScaleEntity", b =>
@@ -72,7 +72,7 @@ namespace ApiServer.Infrastructure.Migrations
 
                     b.HasKey("ScaleId");
 
-                    b.ToTable("ScaleEntities");
+                    b.ToTable("Scale");
                 });
 
             modelBuilder.Entity("ApiServer.Core.Entities.ReadingEntity", b =>

@@ -7,6 +7,6 @@
         public string ItemName { get; set; }
         public decimal SingleItemWeight { get; set; }
         public bool IsConnected { get; set; }
-        public LatestReadingDto LatestReading { get; set; }
+        public ReadingDto LatestReading { get; set; }
     }
 }

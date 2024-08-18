@@ -18,11 +18,5 @@ namespace ApiServer.Core.Services
             var readings = _repository.GetAll();
             return readings;
         }
-
-        public IEnumerable<ScaleWithAllReadingsDto> G()
-        {
-            var readings = _repository.GetScaleWithAllReadings();
-            return readings;
-        }
     }
 }

@@ -11,85 +11,51 @@
 <h1>Scale Readings</h1>
 <p>This component demonstrates fetching and displaying data from an API.</p>
 
-<FluentMessageBar @bind-Open="@showMessageBar"
-                  Title="Błąd"
-                  Message="Wystąpił błąd podczas ładowania strony."
-                  Intent="MessageIntent.Error"
-                  OnDismiss="@CloseMessageBar" />
-
-@* @if (isLoading)
+@if (isLoading == true)
 {
     <p><em>Loading...</em></p>
 }
-else if (scalesWithLatestReadings != null)
+else
 {
-    <FluentDataGrid Id="scaleReadingsGrid" Items="@scalesWithLatestReadings" GridTemplateColumns="1fr 1fr 1fr 2fr 1fr" TGridItem="ScaleWithLatestReadingDto" ShowHover="true">
+    <FluentDataGrid Id="scaleReadingsGrid" Items="@scalesWithLatestReadings" GridTemplateColumns="1fr 1fr 1fr 2fr 1fr" TGridItem="ScaleDto" ShowHover="true">
         <PropertyColumn Title="Scale Name" Property="@(c => c!.ScaleName)" />
         <PropertyColumn Title="Item Name" Property="@(c => c!.ItemName)" />
         <PropertyColumn Title="Weight" Property="@(c => c!.SingleItemWeight.ToString("F2"))" Align="Align.Center" />
-        <PropertyColumn Title="Reading Date" Property="@(c => c!.LatestReading != null ? c.LatestReading.Date.ToString("yyyy-MM-dd HH:mm:ss") : "N/A")" />
-        <PropertyColumn Title="Latest Reading" Property="@(c => c!.LatestReading != null ? c.LatestReading.Value.ToString("F2") : "N/A")" Align="Align.Center" />
-    </FluentDataGrid>
+        <PropertyColumn Title="Latest Reading Date" Property="@(c => c!.Readings != null ? c.Readings.Date.ToString("yyyy-MM-dd HH:mm:ss") : "N/A")" />
+        <PropertyColumn Title="Value" Property="@(c => c!.Readings != null ? c.Readings.Value.ToString("F2") : "N/A")" Align="Align.Center" />
 
+         <!-- Kolumna z ikoną dzwonka -->
+    <TemplateColumn Title="Action">
+        <TemplateColumnContent>
+            @{
+                // Użycie FluentIcon do wyświetlenia ikony dzwonka
+                <FluentIcon Value="@(new Icons.Regular.Size24.Alert())" />
+            }
+        </TemplateColumnContent>
+    </TemplateColumn>
+
+    </FluentDataGrid>
   
-} *@
+}
 
 @code {
 
-    private bool showMessageBar = false;
+    private IQueryable<ScaleDto>? scalesWithLatestReadings;
+    private bool isLoading = true;
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
-        showMessageBar = true;
+        await LoadData();
     }
 
-    private void CloseMessageBar()
+    private async Task LoadData()
     {
-        showMessageBar = false;
+        isLoading = false;
+
+        // tutaj dodać walidację
+
+        var result = await ApiService.GetScalesWithLatestReadingsAsync();
+        scalesWithLatestReadings = result.AsQueryable();
+
     }
-
-
-    // private IQueryable<ScaleWithLatestReadingDto>? scalesWithLatestReadings;
-    // private string? errorMessage;
-    // private bool isLoading = true;
-    // bool? canceled;
-
-    // protected override async Task OnInitializedAsync()
-    // {
-    //     await LoadData();
-    // }
-
-    // private async Task LoadData()
-    // {
-    //     isLoading = true;
-    //     errorMessage = null;
-
-    //     try
-    //     {
-    //         var result = await ApiService.GetScalesWithLatestReadingsAsync();
-    //         if (result.IsSuccess)
-    //         {
-    //             scalesWithLatestReadings = result.Value.AsQueryable();
-    //         }
-    //         else
-    //         {
-    //             await ShowErrorAsync("Failed to load data.");
-    //         }
-    //     }
-    //     catch (Exception ex)
-    //     {
-    //         await ShowErrorAsync("Cannot connect to the database. Please try again later.");
-    //     }
-    //     finally
-    //     {
-    //         isLoading = false;
-    //     }
-    // }
-
-    // private async Task ShowErrorAsync(string message)
-    // {
-    //     var dialog = await DialogService.ShowErrorAsync(message);
-    //     var result = await dialog.Result;
-    //     canceled = result.Cancelled;
-    // }
 }

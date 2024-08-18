@@ -923,7 +923,10 @@
       },
       "ApiServer.Core/1.0.0": {
         "runtime": {
-          "ApiServer.Core.dll": {}
+          "ApiServer.Core.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }

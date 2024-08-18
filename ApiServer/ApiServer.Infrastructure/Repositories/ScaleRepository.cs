@@ -17,38 +17,8 @@ namespace ApiServer.Infrastructure.Repositories
 
         public IEnumerable<ScaleEntity> GetAll()
         {
-            var readings = _context.ScaleEntities.ToList();
+            var readings = _context.Scale.ToList();
             return readings;
         }
-
-        public IEnumerable<ScaleWithAllReadingsDto> GetScaleWithAllReadings()
-        {
-            // Include -> używane do eager loading w EF
-            var query = _context.ScaleEntities
-                                .Include(s => s.Readings)
-                                .Select(s => new ScaleWithAllReadingsDto
-                                {
-                                    ScaleId = s.ScaleId,
-                                    ScaleName = s.ScaleName,
-                                    ItemName = s.ItemName,
-                                    SingleItemWeight = s.SingleItemWeight,
-                                    IsConnected = s.IsConnected,
-                                    Readings = s.Readings
-                                                .OrderByDescending(r => r.Date)
-                                                .Select(r => new ReadingDto
-                                                {
-                                                    ReadId = r.ReadId,
-                                                    Date = r.Date,
-                                                    Value = r.Value
-                                                })
-                                                .ToList()
-                                })
-                                .ToList();
-
-            return query;
-        }
-
-        
-
     }
 }

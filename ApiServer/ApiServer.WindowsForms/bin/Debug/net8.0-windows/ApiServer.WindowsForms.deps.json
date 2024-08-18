@@ -1187,12 +1187,18 @@
           "Swashbuckle.AspNetCore": "6.7.0"
         },
         "runtime": {
-          "ApiServer.API.dll": {}
+          "ApiServer.API.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "ApiServer.Core/1.0.0": {
         "runtime": {
-          "ApiServer.Core.dll": {}
+          "ApiServer.Core.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "ApiServer.Infrastructure/1.0.0": {
@@ -1202,7 +1208,10 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.7"
         },
         "runtime": {
-          "ApiServer.Infrastructure.dll": {}
+          "ApiServer.Infrastructure.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }

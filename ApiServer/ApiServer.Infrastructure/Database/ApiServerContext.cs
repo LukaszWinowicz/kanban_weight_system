@@ -5,8 +5,8 @@ namespace ApiServer.Infrastructure.Database
 {
     public class ApiServerContext : DbContext
     {
-        public DbSet<ReadingEntity> ReadingEntities { get; set; }
-        public DbSet<ScaleEntity> ScaleEntities { get; set; }
+        public DbSet<ReadingEntity> Reading { get; set; }
+        public DbSet<ScaleEntity> Scale { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

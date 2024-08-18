@@ -15,7 +15,7 @@ namespace ApiServer.API.Controllers
             _service = service;
         }
 
-        [HttpGet("test")]
+        [HttpGet("all")]
         public ActionResult<IEnumerable<ScaleEntity>> GetAll()
         {
             var readings = _service.GetAll();

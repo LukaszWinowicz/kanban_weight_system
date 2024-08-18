@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\KERP\\WebAssemblyKERP\\WebAssemblyKERP.csproj": {}
+    "D:\\kanban_weight_system\\WebAssemblyKERP\\WebAssemblyKERP.csproj": {}
   },
   "projects": {
-    "D:\\KERP\\WebAssemblyKERP\\WebAssemblyKERP.csproj": {
+    "D:\\kanban_weight_system\\WebAssemblyKERP\\WebAssemblyKERP.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\KERP\\WebAssemblyKERP\\WebAssemblyKERP.csproj",
+        "projectUniqueName": "D:\\kanban_weight_system\\WebAssemblyKERP\\WebAssemblyKERP.csproj",
         "projectName": "WebAssemblyKERP",
-        "projectPath": "D:\\KERP\\WebAssemblyKERP\\WebAssemblyKERP.csproj",
+        "projectPath": "D:\\kanban_weight_system\\WebAssemblyKERP\\WebAssemblyKERP.csproj",
         "packagesPath": "C:\\Users\\lwino\\.nuget\\packages\\",
-        "outputPath": "D:\\KERP\\WebAssemblyKERP\\obj\\",
+        "outputPath": "D:\\kanban_weight_system\\WebAssemblyKERP\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -63,6 +63,20 @@
               "target": "Package",
               "version": "[8.0.6, )"
             },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.8, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[8.0.8, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.8, )"
+            },
             "Microsoft.FluentUI.AspNetCore.Components": {
               "target": "Package",
               "version": "[4.*-*, )"
@@ -74,13 +88,13 @@
             "Microsoft.NET.ILLink.Tasks": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.7, )",
+              "version": "[8.0.8, )",
               "autoReferenced": true
             },
             "Microsoft.NET.Sdk.WebAssembly.Pack": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.7, )",
+              "version": "[8.0.8, )",
               "autoReferenced": true
             }
           },
@@ -98,7 +112,7 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.NETCore.App.Runtime.Mono.browser-wasm",
-              "version": "[8.0.7, 8.0.7]"
+              "version": "[8.0.8, 8.0.8]"
             }
           ],
           "frameworkReferences": {
@@ -106,7 +120,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {
