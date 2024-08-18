@@ -1,4 +1,5 @@
-﻿using ApiServer.Core.Entities;
+﻿using ApiServer.Core.Dtos;
+using ApiServer.Core.Entities;
 
 namespace ApiServer.Core.Interfaces
 {

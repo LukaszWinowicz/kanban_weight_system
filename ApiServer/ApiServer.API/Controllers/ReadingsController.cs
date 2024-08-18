@@ -4,6 +4,7 @@ using ApiServer.Core.Entities;
 using ApiServer.Core.Interfaces;
 using ApiServer.Core.Services;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
 
 namespace ApiServer.API.Controllers
 {
@@ -23,6 +24,13 @@ namespace ApiServer.API.Controllers
         {
             var value = _service.GetLatestReadingForEveryScale();
             return Ok(value);
+        }
+
+        [HttpPost("create")]
+        public async Task<IActionResult> CreateReading([FromBody] ReadingCreateDto createDto)
+        {
+            await _service.CreateReadingAsync(createDto);
+            return Ok();
         }
     }
 }

@@ -11,7 +11,6 @@ namespace ApiServer.Core.Mapper
             {
                 Date = DateTime.Now,
                 ScaleId = dto.ScaleId,
-                Value = dto.Value
             };
         }
     }

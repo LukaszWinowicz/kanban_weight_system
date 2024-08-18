@@ -20,5 +20,7 @@ namespace ApiServer.Infrastructure.Repositories
             var readings = _context.Scale.ToList();
             return readings;
         }
+
+
     }
 }

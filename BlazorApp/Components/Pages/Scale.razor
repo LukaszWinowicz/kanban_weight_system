@@ -5,11 +5,20 @@
 @rendermode InteractiveServer
 @inject IDialogService DialogService
 @using Microsoft.FluentUI.AspNetCore.Components
+@inject IMessageService MessageService
 
 <PageTitle>Scale Readings</PageTitle>
 
 <h1>Scale Readings</h1>
 <p>This component demonstrates fetching and displaying data from an API.</p>
+
+@if (showSuccessMessage)
+{
+    <FluentMessageBar  Intent="@MessageIntent.Success">
+        Data read successfully for @currentScaleName!
+    </FluentMessageBar>
+}
+
 
 @if (isLoading == true)
 {
@@ -37,13 +46,14 @@ else
 
          <!-- Kolumna z ikoną dzwonka -->
         <TemplateColumn Title="Action">
-                @{
-                    // Użycie FluentIcon do wyświetlenia ikony dzwonka
-                <FluentIcon Value="@(new Icons.Regular.Size24.Alert())" @onclick="ReadNewDataFrmScale" />
-                }
+            @if (context != null)
+            {
+                <FluentIcon Value="@(new Icons.Regular.Size24.Alert())" @onclick="async () => await ReadNewDataFromScale(context)" />
+            }
         </TemplateColumn>
+
     </FluentDataGrid>
-  
+
 }
 
 @code {
@@ -66,8 +76,15 @@ else
         scalesWithLatestReadings = result.AsQueryable();
     }
 
-    private void ReadNewDataFrmScale()
+    private bool showSuccessMessage = false;
+    private string? currentScaleName;
+
+    private async Task ReadNewDataFromScale(ScaleReadingDto scale)
     {
-        
+        currentScaleName = scale.ScaleName;
+        showSuccessMessage = true;
+
+        await ApiService.ReadNewDataFromScale(scale.ScaleId);
+        await LoadData(); // Odśwież dane po zakończeniu operacji
     }
 }

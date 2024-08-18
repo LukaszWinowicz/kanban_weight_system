@@ -1,7 +1,9 @@
-﻿using ApiServer.Core.DTOs;
+﻿using ApiServer.Core.Dtos;
+using ApiServer.Core.DTOs;
 using ApiServer.Core.Entities;
 using ApiServer.Core.Interfaces;
 using ApiServer.Infrastructure.Database;
+using System.Runtime.InteropServices;
 
 namespace ApiServer.Infrastructure.Repositories
 {
@@ -44,5 +46,14 @@ namespace ApiServer.Infrastructure.Repositories
 
             return result;
         }
+
+
+        public async Task<ReadingEntity> AddAsync(ReadingEntity readingEntity)
+        {
+            _context.Reading.Add(readingEntity);
+            await _context.SaveChangesAsync();
+            return readingEntity;
+        }
+
     }
 }
