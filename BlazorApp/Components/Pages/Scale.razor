@@ -45,11 +45,21 @@ else
         </TemplateColumn>
 
          <!-- Kolumna z ikoną dzwonka -->
-        <TemplateColumn Title="Action">
-            @if (context != null)
+        <TemplateColumn Title="New reading">
+         @*    @if (context != null)
+            {
+                <FluentIcon Value="@(new Icons.Regular.Size24.Alert())" @onclick="async () => await ReadNewDataFromScale(context)" />
+            } *@
+
+            @if (context.IsConnected)
             {
                 <FluentIcon Value="@(new Icons.Regular.Size24.Alert())" @onclick="async () => await ReadNewDataFromScale(context)" />
             }
+            else
+            {
+                <FluentIcon Value="@(new Icons.Regular.Size24.AlertOff())" />
+            }
+
         </TemplateColumn>
 
     </FluentDataGrid>
