@@ -41,5 +41,20 @@ namespace ApiServer.Infrastructure.Repositories
             return entity.ScaleId;
 
         }
+
+        public bool Update(int scaleId, ScaleCreateDto dto)
+        {
+            var entity = _context.Scale.FirstOrDefault(x => x.ScaleId == scaleId);
+            if (entity is null) return false;
+
+            entity.ScaleName = dto.ScaleName;
+            entity.ItemName = dto.ItemName;
+            entity.SingleItemWeight = dto.SingleItemWeight;
+            entity.IsConnected = dto.IsConnected;
+
+            _context.SaveChanges();
+            return true;
+
+        }
     }
 }

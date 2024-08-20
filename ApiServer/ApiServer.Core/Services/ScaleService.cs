@@ -25,10 +25,16 @@ namespace ApiServer.Core.Services
             var scale = _repository.Delete(scaleId);
             return scale;
         }
+
         public int Create(ScaleCreateDto dto)
         {
             var scaleId = _repository.Create(dto);
             return scaleId;
+        }
+        public bool Update(int scaleId, ScaleCreateDto dto)
+        {
+            var scale = _repository.Update(scaleId, dto);
+            return scale;
 
         }
     }

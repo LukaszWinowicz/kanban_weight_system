@@ -9,5 +9,6 @@ namespace ApiServer.Core.Interfaces
         IEnumerable<ScaleEntity> GetAll();
         bool Delete(int scaleId);
         int Create(ScaleCreateDto dto);
+        bool Update(int scaleId, ScaleCreateDto dto);
     }
 }

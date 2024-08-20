@@ -48,5 +48,23 @@ namespace ApiServer.API.Controllers
             return Ok(id);
             //return Created($"/api/.../{id}", null);
         }
+
+        [HttpPut("{scaleId}")]
+        public ActionResult Update([FromBody] ScaleCreateDto dto, [FromRoute] int scaleId)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var isUpdated = _service.Update(scaleId, dto);
+
+            if (!isUpdated)
+            {
+                return NotFound();
+            }
+
+            return Ok();
+        }
     }
 }
