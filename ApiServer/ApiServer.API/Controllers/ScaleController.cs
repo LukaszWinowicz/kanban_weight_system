@@ -22,5 +22,16 @@ namespace ApiServer.API.Controllers
             return Ok(readings);
         }
 
+        [HttpDelete("delete/{id}")]
+        public ActionResult Delete([FromRoute] int id)
+        { 
+            var isDeleted = _service.Delete(id);
+            if (isDeleted == true)
+            {
+                return NoContent();
+            }
+
+            return NotFound();
+        }
     }
 }

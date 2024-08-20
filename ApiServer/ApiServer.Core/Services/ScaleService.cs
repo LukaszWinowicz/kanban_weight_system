@@ -18,5 +18,11 @@ namespace ApiServer.Core.Services
             var readings = _repository.GetAll();
             return readings;
         }
+
+        public bool Delete(int scaleId)
+        {
+            var scale = _repository.Delete(scaleId);
+            return scale;
+        }
     }
 }

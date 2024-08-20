@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ApiServer.WindowsForms")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3b499a79f3ae2062b915b0b5e2eb673d0350abd0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+390321d6028e830ffb94820c164466d69b16191a")]
 [assembly: System.Reflection.AssemblyProductAttribute("ApiServer.WindowsForms")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ApiServer.WindowsForms")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

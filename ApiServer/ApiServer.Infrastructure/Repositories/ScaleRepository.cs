@@ -21,6 +21,15 @@ namespace ApiServer.Infrastructure.Repositories
             return readings;
         }
 
+        public bool Delete(int scaleId)
+        {
+            var scale = _context.Scale.FirstOrDefault(x => x.ScaleId == scaleId);
 
+            if (scale is null) return false;
+
+            _context.Scale.Remove(scale);
+            _context.SaveChanges();
+            return true;
+        }
     }
 }
