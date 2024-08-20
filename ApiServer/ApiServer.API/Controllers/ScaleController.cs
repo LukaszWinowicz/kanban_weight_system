@@ -1,4 +1,5 @@
-﻿using ApiServer.Core.Entities;
+﻿using ApiServer.Core.DTOs;
+using ApiServer.Core.Entities;
 using ApiServer.Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -32,6 +33,20 @@ namespace ApiServer.API.Controllers
             }
 
             return NotFound();
+        }
+
+        [HttpPost]
+        public ActionResult Create([FromBody] ScaleCreateDto dto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var id = _service.Create(dto);
+
+            return Ok(id);
+            //return Created($"/api/.../{id}", null);
         }
     }
 }

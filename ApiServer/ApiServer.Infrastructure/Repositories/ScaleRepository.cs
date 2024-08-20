@@ -1,6 +1,7 @@
 ﻿using ApiServer.Core.DTOs;
 using ApiServer.Core.Entities;
 using ApiServer.Core.Interfaces;
+using ApiServer.Core.Mapper;
 using ApiServer.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
 
@@ -30,6 +31,15 @@ namespace ApiServer.Infrastructure.Repositories
             _context.Scale.Remove(scale);
             _context.SaveChanges();
             return true;
+        }
+
+        public int Create(ScaleCreateDto dto)
+        {
+            var entity = ScaleMapper.MapToEntity(dto);
+            _context.Scale.Add(entity);
+            _context.SaveChanges();
+            return entity.ScaleId;
+
         }
     }
 }

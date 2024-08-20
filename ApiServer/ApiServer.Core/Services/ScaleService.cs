@@ -1,6 +1,7 @@
 ﻿using ApiServer.Core.DTOs;
 using ApiServer.Core.Entities;
 using ApiServer.Core.Interfaces;
+using ApiServer.Core.Mapper;
 
 namespace ApiServer.Core.Services
 {
@@ -23,6 +24,12 @@ namespace ApiServer.Core.Services
         {
             var scale = _repository.Delete(scaleId);
             return scale;
+        }
+        public int Create(ScaleCreateDto dto)
+        {
+            var scaleId = _repository.Create(dto);
+            return scaleId;
+
         }
     }
 }
