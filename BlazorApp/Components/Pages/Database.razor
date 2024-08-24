@@ -5,16 +5,31 @@
 @rendermode InteractiveServer
 
 <PageTitle>Database</PageTitle>
-
-<h1>Database</h1>
-<p>This component demonstrates fetching and displaying data from an API.</p>
-
 <h3>Select a Reading</h3>
-@if (scales == null)
+
+@if (showSuccessMessage)
 {
-    <p><em>Loading...</em></p>
+    <FluentMessageBar Intent="@MessageIntent.Success">
+        Data read successfully for @currentScaleName!
+    </FluentMessageBar>
 }
-else
+
+<FluentMessageBar Title="Connection Status" Intent="@GetMessageBarIntent()">
+    @if (isLoading)
+    {
+        <span>Sprawdzanie połączenia z API...</span>
+    }
+    else if (isConnected)
+    {
+        <span>Połączono z API.</span>
+    }
+    else
+    {
+        <span>Nie można połączyć się z API. Proszę spróbować później lub skontaktować się z administratorem.</span>
+    }
+</FluentMessageBar>
+
+@if (isConnected && scales != null)
 {
     <FluentCombobox Placeholder="Select a scale..." Items="@scales.Select(r => r.ScaleName)" @bind-Value="@selectedScale" Height="200px" @onchange="OnScaleSelected" />
 }
@@ -33,10 +48,40 @@ else
     private IQueryable<ScaleDto>? scales;
     private IQueryable<ScaleReadingDto>? readings;
     private string? selectedScale;
+    private bool isLoading = true;
+    private bool isConnected = false;
+    private bool showSuccessMessage = false;
+    private string? currentScaleName;
 
     protected override async Task OnInitializedAsync()
     {
-        scales = (await ApiService.GetScalesWithAnyReadings()).AsQueryable();
+        _ = CheckApiConnectionAsync();
+        
+    }
+
+    private async Task CheckApiConnectionAsync()
+    {
+        try
+        {
+            isLoading = true;
+            StateHasChanged();
+
+            isConnected = await ApiService.CheckApiConnection();
+
+            if (isConnected)
+            {
+                scales = (await ApiService.GetScalesWithAnyReadings()).AsQueryable();
+            }
+        }
+        catch
+        {
+            isConnected = false;
+        }
+        finally
+        {
+            isLoading = false;
+            StateHasChanged();
+        }
     }
     
     private async Task OnScaleSelected(ChangeEventArgs e)
@@ -49,5 +94,15 @@ else
                 readings = (await ApiService.GetAllReadingsByScaleId(scale.ScaleId)).AsQueryable();
             }
         }
+    }
+
+    private MessageIntent GetMessageBarIntent()
+    {
+        if (isLoading)
+            return MessageIntent.Info;
+        else if (isConnected)
+            return MessageIntent.Success;
+        else
+            return MessageIntent.Error;
     }
 }
