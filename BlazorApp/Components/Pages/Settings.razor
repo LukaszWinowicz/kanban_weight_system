@@ -22,7 +22,7 @@
     {
         <span>Sprawdzanie połączenia z API...</span>
     }
-    else if (isConnected)
+    else if (!isConnected)
     {
         <span>Połączono z API.</span>
     }
@@ -70,7 +70,7 @@
     private async Task LoadDataAsync()
     {
         isLoading = false;
-        scales = (await ApiService.GetScalesWithAnyReadings()).AsQueryable();
+        scales = (await ApiService.GetAllAsync()).AsQueryable();
     }
 
     private async Task CheckApiConnectionAsync()
