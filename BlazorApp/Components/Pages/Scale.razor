@@ -9,43 +9,42 @@
 @inject IConfiguration Configuration
 
 <PageTitle>Scale Readings</PageTitle>
-
 <h1>Scale Readings</h1>
 
 @if (showSuccessMessage)
 {
-    <FluentMessageBar  Intent="@MessageIntent.Success">
+    <FluentMessageBar Intent="@MessageIntent.Success">
         Data read successfully for @currentScaleName!
     </FluentMessageBar>
 }
 
-@if (isLoading)
-{
-    <FluentMessageBar Title="Descriptive title">
-        Sprawdzanie połączenia z API..
-    </FluentMessageBar>
-}
-else if (isConnected)
+<FluentMessageBar Title="Connection Status" Intent="@(isConnected ? MessageIntent.Success : MessageIntent.Error)">
+    @if (isLoading)
+    {
+        <span>Sprawdzanie połączenia z API...</span>
+    }
+    else if (isConnected)
+    {
+       // <span>Połączono z API.</span>
+    }
+    else
+    {
+        <span>Nie można połączyć się z API. Proszę spróbować później lub skontaktować się z administratorem.</span>
+    }
+</FluentMessageBar>
+
+@if (isConnected && scalesWithLatestReadings != null)
 {
     <FluentDataGrid Id="scaleReadingsGrid" Items="@scalesWithLatestReadings" GridTemplateColumns="0.1fr 0.1fr 0.1fr 0.2fr 0.1fr" TGridItem="ScaleReadingDto" ShowHover="true">
         <PropertyColumn Title="Scale Name" Property="@(c => c!.ScaleName)" />
         <PropertyColumn Title="Item Name" Property="@(c => c!.ItemName)" />
         <PropertyColumn Title="Qty in the box" Property="@(c => c!.Quantity != null ? Math.Floor(c.Quantity.Value).ToString() : "N/A")" Align="Align.Center" />
         <PropertyColumn Title="Latest Reading Date" Property="@(c => c!.LatestReading != null ? c.LatestReading.Date.ToString("yyyy-MM-dd HH:mm:ss") : "N/A")" />
-
-        <!-- Kolumna z Is Connected i kolorem tekstu -->
         <TemplateColumn Title="Is Connected?">
-            @if (context.IsConnected)
-            {
-                <span style="color: green;">Connected</span>
-            }
-            else
-            {
-                <span style="color: red;">Disconnected</span>
-            }
+            <span style="color: @(context.IsConnected ? "green" : "red");">
+                @(context.IsConnected ? "Connected" : "Disconnected")
+            </span>
         </TemplateColumn>
-
-        <!-- Kolumna z ikoną dzwonka -->
         <TemplateColumn Title="New reading">
             @if (context.IsConnected)
             {
@@ -55,60 +54,35 @@ else if (isConnected)
             {
                 <FluentIcon Value="@(new Icons.Regular.Size24.AlertOff())" />
             }
-
         </TemplateColumn>
-
     </FluentDataGrid>
 }
-else
-{
-    <FluentMessageBar Title="Descriptive title" Intent="@MessageIntent.Error">
-        Nie można połączyć się z API. Proszę spróbować później lub skontaktować się z administratorem.
-    </FluentMessageBar>
-}
-
 
 @code {
-
     private IQueryable<ScaleReadingDto>? scalesWithLatestReadings;
     private bool isLoading = true;
     private bool isConnected = false;
-
-    protected override async Task OnInitializedAsync()
-    {
-        await CheckApiConnection();
-    }
-
-    private async Task LoadData()
-    {
-        isLoading = false;
-
-        // tutaj dodać walidację
-
-        var result = await ApiService.GetLatestReadingForEveryScaleAsync();
-        scalesWithLatestReadings = result.AsQueryable();
-    }
-
     private bool showSuccessMessage = false;
     private string? currentScaleName;
 
-    private async Task ReadNewDataFromScale(ScaleReadingDto scale)
+    protected override async Task OnInitializedAsync()
     {
-        currentScaleName = scale.ScaleName;
-        showSuccessMessage = true;
-
-        await ApiService.ReadNewDataFromScale(scale.ScaleId);
-        await LoadData(); // Odśwież dane po zakończeniu operacji
+        _ = CheckApiConnectionAsync();
     }
 
-    private async Task CheckApiConnection()
+    private async Task CheckApiConnectionAsync()
     {
         try
         {
             isLoading = true;
+            StateHasChanged();
+
             isConnected = await ApiService.CheckApiConnection();
 
-            await LoadData();
+            if (isConnected)
+            {
+                await LoadDataAsync();
+            }
         }
         catch
         {
@@ -117,6 +91,21 @@ else
         finally
         {
             isLoading = false;
+            StateHasChanged();
         }
+    }
+
+    private async Task LoadDataAsync()
+    {
+        var result = await ApiService.GetLatestReadingForEveryScaleAsync();
+        scalesWithLatestReadings = result.AsQueryable();
+    }
+
+    private async Task ReadNewDataFromScale(ScaleReadingDto scale)
+    {
+        currentScaleName = scale.ScaleName;
+        showSuccessMessage = true;
+        await ApiService.ReadNewDataFromScale(scale.ScaleId);
+        await LoadDataAsync();
     }
 }
