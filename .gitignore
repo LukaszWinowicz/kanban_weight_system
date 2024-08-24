@@ -1,0 +1,17 @@
+# .gitignore
+
+# Visual Studio
+.vs/
+
+# ASP.NET Core
+AspNetCore/bin/
+AspNetCore/obj/
+AspNetCore/.vs/
+AspNetCore/*.suo
+AspNetCore/*.user
+AspNetCore/*.userosscache
+AspNetCore/*.sln.docstates
+
+# General
+*.log
+.DS_Store

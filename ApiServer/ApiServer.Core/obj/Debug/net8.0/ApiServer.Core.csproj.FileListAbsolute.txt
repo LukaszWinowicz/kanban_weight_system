@@ -1,0 +1,12 @@
+D:\kanban_weight_system\ApiServer\ApiServer.Core\bin\Debug\net8.0\ApiServer.Core.deps.json
+D:\kanban_weight_system\ApiServer\ApiServer.Core\bin\Debug\net8.0\ApiServer.Core.dll
+D:\kanban_weight_system\ApiServer\ApiServer.Core\bin\Debug\net8.0\ApiServer.Core.pdb
+D:\kanban_weight_system\ApiServer\ApiServer.Core\obj\Debug\net8.0\ApiServer.Core.GeneratedMSBuildEditorConfig.editorconfig
+D:\kanban_weight_system\ApiServer\ApiServer.Core\obj\Debug\net8.0\ApiServer.Core.AssemblyInfoInputs.cache
+D:\kanban_weight_system\ApiServer\ApiServer.Core\obj\Debug\net8.0\ApiServer.Core.AssemblyInfo.cs
+D:\kanban_weight_system\ApiServer\ApiServer.Core\obj\Debug\net8.0\ApiServer.Core.csproj.CoreCompileInputs.cache
+D:\kanban_weight_system\ApiServer\ApiServer.Core\obj\Debug\net8.0\ApiServer.Core.sourcelink.json
+D:\kanban_weight_system\ApiServer\ApiServer.Core\obj\Debug\net8.0\ApiServer.Core.dll
+D:\kanban_weight_system\ApiServer\ApiServer.Core\obj\Debug\net8.0\refint\ApiServer.Core.dll
+D:\kanban_weight_system\ApiServer\ApiServer.Core\obj\Debug\net8.0\ApiServer.Core.pdb
+D:\kanban_weight_system\ApiServer\ApiServer.Core\obj\Debug\net8.0\ref\ApiServer.Core.dll
