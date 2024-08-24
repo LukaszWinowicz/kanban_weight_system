@@ -20,6 +20,12 @@ namespace ApiServer.Core.Services
             return readings;
         }
 
+        public IEnumerable<ScaleEntity> GetScalesWithAnyReadings()
+        {
+            var readings = _repository.GetScalesWithAnyReadings();
+            return readings;
+        }
+
         public bool Delete(int scaleId)
         {
             var scale = _repository.Delete(scaleId);

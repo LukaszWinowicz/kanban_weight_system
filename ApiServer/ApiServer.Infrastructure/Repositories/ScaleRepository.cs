@@ -3,7 +3,6 @@ using ApiServer.Core.Entities;
 using ApiServer.Core.Interfaces;
 using ApiServer.Core.Mapper;
 using ApiServer.Infrastructure.Database;
-using Microsoft.EntityFrameworkCore;
 
 namespace ApiServer.Infrastructure.Repositories
 {
@@ -19,6 +18,11 @@ namespace ApiServer.Infrastructure.Repositories
         public IEnumerable<ScaleEntity> GetAll()
         {
             var readings = _context.Scale.ToList();
+            return readings;
+        }
+        public IEnumerable<ScaleEntity> GetScalesWithAnyReadings()
+        {
+            var readings = _context.Scale.Where(s => s.Readings.Any(r => r.ScaleId == s.ScaleId)).ToList();
             return readings;
         }
 
@@ -54,7 +58,6 @@ namespace ApiServer.Infrastructure.Repositories
 
             _context.SaveChanges();
             return true;
-
         }
     }
 }

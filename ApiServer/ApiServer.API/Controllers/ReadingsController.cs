@@ -38,7 +38,7 @@ namespace ApiServer.API.Controllers
         }
 
         [HttpGet("getByScaleId/{scaleId}")]
-        public async Task<ActionResult<IEnumerable<ScaleReadingDto>>> GetReadingsByScaleId(int scaleId)
+        public async Task<ActionResult<IEnumerable<ReadingEntity>>> GetReadingsByScaleId(int scaleId)
         {
             var readings = await _context.Reading
                                           .Where(r => r.ScaleId == scaleId)

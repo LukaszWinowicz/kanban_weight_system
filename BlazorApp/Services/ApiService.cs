@@ -33,21 +33,22 @@ namespace BlazorApp.Services
             response.EnsureSuccessStatusCode();
         }
 
-        public async Task<IList<ScaleDto>> GetAllScales()
+        public async Task<IList<ScaleDto>> GetScalesWithAnyReadings()
         {
-            var response = await _httpClient.GetAsync($"{_baseUrl}/Scale/all");
+            var response = await _httpClient.GetAsync($"{_baseUrl}/Scale/withreadings");
             response.EnsureSuccessStatusCode();
             var content = await response.Content.ReadAsStringAsync();
             var json = JsonSerializer.Deserialize<IList<ScaleDto>>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
             return json;
         }
 
-        public async Task<IEnumerable<ScaleReadingDto>> GetAllReadingsByScaleId(int scaleId)
+        public async Task<IList<ScaleReadingDto>> GetAllReadingsByScaleId(int scaleId)
         {
             var response = await _httpClient.GetAsync($"{_baseUrl}/Readings/getByScaleId/{scaleId}");
             response.EnsureSuccessStatusCode();
-
-            return await response.Content.ReadFromJsonAsync<IEnumerable<ScaleReadingDto>>();
+            var content = await response.Content.ReadAsStringAsync();
+            var json = JsonSerializer.Deserialize<IList<ScaleReadingDto>>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            return json;
         }
     }
 }

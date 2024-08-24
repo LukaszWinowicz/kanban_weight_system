@@ -30,14 +30,6 @@ namespace ApiServer.API.Controllers
             return Ok(readings);
         }
 
-        [HttpGet("withreadings")]
-        public ActionResult<IEnumerable<ScaleEntity>> GetScalesWithAnyReadings()
-        {
-            var readings = _service.GetScalesWithAnyReadings();
-            return Ok(readings);
-        }
-
-        public ActionResult<IEnumerable<ScaleEntity>> GetScalesWithAnyReadings()
         [HttpDelete("delete/{id}")]
         public ActionResult Delete([FromRoute] int id)
         { 
