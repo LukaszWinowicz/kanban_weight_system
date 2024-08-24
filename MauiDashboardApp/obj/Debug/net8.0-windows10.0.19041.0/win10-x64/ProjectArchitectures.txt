@@ -1,1 +1,0 @@
-D:\kanban_weight_system\MauiDashboardApp\MauiDashboardApp.csproj;x64
