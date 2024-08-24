@@ -6,11 +6,11 @@
 @inject IDialogService DialogService
 @using Microsoft.FluentUI.AspNetCore.Components
 @inject IMessageService MessageService
+@inject IConfiguration Configuration
 
 <PageTitle>Scale Readings</PageTitle>
 
 <h1>Scale Readings</h1>
-<p>This component demonstrates fetching and displaying data from an API.</p>
 
 @if (showSuccessMessage)
 {
@@ -21,7 +21,9 @@
 
 @if (isLoading)
 {
-    <p>Sprawdzanie połączenia z API...</p>
+    <FluentMessageBar Title="Descriptive title">
+        Sprawdzanie połączenia z API..
+    </FluentMessageBar>
 }
 else if (isConnected)
 {
@@ -60,7 +62,9 @@ else if (isConnected)
 }
 else
 {
-    <p class="text-danger">Nie można połączyć się z API. Proszę spróbować później lub skontaktować się z administratorem.</p>
+    <FluentMessageBar Title="Descriptive title" Intent="@MessageIntent.Error">
+        Nie można połączyć się z API. Proszę spróbować później lub skontaktować się z administratorem.
+    </FluentMessageBar>
 }
 
 

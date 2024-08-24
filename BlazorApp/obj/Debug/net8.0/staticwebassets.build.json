@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ZjyMqWs6oAF9WzjlyjO8gkw/wal0BXsmI0kv2aeoais=",
+  "Hash": "5IaXuZJrr85MSiYAIZpWSer0xYUHBA42weF4ENIJbX0=",
   "Source": "BlazorApp",
   "BasePath": "_content/BlazorApp",
   "Mode": "Default",
@@ -737,6 +737,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "D:\\kanban_weight_system\\BlazorApp\\wwwroot\\images\\error-icon.jpg",
+      "SourceId": "BlazorApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\kanban_weight_system\\BlazorApp\\wwwroot\\",
+      "BasePath": "_content/BlazorApp",
+      "RelativePath": "images/error-icon.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\error-icon.jpg"
     }
   ]
 }
