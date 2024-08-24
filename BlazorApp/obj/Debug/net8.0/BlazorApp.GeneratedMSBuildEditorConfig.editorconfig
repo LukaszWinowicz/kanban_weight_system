@@ -30,10 +30,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTmF2TWVudS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/kanban_weight_system/BlazorApp/Components/Pages/Counter.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDb3VudGVyLnJhem9y
-build_metadata.AdditionalFiles.CssScope = 
-
 [D:/kanban_weight_system/BlazorApp/Components/Pages/Database.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xEYXRhYmFzZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
@@ -52,10 +48,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/kanban_weight_system/BlazorApp/Components/Pages/Settings.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTZXR0aW5ncy5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/kanban_weight_system/BlazorApp/Components/Pages/Weather.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xXZWF0aGVyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/kanban_weight_system/BlazorApp/Components/Routes.razor]
