@@ -2,19 +2,40 @@
 @using BlazorApp.Models
 @using BlazorApp.Services
 @inject ApiService ApiService
+@rendermode InteractiveServer
+@inject IDialogService DialogService
+@using Microsoft.FluentUI.AspNetCore.Components
+@inject IMessageService MessageService
+@inject IConfiguration Configuration
 
-<h3>Settings</h3>
+<h1>Settings</h1>
 
+@if (showSuccessMessage)
+{
+    <FluentMessageBar Intent="@MessageIntent.Success">
+        Data read successfully for @currentScaleName!
+    </FluentMessageBar>
+}
 
+<FluentMessageBar Title="Connection Status" Intent="@GetMessageBarIntent()">
+    @if (isLoading)
+    {
+        <span>Sprawdzanie połączenia z API...</span>
+    }
+    else if (isConnected)
+    {
+        <span>Połączono z API.</span>
+    }
+    else
+    {
+        <span>Nie można połączyć się z API. Proszę spróbować później lub skontaktować się z administratorem.</span>
+    }
+</FluentMessageBar>
+
+@if (isConnected)
+{
     <FluentButton BackgroundColor="#3CB371" Color="#FFFFFF">Create</FluentButton>
 
-
-@if (isLoading == true)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
     <FluentDataGrid Id="scaleReadingsGrid" Items="@scales" GridTemplateColumns="0.1fr 0.1fr 0.1fr 0.2fr 0.1fr" TGridItem="ScaleDto" ShowHover="true">
         <PropertyColumn Title="Scale Name" Property="@(c => c!.ScaleName)" />
         <PropertyColumn Title="Item Name" Property="@(c => c!.ItemName)" />
@@ -37,16 +58,54 @@ else
 @code {
     private IQueryable<ScaleDto>? scales;
     private bool isLoading = true;
+    private bool isConnected = false;
+    private bool showSuccessMessage = false;
+    private string? currentScaleName;
 
     protected override async Task OnInitializedAsync()
     {
-        await LoadData();
+        _ = CheckApiConnectionAsync();
     }
 
-    private async Task LoadData()
+    private async Task LoadDataAsync()
     {
         isLoading = false;
         scales = (await ApiService.GetScalesWithAnyReadings()).AsQueryable();
+    }
+
+    private async Task CheckApiConnectionAsync()
+    {
+        try
+        {
+            isLoading = true;
+            StateHasChanged();
+
+            isConnected = await ApiService.CheckApiConnection();
+
+            if (isConnected)
+            {
+                await LoadDataAsync();
+            }
+        }
+        catch
+        {
+            isConnected = false;
+        }
+        finally
+        {
+            isLoading = false;
+            StateHasChanged();
+        }
+    }
+
+    private MessageIntent GetMessageBarIntent()
+    {
+        if (isLoading)
+            return MessageIntent.Info;
+        else if (isConnected)
+            return MessageIntent.Success;
+        else
+            return MessageIntent.Error;
     }
    
 }
