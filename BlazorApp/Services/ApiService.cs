@@ -12,6 +12,13 @@ namespace BlazorApp.Services
         {
             _httpClient = httpClient;
         }
+
+        public async Task<bool> CheckApiConnection()
+        {
+            var response = await _httpClient.GetAsync($"{_baseUrl}/Health/test");
+            return response.IsSuccessStatusCode;
+        }
+
         public async Task<IEnumerable<ScaleReadingDto>> GetLatestReadingForEveryScaleAsync()
         {
             var response = await _httpClient.GetAsync($"{_baseUrl}/Readings/latest");

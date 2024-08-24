@@ -19,12 +19,11 @@
     </FluentMessageBar>
 }
 
-
-@if (isLoading == true)
+@if (isLoading)
 {
-    <p><em>Loading...</em></p>
+    <p>Sprawdzanie połączenia z API...</p>
 }
-else
+else if (isConnected)
 {
     <FluentDataGrid Id="scaleReadingsGrid" Items="@scalesWithLatestReadings" GridTemplateColumns="0.1fr 0.1fr 0.1fr 0.2fr 0.1fr" TGridItem="ScaleReadingDto" ShowHover="true">
         <PropertyColumn Title="Scale Name" Property="@(c => c!.ScaleName)" />
@@ -34,23 +33,18 @@ else
 
         <!-- Kolumna z Is Connected i kolorem tekstu -->
         <TemplateColumn Title="Is Connected?">
-                @if (context.IsConnected)
-                {
-                    <span style="color: green;">Connected</span>
-                }
-                else
-                {
-                    <span style="color: red;">Disconnected</span>
-                }
+            @if (context.IsConnected)
+            {
+                <span style="color: green;">Connected</span>
+            }
+            else
+            {
+                <span style="color: red;">Disconnected</span>
+            }
         </TemplateColumn>
 
-         <!-- Kolumna z ikoną dzwonka -->
+        <!-- Kolumna z ikoną dzwonka -->
         <TemplateColumn Title="New reading">
-         @*    @if (context != null)
-            {
-                <FluentIcon Value="@(new Icons.Regular.Size24.Alert())" @onclick="async () => await ReadNewDataFromScale(context)" />
-            } *@
-
             @if (context.IsConnected)
             {
                 <FluentIcon Value="@(new Icons.Regular.Size24.Alert())" @onclick="async () => await ReadNewDataFromScale(context)" />
@@ -63,17 +57,22 @@ else
         </TemplateColumn>
 
     </FluentDataGrid>
-
 }
+else
+{
+    <p class="text-danger">Nie można połączyć się z API. Proszę spróbować później lub skontaktować się z administratorem.</p>
+}
+
 
 @code {
 
     private IQueryable<ScaleReadingDto>? scalesWithLatestReadings;
     private bool isLoading = true;
+    private bool isConnected = false;
 
     protected override async Task OnInitializedAsync()
     {
-        await LoadData();
+        await CheckApiConnection();
     }
 
     private async Task LoadData()
@@ -96,5 +95,24 @@ else
 
         await ApiService.ReadNewDataFromScale(scale.ScaleId);
         await LoadData(); // Odśwież dane po zakończeniu operacji
+    }
+
+    private async Task CheckApiConnection()
+    {
+        try
+        {
+            isLoading = true;
+            isConnected = await ApiService.CheckApiConnection();
+
+            await LoadData();
+        }
+        catch
+        {
+            isConnected = false;
+        }
+        finally
+        {
+            isLoading = false;
+        }
     }
 }
