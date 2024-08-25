@@ -10,27 +10,19 @@
 
 <h1>Settings</h1>
 
-@if (showSuccessMessage)
+@if (isLoading || !isConnected)
 {
-    <FluentMessageBar Intent="@MessageIntent.Success">
-        Data read successfully for @currentScaleName!
+    <FluentMessageBar Title="Connection Status" Intent="@GetMessageBarIntent()">
+        @if (isLoading)
+        {
+            <span>Sprawdzanie połączenia z API...</span>
+        }
+        else if (!isConnected)
+        {
+            <span>Nie można połączyć się z API. Proszę spróbować później lub skontaktować się z administratorem.</span>
+        }
     </FluentMessageBar>
 }
-
-<FluentMessageBar Title="Connection Status" Intent="@GetMessageBarIntent()">
-    @if (isLoading)
-    {
-        <span>Sprawdzanie połączenia z API...</span>
-    }
-    else if (!isConnected)
-    {
-        <span>Połączono z API.</span>
-    }
-    else
-    {
-        <span>Nie można połączyć się z API. Proszę spróbować później lub skontaktować się z administratorem.</span>
-    }
-</FluentMessageBar>
 
 @if (isConnected)
 {
@@ -100,12 +92,7 @@
 
     private MessageIntent GetMessageBarIntent()
     {
-        if (isLoading)
-            return MessageIntent.Info;
-        else if (isConnected)
-            return MessageIntent.Success;
-        else
-            return MessageIntent.Error;
+        return isLoading ? MessageIntent.Info : MessageIntent.Error;
     }
    
 }
