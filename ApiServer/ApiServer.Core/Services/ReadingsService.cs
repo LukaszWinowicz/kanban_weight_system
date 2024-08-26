@@ -19,6 +19,11 @@ namespace ApiServer.Core.Services
             return _repository.GetLatestReadingForEveryScale();
         }
 
+        public IEnumerable<ScaleReadingDto> GetReadingsByScaleId(int scaleId)
+        {
+            return _repository.GetReadingsByScaleId(scaleId);
+        }
+
         public async Task<ReadingEntity> CreateReadingAsync(ReadingCreateDto createDto)
         {
             var reading = new ReadingEntity

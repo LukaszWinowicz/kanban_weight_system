@@ -15,6 +15,7 @@ namespace ApiServer.Infrastructure.Repositories
         {
             _context = context;
         }
+
         public IEnumerable<ScaleReadingDto> GetLatestReadingForEveryScale()
         {
             var result = _context.Scale
@@ -47,6 +48,24 @@ namespace ApiServer.Infrastructure.Repositories
             return result;
         }
 
+        public IEnumerable<ScaleReadingDto> GetReadingsByScaleId(int scaleId)
+        {
+            var result = _context.Reading
+                                 .Where(r => r.ScaleId == scaleId)
+                                 .Select(r => new ScaleReadingDto
+                                 {
+                                     ScaleId = r.Scale.ScaleId,
+                                     ScaleName = r.Scale.ScaleName,
+                                     ItemName = r.Scale.ItemName,
+                                     SingleItemWeight = r.Scale.SingleItemWeight,
+                                     IsConnected = r.Scale.IsConnected,
+                                     LatestReading = r, // Możesz zmienić nazwę na CurrentReading lub Reading
+                                     Quantity = r.Value / r.Scale.SingleItemWeight
+                                 })
+                                 .ToList();
+
+            return result;
+        }
 
         public async Task<ReadingEntity> AddAsync(ReadingEntity readingEntity)
         {
@@ -54,6 +73,5 @@ namespace ApiServer.Infrastructure.Repositories
             await _context.SaveChangesAsync();
             return readingEntity;
         }
-
     }
 }

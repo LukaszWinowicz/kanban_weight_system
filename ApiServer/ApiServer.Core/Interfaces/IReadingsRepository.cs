@@ -7,6 +7,7 @@ namespace ApiServer.Core.Interfaces
     public interface IReadingsRepository
     {
         IEnumerable<ScaleReadingDto> GetLatestReadingForEveryScale();
+        IEnumerable<ScaleReadingDto> GetReadingsByScaleId(int scaleId);
         Task<ReadingEntity> AddAsync(ReadingEntity readingEntity);
     }
 }

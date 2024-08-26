@@ -31,8 +31,8 @@
     <h3>Readings for @selectedScale</h3>
     <FluentDataGrid Items="@readings" ResizableColumns="true">
         <PropertyColumn Property="@(r => r.ItemName)" Title="Item Name" />
-        <PropertyColumn Property="@(r => r.Quantity)" Title="Quantity" />
-        <PropertyColumn Property="@(r => r.LatestReading)" Title="Date" />
+        <PropertyColumn Property="@(c => c!.Quantity != null ? Math.Floor(c.Quantity.Value).ToString() : "N/A")" Title="Qty in the box" />
+        <PropertyColumn Property="@(r => r.LatestReading.Date)" Title="Date" Sortable="true"/>
     </FluentDataGrid>
 }
 
