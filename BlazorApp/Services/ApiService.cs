@@ -66,5 +66,13 @@ namespace BlazorApp.Services
             var json = JsonSerializer.Deserialize<IList<ScaleReadingDto>>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
             return json;
         }
+
+        public async Task<string> DeleteScaleById(int scaleId)
+        {
+            var response = await _httpClient.GetAsync($"{_baseUrl}/Scale/delete/{scaleId}");
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadAsStringAsync();
+        }
+
     }
 }
