@@ -3,10 +3,11 @@
 @using BlazorApp.Services
 @inject ApiService ApiService
 @rendermode InteractiveServer
-@inject IDialogService DialogService
 @using Microsoft.FluentUI.AspNetCore.Components
 @inject IMessageService MessageService
 @inject IConfiguration Configuration
+@inject IDialogService DialogService
+
 
 <h1>Settings</h1>
 
@@ -28,23 +29,28 @@
 {
     <FluentButton BackgroundColor="#3CB371" Color="#FFFFFF">Create</FluentButton>
 
+    @if (scales != null)
+    {
     <FluentDataGrid Id="scaleReadingsGrid" Items="@scales" GridTemplateColumns="0.1fr 0.1fr 0.1fr 0.2fr 0.1fr" TGridItem="ScaleDto" ShowHover="true">
         <PropertyColumn Title="Scale Name" Property="@(c => c!.ScaleName)" />
         <PropertyColumn Title="Item Name" Property="@(c => c!.ItemName)" />
         <PropertyColumn Title="Single item weight" Property="@(c => c!.SingleItemWeight)" />
         <PropertyColumn Title="Is Connected?" Property="@(c => c!.IsConnected)" />
-   
-        <TemplateColumn Title="Actions">
-            @if (context != null)
-            {
-                <FluentButton BackgroundColor="#1E90FF" Color="#FFFFFF">Edit</FluentButton>
-                <FluentButton BackgroundColor="#DC143C" Color="#FFFFFF">Delete</FluentButton>
-            }
-        </TemplateColumn>
 
+        <TemplateColumn Title="Actions">
+            
+                @* <FluentButton BackgroundColor="#1E90FF" Color="#FFFFFF">Edit</FluentButton> *@
+                @* <FluentButton BackgroundColor="#DC143C" Color="#FFFFFF" @onclick="async () => await ApiService.DeleteScaleById("@(c=> c!.ScaleId")">Delete </FluentButton> *@
+                @* <FluentButton BackgroundColor="#DC143C" Color="#FFFFFF" @onclick="@(() => ApiService.DeleteScaleById(context.ScaleId))">Delete</FluentButton> *@
+                @* <FluentButton IconStart="@(new Icons.Regular.Size20.Edit())" OnClick="@(() => EditScale(context))" /> *@
+                <FluentButton IconStart="@(new Icons.Regular.Size20.Delete())" OnClick="@(() => DeleteScale(context))" />
+
+           
+        </TemplateColumn>
+       
 
     </FluentDataGrid>
-
+    }
 }
 
 @code {
@@ -94,5 +100,37 @@
     {
         return isLoading ? MessageIntent.Info : MessageIntent.Error;
     }
-   
+
+    private async Task DeleteScale(ScaleDto dto)
+    {
+        
+        // Check if the item is null
+        if (dto is null)
+        {
+            return;
+        }
+
+        /*var dialog = await DialogService.ShowConfirmationAsync("Do you have two eyes?", "Yup", "Nope", "Eyes on you");
+        var result = await dialog.Result;
+
+        // If cancelled, return
+        if (result.Cancelled)
+        {
+            return;
+        }*/
+
+        // Delete the item
+        try
+        {
+            await ApiService.DeleteScaleById(dto.ScaleId);
+            await LoadDataAsync();
+        }
+        catch (Exception exc)
+        {
+            string errorMessage = exc.InnerException?.Message ?? exc.Message;
+            await DialogService.ShowErrorAsync("Error", errorMessage);
+        }
+    }
+
+
 }

@@ -69,7 +69,7 @@ namespace BlazorApp.Services
 
         public async Task<string> DeleteScaleById(int scaleId)
         {
-            var response = await _httpClient.GetAsync($"{_baseUrl}/Scale/delete/{scaleId}");
+            var response = await _httpClient.DeleteAsync($"{_baseUrl}/Scale/delete/{scaleId}");
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadAsStringAsync();
         }
