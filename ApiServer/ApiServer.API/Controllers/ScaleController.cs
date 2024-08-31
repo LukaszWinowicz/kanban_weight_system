@@ -53,7 +53,6 @@ namespace ApiServer.API.Controllers
             var id = _service.Create(dto);
 
             return Ok(id);
-            //return Created($"/api/.../{id}", null);
         }
 
         [HttpPut("{scaleId}")]

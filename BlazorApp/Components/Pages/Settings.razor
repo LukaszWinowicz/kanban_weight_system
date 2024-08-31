@@ -1,4 +1,5 @@
 ﻿@page "/settings"
+@using BlazorApp.Components.Pages.Panels
 @using BlazorApp.Models
 @using BlazorApp.Services
 @inject ApiService ApiService
@@ -27,7 +28,9 @@
 
 @if (isConnected)
 {
-    <FluentButton BackgroundColor="#3CB371" Color="#FFFFFF">Create</FluentButton>
+    @* <FluentButton BackgroundColor="#3CB371" Color="#FFFFFF">Create</FluentButton> *@
+    <FluentButton IconStart="@(new Icons.Regular.Size20.Add())" OnClick="@(() => AddInDialog())">Add</FluentButton>
+
 
     @if (scales != null)
     {
@@ -38,7 +41,6 @@
         <PropertyColumn Title="Is Connected?" Property="@(c => c!.IsConnected)" />
 
         <TemplateColumn Title="Actions">
-            
                 <FluentButton IconStart="@(new Icons.Regular.Size20.Delete())" OnClick="@(() => DeleteScale(context))" />
                                
         </TemplateColumn>
@@ -99,6 +101,8 @@
         return isLoading ? MessageIntent.Info : MessageIntent.Error;
     }
 
+
+
     private async Task DeleteScale(ScaleDto item)
     {
         // Check if the item is null
@@ -134,5 +138,40 @@
         }
     }
 
+    private async Task AddInDialog()
+    {
+        ScaleCreateDto newScale = new();
 
+        var parameters = new DialogParameters
+        {
+            Title = "Add Scale",
+            PreventDismissOnOverlayClick = true,
+            PreventScroll = true
+        };
+
+        // show dialog
+        var dialog = await DialogService.ShowDialogAsync<EditScalePanel>(newScale, parameters);
+        var dialogResult = await dialog.Result;
+        await HandleAddDialogResult(dialogResult);
+
+    }
+
+    private async Task HandleAddDialogResult(DialogResult result)
+    {
+        if (result.Cancelled)
+        {
+            return;
+        }
+
+        if (result.Data is not null)
+        {
+            var newItem = result.Data as ScaleCreateDto;
+            if (newItem is null)
+            {
+                return;
+            }
+            await ApiService.CreateScale(newItem);
+            await LoadDataAsync();
+        }
+    }
 }

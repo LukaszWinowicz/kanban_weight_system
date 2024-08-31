@@ -1,4 +1,5 @@
 ﻿using BlazorApp.Models;
+using System.Net.Http;
 using System.Text.Json;
 
 namespace BlazorApp.Services
@@ -72,6 +73,22 @@ namespace BlazorApp.Services
             var response = await _httpClient.DeleteAsync($"{_baseUrl}/Scale/delete/{scaleId}");
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadAsStringAsync();
+        }
+
+        public async Task<string> CreateScale(ScaleCreateDto dto)
+        {
+            try
+            {
+                var response = await _httpClient.PostAsJsonAsync($"{_baseUrl}/Scale", dto);
+                response.EnsureSuccessStatusCode();
+                var result = await response.Content.ReadAsStringAsync();
+                return result;
+            }
+            catch (HttpRequestException e)
+            {
+                Console.WriteLine($"Error creating scale: {e.Message}");
+                throw;
+            }
         }
 
     }

@@ -42,6 +42,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xIb21lLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/kanban_weight_system/BlazorApp/Components/Pages/Panels/EditScalePanel.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xQYW5lbHNcRWRpdFNjYWxlUGFuZWwucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/kanban_weight_system/BlazorApp/Components/Pages/Scale.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTY2FsZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
