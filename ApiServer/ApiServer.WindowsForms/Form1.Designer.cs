@@ -31,11 +31,13 @@
             btnRunMqtt = new Button();
             lblMain = new Label();
             btnCloseMqtt = new Button();
+            btnSub = new Button();
+            btnLoadDb = new Button();
             SuspendLayout();
             // 
             // btnRunMqtt
             // 
-            btnRunMqtt.Location = new Point(111, 97);
+            btnRunMqtt.Location = new Point(90, 88);
             btnRunMqtt.Name = "btnRunMqtt";
             btnRunMqtt.Size = new Size(100, 57);
             btnRunMqtt.TabIndex = 0;
@@ -48,7 +50,7 @@
             lblMain.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             lblMain.AutoSize = true;
             lblMain.Font = new Font("Segoe UI", 20F);
-            lblMain.Location = new Point(186, 18);
+            lblMain.Location = new Point(41, 21);
             lblMain.Name = "lblMain";
             lblMain.Size = new Size(471, 37);
             lblMain.TabIndex = 1;
@@ -56,7 +58,7 @@
             // 
             // btnCloseMqtt
             // 
-            btnCloseMqtt.Location = new Point(111, 182);
+            btnCloseMqtt.Location = new Point(338, 88);
             btnCloseMqtt.Name = "btnCloseMqtt";
             btnCloseMqtt.Size = new Size(100, 57);
             btnCloseMqtt.TabIndex = 2;
@@ -64,11 +66,31 @@
             btnCloseMqtt.UseVisualStyleBackColor = true;
             btnCloseMqtt.Click += btnCloseMqtt_Click;
             // 
+            // btnSub
+            // 
+            btnSub.Location = new Point(90, 193);
+            btnSub.Name = "btnSub";
+            btnSub.Size = new Size(100, 57);
+            btnSub.TabIndex = 3;
+            btnSub.Text = "Sub";
+            btnSub.UseVisualStyleBackColor = true;
+            // 
+            // btnLoadDb
+            // 
+            btnLoadDb.Location = new Point(338, 193);
+            btnLoadDb.Name = "btnLoadDb";
+            btnLoadDb.Size = new Size(100, 57);
+            btnLoadDb.TabIndex = 4;
+            btnLoadDb.Text = "Load Db";
+            btnLoadDb.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(567, 318);
+            Controls.Add(btnLoadDb);
+            Controls.Add(btnSub);
             Controls.Add(btnCloseMqtt);
             Controls.Add(lblMain);
             Controls.Add(btnRunMqtt);
@@ -83,5 +105,7 @@
         private Button btnRunMqtt;
         private Label lblMain;
         private Button btnCloseMqtt;
+        private Button btnSub;
+        private Button btnLoadDb;
     }
 }
