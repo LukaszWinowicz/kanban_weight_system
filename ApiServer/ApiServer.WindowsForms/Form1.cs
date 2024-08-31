@@ -1,10 +1,17 @@
+using ApiServer.WindowsForms.Services;
+
 namespace ApiServer.WindowsForms
 {
     public partial class Form1 : Form
     {
+        private readonly MosquittoService _mosquittoService;
+        private readonly Esp32DataService _esp32DataService;
+
         public Form1()
         {
             InitializeComponent();
+            _mosquittoService = new MosquittoService();
+           // _esp32DataService = new Esp32DataService("192.168.1.32", "mqtt_user", "mqtt_pass");
         }
 
         private void btnRunMqtt_Click(object sender, EventArgs e)

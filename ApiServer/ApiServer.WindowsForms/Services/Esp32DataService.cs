@@ -1,21 +1,42 @@
-﻿using MQTTnet;
+﻿using ApiServer.Core.Interfaces;
+using MQTTnet;
 using MQTTnet.Client;
 
 namespace ApiServer.WindowsForms.Services
 {
-    public class Esp32DataService
+    public class Esp32DataService : IDisposable
     {
-        private readonly IMqttClient? _mqttClient;
-        private readonly MqttClientOptions? _mqttOptions;
+        private readonly IMqttClient _mqttClient;
+        private readonly MqttClientOptions _mqttOptions;
         private readonly string _logFilePath;
         private readonly Dictionary<string, DateTime> _lastPingTime;
         private readonly int _pingInterval = 10; // sekundy
-        private readonly string[] _devices = { "esp32_c3_01", "esp32_c3_02" };
+        private readonly IScaleRepository _scaleRepository;
+        private List<string> _devices;
         private CancellationTokenSource _cts;
+
+        public Esp32DataService(string mqttServer, string mqttUser, string mqttPass, IScaleRepository scaleRepository)
+        {
+            var mqttFactory = new MqttFactory();
+            _mqttClient = mqttFactory.CreateMqttClient();
+
+            _mqttOptions = new MqttClientOptionsBuilder()
+                .WithTcpServer(mqttServer, 1883)
+                .WithCredentials(mqttUser, mqttPass)
+                .Build();
+
+            _logFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "esp32_data.txt");
+            _lastPingTime = new Dictionary<string, DateTime>();
+            _scaleRepository = scaleRepository;
+        }
 
         public async Task StartAsync()
         {
             _cts = new CancellationTokenSource();
+
+            // Pobierz listę urządzeń z repozytorium
+            var scales = _scaleRepository.GetAll();
+            _devices = scales.Select(s => s.ScaleName).ToList();
 
             _mqttClient.ConnectedAsync += HandleConnectedAsync;
             _mqttClient.ApplicationMessageReceivedAsync += HandleMessageReceivedAsync;
@@ -44,7 +65,7 @@ namespace ApiServer.WindowsForms.Services
         private Task HandleMessageReceivedAsync(MqttApplicationMessageReceivedEventArgs eventArgs)
         {
             string deviceId = eventArgs.ApplicationMessage.Topic.Split('/')[1];
-            if (Array.IndexOf(_devices, deviceId) != -1)
+            if (_devices.Contains(deviceId))
             {
                 string payload = System.Text.Encoding.UTF8.GetString(eventArgs.ApplicationMessage.PayloadSegment);
                 Console.WriteLine($"Message received from {deviceId}: {payload}");

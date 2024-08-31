@@ -7,7 +7,7 @@
 @inject IMessageService MessageService
 @inject IConfiguration Configuration
 @inject IDialogService DialogService
-
+@inject NavigationManager navigationManager
 
 <h1>Settings</h1>
 
@@ -31,7 +31,7 @@
 
     @if (scales != null)
     {
-    <FluentDataGrid Id="scaleReadingsGrid" Items="@scales" GridTemplateColumns="0.1fr 0.1fr 0.1fr 0.2fr 0.1fr" TGridItem="ScaleDto" ShowHover="true">
+        <FluentDataGrid Id="scaleReadingsGrid" Items="@scales" GridTemplateColumns="0.1fr 0.1fr 0.1fr 0.2fr 0.1fr" TGridItem="ScaleDto" ShowHover="true" agination="@pagination">
         <PropertyColumn Title="Scale Name" Property="@(c => c!.ScaleName)" />
         <PropertyColumn Title="Item Name" Property="@(c => c!.ItemName)" />
         <PropertyColumn Title="Single item weight" Property="@(c => c!.SingleItemWeight)" />
@@ -39,22 +39,20 @@
 
         <TemplateColumn Title="Actions">
             
-                @* <FluentButton BackgroundColor="#1E90FF" Color="#FFFFFF">Edit</FluentButton> *@
-                @* <FluentButton BackgroundColor="#DC143C" Color="#FFFFFF" @onclick="async () => await ApiService.DeleteScaleById("@(c=> c!.ScaleId")">Delete </FluentButton> *@
-                @* <FluentButton BackgroundColor="#DC143C" Color="#FFFFFF" @onclick="@(() => ApiService.DeleteScaleById(context.ScaleId))">Delete</FluentButton> *@
-                @* <FluentButton IconStart="@(new Icons.Regular.Size20.Edit())" OnClick="@(() => EditScale(context))" /> *@
                 <FluentButton IconStart="@(new Icons.Regular.Size20.Delete())" OnClick="@(() => DeleteScale(context))" />
-
-           
+                               
         </TemplateColumn>
        
 
     </FluentDataGrid>
+
+        <FluentPaginator State="@pagination" />
     }
 }
 
 @code {
     private IQueryable<ScaleDto>? scales;
+    PaginationState pagination = new PaginationState { ItemsPerPage = 15 };
     private bool isLoading = true;
     private bool isConnected = false;
     private bool showSuccessMessage = false;
@@ -101,28 +99,32 @@
         return isLoading ? MessageIntent.Info : MessageIntent.Error;
     }
 
-    private async Task DeleteScale(ScaleDto dto)
+    private async Task DeleteScale(ScaleDto item)
     {
-        
         // Check if the item is null
-        if (dto is null)
+        if (item is null)
         {
             return;
         }
 
-        /*var dialog = await DialogService.ShowConfirmationAsync("Do you have two eyes?", "Yup", "Nope", "Eyes on you");
-        var result = await dialog.Result;
+        // Create and show a dialog to confirm the delete
+        IDialogReference dialog = await DialogService.ShowConfirmationAsync(
+            $"Are you sure you want to delete the scale '{item.ScaleName}'?",
+            "Yes",
+            "No",
+            "Delete Scale?");
+        DialogResult result = await dialog.Result;
 
         // If cancelled, return
         if (result.Cancelled)
         {
             return;
-        }*/
+        }
 
         // Delete the item
         try
         {
-            await ApiService.DeleteScaleById(dto.ScaleId);
+            await ApiService.DeleteScaleById(item.ScaleId);
             await LoadDataAsync();
         }
         catch (Exception exc)

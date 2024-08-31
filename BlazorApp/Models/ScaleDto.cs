@@ -3,7 +3,7 @@
     public class ScaleDto
     {
         public int ScaleId { get; set; }
-        public string ScaleName { get; set; }
+        public string ScaleName { get; set; } = default!;
         public string ItemName { get; set; }
         public decimal SingleItemWeight { get; set; }
         public bool IsConnected { get; set; }
