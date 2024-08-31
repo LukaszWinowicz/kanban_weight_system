@@ -1,0 +1,76 @@
+﻿@inject IDialogService dialogService
+@inject ApiService apiService
+@page "/settings_"
+@using BlazorApp.Models
+@using BlazorApp.Services
+
+<h3>Settings_</h3>
+
+
+    <FluentDataGrid Items="@scales" TGridItem="ScaleDto" Pagination="@pagination">
+        <PropertyColumn Title="Scale Name" Property="@(c => c!.ScaleName)" />
+        <PropertyColumn Title="Item Name" Property="@(c => c!.ItemName)" />
+        <PropertyColumn Title="Single item weight" Property="@(c => c!.SingleItemWeight)" />
+        <PropertyColumn Title="Is Connected?" Property="@(c => c!.IsConnected)" />
+        <TemplateColumn Title="Actions">
+
+            <FluentButton IconStart="@(new Icons.Regular.Size16.Delete())" OnClick="@(() => DeleteItem(context))" />
+        </TemplateColumn>
+    </FluentDataGrid>
+
+    <FluentPaginator State="@pagination" />
+
+
+
+@code {
+    private IQueryable<ScaleDto>? scales;
+    PaginationState pagination = new PaginationState { ItemsPerPage = 15 };
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadDataAsync();
+    }
+
+    private async Task LoadDataAsync()
+    {
+        scales = (await apiService.GetAllAsync()).AsQueryable();
+
+    }
+
+    private async Task DeleteItem(ScaleDto item)
+    {
+        // Check if the item is null
+        if (item is null)
+        {
+            return;
+        }
+
+        // Create and show a dialog to confirm the delete
+        IDialogReference dialog = await dialogService.ShowConfirmationAsync(
+            $"Are you sure you want to delete the artist '{item.ItemName}'?",
+            "Yes",
+            "No",
+            "Delete Artist?");
+        DialogResult result = await dialog.Result;
+
+        // If cancelled, return
+        if (result.Cancelled)
+        {
+            return;
+        }
+
+        // Delete the item
+        try
+        {
+            // repository.Delete(item);
+            // await repository.SaveAsync();
+            await apiService.DeleteScaleById(item.ScaleId);
+            await LoadDataAsync();
+        }
+        catch (Exception exc)
+        {
+            string errorMessage = exc.InnerException?.Message ?? exc.Message;
+            await dialogService.ShowErrorAsync("Error", errorMessage);
+        }
+    }
+}
