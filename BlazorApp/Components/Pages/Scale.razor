@@ -11,7 +11,6 @@
 <PageTitle>Scales</PageTitle>
 <h1>Scales</h1>
 
-
 @if (isLoading || !isConnected)
 {
     <FluentMessageBar Title="Connection Status" Intent="@GetMessageBarIntent()">
@@ -41,7 +40,7 @@
         <TemplateColumn Title="New reading">
             @if (context.IsConnected)
             {
-                <FluentIcon Value="@(new Icons.Regular.Size24.Alert())" @onclick="async () => await ReadNewDataFromScale(context)" />
+                <FluentIcon Value="@(new Icons.Regular.Size24.Alert())" />
             }
             else
             {
@@ -61,6 +60,17 @@
     protected override async Task OnInitializedAsync()
     {
         _ = CheckApiConnectionAsync();
+    }
+    
+    private async Task LoadDataAsync()
+    {
+        var result = await ApiService.GetLatestReadingForEveryScaleAsync();
+        scalesWithLatestReadings = result.AsQueryable();
+    }
+
+    private MessageIntent GetMessageBarIntent()
+    {
+        return isLoading ? MessageIntent.Info : MessageIntent.Error;
     }
 
     private async Task CheckApiConnectionAsync()
@@ -86,30 +96,5 @@
             isLoading = false;
             StateHasChanged();
         }
-    }
-
-    private async Task LoadDataAsync()
-    {
-        var result = await ApiService.GetLatestReadingForEveryScaleAsync();
-        scalesWithLatestReadings = result.AsQueryable();
-    }
-
-    private async Task ReadNewDataFromScale(ScaleReadingDto scale)
-    {
-        currentScaleName = scale.ScaleName;
-        await ApiService.ReadNewDataFromScale(scale.ScaleId);
-        await LoadDataAsync();
-    }
-
-    // private MessageIntent GetMessageIntent(bool isLoading, bool isConnected)
-    // {
-    //     if (isLoading) return MessageIntent.Info;
-    //     if (!isConnected) return MessageIntent.Error;
-    //     return MessageIntent.Custom; // lub inna domyślna wartość
-    // }
-
-    private MessageIntent GetMessageBarIntent()
-    {
-        return isLoading ? MessageIntent.Info : MessageIntent.Error;
     }
 }

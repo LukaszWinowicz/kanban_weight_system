@@ -1,4 +1,5 @@
 ﻿using BlazorApp.Models;
+using BlazorApp.Models.Scale;
 using System.Net.Http;
 using System.Text.Json;
 
@@ -20,33 +21,13 @@ namespace BlazorApp.Services
             return response.IsSuccessStatusCode;
         }
 
+        #region ScaleView
         public async Task<IEnumerable<ScaleReadingDto>> GetLatestReadingForEveryScaleAsync()
         {
             var response = await _httpClient.GetAsync($"{_baseUrl}/Readings/latest");
             response.EnsureSuccessStatusCode();
             var content = await response.Content.ReadAsStringAsync();
             var json = JsonSerializer.Deserialize<IEnumerable<ScaleReadingDto>>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-            return json;
-        }
-
-        public async Task ReadNewDataFromScale(int scaleId)
-        {
-            var createDto = new CreateReadingDto
-            {
-                ScaleId = scaleId
-            };
-
-            var response = await _httpClient.PostAsJsonAsync($"{_baseUrl}/Readings/create", createDto);
-
-            response.EnsureSuccessStatusCode();
-        }
-
-        public async Task<IList<ScaleDto>> GetScalesWithAnyReadings()
-        {
-            var response = await _httpClient.GetAsync($"{_baseUrl}/Scale/withreadings");
-            response.EnsureSuccessStatusCode();
-            var content = await response.Content.ReadAsStringAsync();
-            var json = JsonSerializer.Deserialize<IList<ScaleDto>>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
             return json;
         }
 
@@ -58,38 +39,6 @@ namespace BlazorApp.Services
             var json = JsonSerializer.Deserialize<IList<ScaleDto>>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
             return json;
         }
-
-        public async Task<IList<ScaleReadingDto>> GetAllReadingsByScaleId(int scaleId)
-        {
-            var response = await _httpClient.GetAsync($"{_baseUrl}/Readings/getByScaleId/{scaleId}");
-            response.EnsureSuccessStatusCode();
-            var content = await response.Content.ReadAsStringAsync();
-            var json = JsonSerializer.Deserialize<IList<ScaleReadingDto>>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-            return json;
-        }
-
-        public async Task<string> DeleteScaleById(int scaleId)
-        {
-            var response = await _httpClient.DeleteAsync($"{_baseUrl}/Scale/delete/{scaleId}");
-            response.EnsureSuccessStatusCode();
-            return await response.Content.ReadAsStringAsync();
-        }
-
-        public async Task<string> CreateScale(ScaleCreateDto dto)
-        {
-            try
-            {
-                var response = await _httpClient.PostAsJsonAsync($"{_baseUrl}/Scale", dto);
-                response.EnsureSuccessStatusCode();
-                var result = await response.Content.ReadAsStringAsync();
-                return result;
-            }
-            catch (HttpRequestException e)
-            {
-                Console.WriteLine($"Error creating scale: {e.Message}");
-                throw;
-            }
-        }
-
+        #endregion
     }
 }

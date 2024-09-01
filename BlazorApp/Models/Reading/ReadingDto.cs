@@ -1,4 +1,6 @@
-﻿namespace BlazorApp.Models
+﻿using BlazorApp.Models.Scale;
+
+namespace BlazorApp.Models.Reading
 {
     public class ReadingDto
     {

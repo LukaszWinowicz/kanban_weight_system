@@ -1,8 +1,9 @@
-﻿namespace BlazorApp.Models
+﻿using BlazorApp.Models.Reading;
+
+namespace BlazorApp.Models
 {
     public class ScaleReadingDto
     {
-        public int ScaleId { get; set; }
         public string ScaleName { get; set; }
         public string ItemName { get; set; }
         public decimal SingleItemWeight { get; set; }

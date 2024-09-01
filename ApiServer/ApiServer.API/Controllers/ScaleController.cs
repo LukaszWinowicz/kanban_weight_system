@@ -1,4 +1,5 @@
-﻿using ApiServer.Core.Interfaces;
+﻿using ApiServer.Core.Entities;
+using ApiServer.Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiServer.API.Controllers
@@ -13,8 +14,13 @@ namespace ApiServer.API.Controllers
         {
             _repository = repository;
         }
-        
 
-       
+        [HttpGet("all")] // .../api/Scale/all
+        public ActionResult<IEnumerable<ScaleEntity>> GetAll()
+        {
+            var readings = _repository.GetAll();
+            return Ok(readings);
+        }
+
     }
 }

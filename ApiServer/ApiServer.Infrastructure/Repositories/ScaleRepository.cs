@@ -1,4 +1,5 @@
-﻿using ApiServer.Core.Interfaces;
+﻿using ApiServer.Core.Entities;
+using ApiServer.Core.Interfaces;
 using ApiServer.Infrastructure.Database;
 
 namespace ApiServer.Infrastructure.Repositories
@@ -12,6 +13,10 @@ namespace ApiServer.Infrastructure.Repositories
             _context = context;
         }
 
-       
+        public IEnumerable<ScaleEntity> GetAll()
+        {
+            var readings = _context.Scale.ToList();
+            return readings;
+        }
     }
 }
