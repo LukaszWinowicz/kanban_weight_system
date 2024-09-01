@@ -3,9 +3,6 @@ using ApiServer.API;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Threading;
-using System.Windows.Forms;
 
 namespace ApiServer.WindowsForms
 {

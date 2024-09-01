@@ -33,26 +33,25 @@ namespace ApiServer.Infrastructure.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("ScaleId")
-                        .HasColumnType("int");
+                    b.Property<string>("ScaleName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<decimal>("Value")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("ReadId");
 
-                    b.HasIndex("ScaleId");
+                    b.HasIndex("ScaleName");
 
                     b.ToTable("Reading");
                 });
 
             modelBuilder.Entity("ApiServer.Core.Entities.ScaleEntity", b =>
                 {
-                    b.Property<int>("ScaleId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ScaleId"));
+                    b.Property<string>("ScaleName")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<bool>("IsConnected")
                         .HasColumnType("bit");
@@ -62,15 +61,10 @@ namespace ApiServer.Infrastructure.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("ScaleName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
                     b.Property<decimal>("SingleItemWeight")
                         .HasColumnType("decimal(18,2)");
 
-                    b.HasKey("ScaleId");
+                    b.HasKey("ScaleName");
 
                     b.ToTable("Scale");
                 });
@@ -79,7 +73,7 @@ namespace ApiServer.Infrastructure.Migrations
                 {
                     b.HasOne("ApiServer.Core.Entities.ScaleEntity", "Scale")
                         .WithMany("Readings")
-                        .HasForeignKey("ScaleId")
+                        .HasForeignKey("ScaleName")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

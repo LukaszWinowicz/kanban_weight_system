@@ -1,14 +1,10 @@
 ﻿using ApiServer.API.Controllers;
 using ApiServer.Core.Interfaces;
-using ApiServer.Core.Services;
 using ApiServer.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using System;
-using System.IO;
-using System.Reflection;
 
 namespace ApiServer.API
 {
@@ -23,9 +19,7 @@ namespace ApiServer.API
                     .AddControllersAsServices();
 
             services.AddScoped<IReadingsRepository, ReadingsRepository>();
-            services.AddScoped<IReadingsService, ReadingsService>();
             services.AddScoped<IScaleRepository, ScaleRepository>();
-            services.AddScoped<IScaleService, ScaleService>();
 
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen(c =>
@@ -36,11 +30,6 @@ namespace ApiServer.API
                     Version = "v1",
                     Description = "API dla systemu zarządzania skalami i odczytami"
                 });
-
-                // Opcjonalnie: Dodaj komentarze XML do Swaggera
-                //var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                //var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-              //  c.IncludeXmlComments(xmlPath);
             });
         }
 

@@ -15,7 +15,6 @@ namespace ApiServer.Infrastructure.Database
                 optionsBuilder.UseSqlServer("server=localhost;database=ApiServerDB;trusted_connection=true;TrustServerCertificate=True");
             }
         }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -27,20 +26,22 @@ namespace ApiServer.Infrastructure.Database
                 entity.Property(e => e.Date).IsRequired();
                 entity.Property(e => e.Value).IsRequired().HasColumnType("decimal(18,2)");
 
+                // Prosta konfiguracja relacji z użyciem ScaleName jako klucza obcego
                 entity.HasOne(r => r.Scale)
                       .WithMany(s => s.Readings)
-                      .HasForeignKey(r => r.ScaleId);
+                      .HasForeignKey(r => r.ScaleName); // Klucz obcy
             });
 
             modelBuilder.Entity<ScaleEntity>(entity =>
             {
-                entity.HasKey(e => e.ScaleId);
-                entity.Property(e => e.ScaleId).ValueGeneratedOnAdd();
+                // Używamy ScaleName jako klucza głównego
+                entity.HasKey(e => e.ScaleName);
                 entity.Property(e => e.ScaleName).IsRequired().HasMaxLength(50);
                 entity.Property(e => e.ItemName).IsRequired().HasMaxLength(50);
                 entity.Property(e => e.SingleItemWeight).IsRequired().HasColumnType("decimal(18,2)");
                 entity.Property(e => e.IsConnected).IsRequired();
             });
         }
+
     }
 }

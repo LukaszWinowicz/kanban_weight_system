@@ -7,13 +7,11 @@ namespace ApiServer.WindowsForms
         // netstat -an | find "1883"
 
         private readonly MosquittoService _mosquittoService;
-        private readonly Esp32DataService _esp32DataService;
 
         public Form1()
         {
             InitializeComponent();
             _mosquittoService = new MosquittoService();
-            _esp32DataService = new Esp32DataService("192.168.1.32", "mqtt_user", "mqtt_pass");
         }
 
         private void btnRunMqtt_Click(object sender, EventArgs e)
@@ -29,7 +27,6 @@ namespace ApiServer.WindowsForms
 
         private async void btnSub_Click(object sender, EventArgs e)
         {
-            await _esp32DataService.StartAsync();
         }
     }
 }
