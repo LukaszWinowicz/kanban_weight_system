@@ -58,5 +58,6 @@ namespace ApiServer.WindowsForms
             services.AddDbContext<ApiServerContext>();
             services.AddScoped<Form1>();
         }
+
     }
 }

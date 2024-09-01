@@ -10,6 +10,7 @@
 @inject IDialogService DialogService
 @inject NavigationManager navigationManager
 
+
 <h1>Settings</h1>
 
 @if (isLoading || !isConnected)
@@ -130,13 +131,17 @@
         {
             await ApiService.DeleteScaleById(item.ScaleId);
             await LoadDataAsync();
+            // string errorMessage = "DELETE";
+            //await DialogService.ShowErrorAsync("Succes", errorMessage);
         }
         catch (Exception exc)
         {
             string errorMessage = exc.InnerException?.Message ?? exc.Message;
             await DialogService.ShowErrorAsync("Error", errorMessage);
+
         }
     }
+
 
     private async Task AddInDialog()
     {

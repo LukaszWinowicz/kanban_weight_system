@@ -32,7 +32,6 @@
             lblMain = new Label();
             btnCloseMqtt = new Button();
             btnSub = new Button();
-            btnLoadDb = new Button();
             SuspendLayout();
             // 
             // btnRunMqtt
@@ -58,7 +57,7 @@
             // 
             // btnCloseMqtt
             // 
-            btnCloseMqtt.Location = new Point(338, 88);
+            btnCloseMqtt.Location = new Point(224, 88);
             btnCloseMqtt.Name = "btnCloseMqtt";
             btnCloseMqtt.Size = new Size(100, 57);
             btnCloseMqtt.TabIndex = 2;
@@ -68,28 +67,19 @@
             // 
             // btnSub
             // 
-            btnSub.Location = new Point(90, 193);
+            btnSub.Location = new Point(357, 88);
             btnSub.Name = "btnSub";
             btnSub.Size = new Size(100, 57);
             btnSub.TabIndex = 3;
             btnSub.Text = "Sub";
             btnSub.UseVisualStyleBackColor = true;
-            // 
-            // btnLoadDb
-            // 
-            btnLoadDb.Location = new Point(338, 193);
-            btnLoadDb.Name = "btnLoadDb";
-            btnLoadDb.Size = new Size(100, 57);
-            btnLoadDb.TabIndex = 4;
-            btnLoadDb.Text = "Load Db";
-            btnLoadDb.UseVisualStyleBackColor = true;
+            btnSub.Click += btnSub_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(567, 318);
-            Controls.Add(btnLoadDb);
             Controls.Add(btnSub);
             Controls.Add(btnCloseMqtt);
             Controls.Add(lblMain);
@@ -106,6 +96,5 @@
         private Label lblMain;
         private Button btnCloseMqtt;
         private Button btnSub;
-        private Button btnLoadDb;
     }
 }

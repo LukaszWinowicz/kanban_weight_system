@@ -1,6 +1,9 @@
 ﻿using ApiServer.Core.Interfaces;
+using ApiServer.Infrastructure.Database;
+using Microsoft.EntityFrameworkCore;
 using MQTTnet;
 using MQTTnet.Client;
+using System;
 
 namespace ApiServer.WindowsForms.Services
 {
@@ -8,14 +11,13 @@ namespace ApiServer.WindowsForms.Services
     {
         private readonly IMqttClient _mqttClient;
         private readonly MqttClientOptions _mqttOptions;
-        private readonly string _logFilePath;
         private readonly Dictionary<string, DateTime> _lastPingTime;
-        private readonly int _pingInterval = 10; // sekundy
-        private readonly IScaleRepository _scaleRepository;
+        private readonly int _pingInterval = 60; // sekundy (1 minuta)
         private List<string> _devices;
         private CancellationTokenSource _cts;
+        private readonly ApiServerContext _context;
 
-        public Esp32DataService(string mqttServer, string mqttUser, string mqttPass, IScaleRepository scaleRepository)
+        public Esp32DataService(string mqttServer, string mqttUser, string mqttPass)
         {
             var mqttFactory = new MqttFactory();
             _mqttClient = mqttFactory.CreateMqttClient();
@@ -25,17 +27,18 @@ namespace ApiServer.WindowsForms.Services
                 .WithCredentials(mqttUser, mqttPass)
                 .Build();
 
-            _logFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "esp32_data.txt");
             _lastPingTime = new Dictionary<string, DateTime>();
-            _scaleRepository = scaleRepository;
+
+            // Inicjalizacja kontekstu bazy danych
+            _context = new ApiServerContext(); // Upewnij się, że ApiServerContext ma odpowiedni konstruktor
         }
 
         public async Task StartAsync()
         {
             _cts = new CancellationTokenSource();
 
-            // Pobierz listę urządzeń z repozytorium
-            var scales = _scaleRepository.GetAll();
+            // Pobierz listę urządzeń z bazy danych
+            var scales = await _context.Scale.ToListAsync(); // Użyj wersji asynchronicznej
             _devices = scales.Select(s => s.ScaleName).ToList();
 
             _mqttClient.ConnectedAsync += HandleConnectedAsync;
@@ -44,6 +47,7 @@ namespace ApiServer.WindowsForms.Services
             await _mqttClient.ConnectAsync(_mqttOptions, _cts.Token);
             Console.WriteLine("Connected to MQTT broker");
 
+            // Uruchomienie pętli monitorowania
             _ = MonitoringLoopAsync(_cts.Token);
         }
 
@@ -71,8 +75,9 @@ namespace ApiServer.WindowsForms.Services
                 Console.WriteLine($"Message received from {deviceId}: {payload}");
                 _lastPingTime[deviceId] = DateTime.Now;
 
-                // Zapisz do pliku
-                File.AppendAllText(_logFilePath, $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} - {deviceId}: {payload}\n");
+                // Wypisanie w konsoli
+                string logMessage = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} - {deviceId}: {payload}";
+                Console.WriteLine(logMessage);
             }
             return Task.CompletedTask;
         }
@@ -82,9 +87,10 @@ namespace ApiServer.WindowsForms.Services
             while (!cancellationToken.IsCancellationRequested)
             {
                 var currentTime = DateTime.Now;
+
                 foreach (var device in _devices)
                 {
-                    if (_lastPingTime.TryGetValue(device, out var lastPing) && (currentTime - lastPing).TotalSeconds > 2 * _pingInterval)
+                    if (_lastPingTime.TryGetValue(device, out var lastPing) && (currentTime - lastPing).TotalSeconds > _pingInterval)
                     {
                         Console.WriteLine($"{device} not available");
                     }

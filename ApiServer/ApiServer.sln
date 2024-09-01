@@ -5,6 +5,7 @@ VisualStudioVersion = 17.10.35122.118
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiServer.WindowsForms", "ApiServer.WindowsForms\ApiServer.WindowsForms.csproj", "{2439AC60-D3A6-4C1A-A9AF-14D3AEEA0ACD}"
 	ProjectSection(ProjectDependencies) = postProject
+		{24E3A90C-4D2D-4CCA-9755-A7A68E4CFBB8} = {24E3A90C-4D2D-4CCA-9755-A7A68E4CFBB8}
 		{EC02D9EC-8C73-4E90-BA0D-C40DE9166426} = {EC02D9EC-8C73-4E90-BA0D-C40DE9166426}
 	EndProjectSection
 EndProject
