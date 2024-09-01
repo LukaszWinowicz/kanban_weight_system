@@ -7,6 +7,6 @@
         public int ScaleId { get; set; }
         public decimal Value { get; set; }
         public ScaleEntity Scale { get; set; }
-
+        
     }
 }

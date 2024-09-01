@@ -73,37 +73,44 @@ namespace ApiServer.WindowsForms.Services
             {
                 string payload = System.Text.Encoding.UTF8.GetString(eventArgs.ApplicationMessage.PayloadSegment);
                 Console.WriteLine($"Message received from {deviceId}: {payload}");
-                _lastPingTime[deviceId] = DateTime.Now;
 
-                // Wypisanie w konsoli
-                string logMessage = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} - {deviceId}: {payload}";
-                Console.WriteLine(logMessage);
+                // Aktualizuj czas odpowiedzi urządzenia
+                _lastPingTime[deviceId] = DateTime.Now;
             }
             return Task.CompletedTask;
         }
+
 
         private async Task MonitoringLoopAsync(CancellationToken cancellationToken)
         {
             while (!cancellationToken.IsCancellationRequested)
             {
-                var currentTime = DateTime.Now;
+                // Wysyłanie zapytania do każdej wagi
+                await SendRequestAsync();
 
+                // Oczekiwanie na odpowiedzi od urządzeń
+                await Task.Delay(_pingInterval * 1000, cancellationToken); // Czekaj na odpowiedź wagi przez _pingInterval sekund
+
+                // Sprawdzenie, które urządzenia odpowiedziały
                 foreach (var device in _devices)
                 {
-                    if (_lastPingTime.TryGetValue(device, out var lastPing) && (currentTime - lastPing).TotalSeconds > _pingInterval)
+                    // Jeśli waga odpowiedziała w wymaganym czasie, zostaje zapisana w _lastPingTime
+                    if (_lastPingTime.ContainsKey(device))
                     {
-                        Console.WriteLine($"{device} not available");
+                        Console.WriteLine($"{device} is connected: true");
                     }
                     else
                     {
-                        Console.WriteLine($"{device} is available");
+                        Console.WriteLine($"{device} is connected: false");
                     }
                 }
 
-                await SendRequestAsync();
-                await Task.Delay(_pingInterval * 1000, cancellationToken);
+                // Wyczyść _lastPingTime, aby przygotować na kolejną rundę monitorowania
+                _lastPingTime.Clear();
             }
         }
+
+
 
         private async Task SendRequestAsync()
         {
