@@ -1,5 +1,6 @@
 ﻿using ApiServer.API.Controllers;
 using ApiServer.Core.Interfaces;
+using ApiServer.Core.Mapper;
 using ApiServer.Core.Services;
 using ApiServer.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Builder;
@@ -24,8 +25,7 @@ namespace ApiServer.API
             services.AddScoped<IScaleRepository, ScaleRepository>();
             services.AddScoped<IScaleService, ScaleService>();
 
-            services.AddAutoMapper(typeof(ApiConfiguration));
-
+            services.AddAutoMapper(typeof(MappingProfile));
 
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen(c =>
