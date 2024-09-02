@@ -1,0 +1,9 @@
+﻿using ApiServer.Core.DTOs;
+
+namespace ApiServer.Core.Interfaces
+{
+    public interface IReadingsService
+    {
+        IEnumerable<ScaleReadingDto> GetLatestReadingForEveryScale();
+    }
+}

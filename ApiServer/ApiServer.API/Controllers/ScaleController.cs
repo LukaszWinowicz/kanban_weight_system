@@ -8,17 +8,17 @@ namespace ApiServer.API.Controllers
     [ApiController]
     public class ScaleController : ControllerBase
     {
-        private readonly IScaleRepository _repository;
+        private readonly IScaleService _service;
 
-        public ScaleController(IScaleRepository repository)
+        public ScaleController(IScaleService service)
         {
-            _repository = repository;
+            _service = service;
         }
 
         [HttpGet("all")] // .../api/Scale/all
         public ActionResult<IEnumerable<ScaleEntity>> GetAll()
         {
-            var readings = _repository.GetAll();
+            var readings = _service.GetAll();
             return Ok(readings);
         }
 

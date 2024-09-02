@@ -1,5 +1,6 @@
 ﻿using ApiServer.API.Controllers;
 using ApiServer.Core.Interfaces;
+using ApiServer.Core.Services;
 using ApiServer.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,13 +14,15 @@ namespace ApiServer.API
         public static void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers()
-                    .AddApplicationPart(typeof(HealthController).Assembly)
-                    .AddApplicationPart(typeof(ReadingsController).Assembly)
-                    .AddApplicationPart(typeof(ScaleController).Assembly)
-                    .AddControllersAsServices();
+                   .AddApplicationPart(typeof(HealthController).Assembly)
+                   .AddApplicationPart(typeof(ReadingsController).Assembly)
+                   .AddApplicationPart(typeof(ScaleController).Assembly)
+                   .AddControllersAsServices();
 
             services.AddScoped<IReadingsRepository, ReadingsRepository>();
+            services.AddScoped<IReadingsService, ReadingsService>();
             services.AddScoped<IScaleRepository, ScaleRepository>();
+            services.AddScoped<IScaleService, ScaleService>();
 
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen(c =>

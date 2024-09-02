@@ -1,6 +1,5 @@
 ﻿using ApiServer.Core.DTOs;
 using ApiServer.Core.Interfaces;
-using ApiServer.Infrastructure.Database;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiServer.API.Controllers
@@ -9,17 +8,17 @@ namespace ApiServer.API.Controllers
     [ApiController]
     public class ReadingsController : ControllerBase
     {
-        private readonly IReadingsRepository _repository;
+        private readonly IReadingsService _service;
 
-        public ReadingsController(IReadingsRepository repository)
+        public ReadingsController(IReadingsService service)
         {
-            _repository = repository;
+            _service = service;
         }
 
         [HttpGet("latest")]
         public ActionResult<IEnumerable<ScaleReadingDto>> GetLatestReadingForEveryScale()
         {
-            var value = _repository.GetLatestReadingForEveryScale();
+            var value = _service.GetLatestReadingForEveryScale();
             return Ok(value);
         }
     }
