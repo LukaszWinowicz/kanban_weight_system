@@ -1,4 +1,4 @@
-﻿using ApiServer.Core.Entities;
+﻿using ApiServer.Core.DTOs;
 using ApiServer.Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,7 +16,7 @@ namespace ApiServer.API.Controllers
         }
 
         [HttpGet("all")] // .../api/Scale/all
-        public ActionResult<IEnumerable<ScaleEntity>> GetAll()
+        public ActionResult<IEnumerable<ScaleDto>> GetAll()
         {
             var readings = _service.GetAll();
             return Ok(readings);

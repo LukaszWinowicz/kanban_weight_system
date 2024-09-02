@@ -1,21 +1,25 @@
-﻿using ApiServer.Core.Entities;
+﻿using ApiServer.Core.DTOs;
 using ApiServer.Core.Interfaces;
+using AutoMapper;
 
 namespace ApiServer.Core.Services
 {
     public class ScaleService : IScaleService
     {
         private readonly IScaleRepository _repository;
+        private readonly IMapper _mapper;
 
-        public ScaleService(IScaleRepository repository)
+        public ScaleService(IScaleRepository repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
-        public IEnumerable<ScaleEntity> GetAll()
+        public IEnumerable<ScaleDto> GetAll()
         {
-            var readings = _repository.GetAll();
-            return readings;
+            var entity = _repository.GetAll();
+            var dto = _mapper.Map<IEnumerable<ScaleDto>>(entity);
+            return dto;
         }
     }
 }

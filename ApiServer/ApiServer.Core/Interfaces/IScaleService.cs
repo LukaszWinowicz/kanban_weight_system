@@ -5,6 +5,6 @@ namespace ApiServer.Core.Interfaces
 {
     public interface IScaleService
     {
-        IEnumerable<ScaleEntity> GetAll();
+        IEnumerable<ScaleDto> GetAll();
     }
 }

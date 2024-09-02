@@ -10,3 +10,4 @@ D:\kanban_weight_system\ApiServer\ApiServer.Core\obj\Debug\net8.0\ApiServer.Core
 D:\kanban_weight_system\ApiServer\ApiServer.Core\obj\Debug\net8.0\refint\ApiServer.Core.dll
 D:\kanban_weight_system\ApiServer\ApiServer.Core\obj\Debug\net8.0\ApiServer.Core.pdb
 D:\kanban_weight_system\ApiServer\ApiServer.Core\obj\Debug\net8.0\ref\ApiServer.Core.dll
+D:\kanban_weight_system\ApiServer\ApiServer.Core\obj\Debug\net8.0\ApiServer.Core.csproj.AssemblyReference.cache

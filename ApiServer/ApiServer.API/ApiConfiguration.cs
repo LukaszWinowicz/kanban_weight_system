@@ -24,6 +24,9 @@ namespace ApiServer.API
             services.AddScoped<IScaleRepository, ScaleRepository>();
             services.AddScoped<IScaleService, ScaleService>();
 
+            services.AddAutoMapper(typeof(ApiConfiguration));
+
+
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen(c =>
             {
