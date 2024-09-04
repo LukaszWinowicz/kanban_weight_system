@@ -50,5 +50,28 @@ namespace ApiServer.Core.Services
             var dtoList = _mapper.Map<IEnumerable<ScaleReadingDto>>(latestReadings);
             return dtoList;
         }
+
+        public IEnumerable<ScaleReadingDto> GetAllReadingsByScaleName(string scaleName)
+        {
+            var scalesValues = _scaleRepository.GetAll();
+            var readingsValues = _readingsRepository.GetAll();
+
+            var readings = readingsValues
+                .Where(r => r.ScaleName == scaleName)
+                .Select(r => new ScaleReadingEntity
+                 {
+                     ScaleName = r.Scale.ScaleName,
+                     ItemName = r.Scale.ItemName,
+                     SingleItemWeight = r.Scale.SingleItemWeight,
+                     IsConnected = r.Scale.IsConnected,
+                     Reading = r,
+                     Value = r?.Value,
+                })
+                .ToList();
+
+            var dtoList = _mapper.Map<IEnumerable<ScaleReadingDto>>(readings);
+            return dtoList;
+        }
+
     }
 }

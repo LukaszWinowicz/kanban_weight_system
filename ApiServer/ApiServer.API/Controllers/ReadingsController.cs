@@ -21,6 +21,19 @@ namespace ApiServer.API.Controllers
             var value = _service.GetLatestReadingForEveryScale();
             return Ok(value);
         }
+
+        [HttpGet("getByScaleName/{scaleName}")]
+        public ActionResult<IEnumerable<ScaleReadingDto>> GetReadingsByScaleName(string scaleName)
+        {
+            var result = _service.GetAllReadingsByScaleName(scaleName);
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(result);
+        }
     }
 }
 

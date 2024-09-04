@@ -5,5 +5,6 @@ namespace ApiServer.Core.Interfaces
     public interface IReadingsService
     {
         IEnumerable<ScaleReadingDto> GetLatestReadingForEveryScale();
+        IEnumerable<ScaleReadingDto> GetAllReadingsByScaleName(string scaleName);
     }
 }
