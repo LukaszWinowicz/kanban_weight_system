@@ -15,8 +15,8 @@ namespace ApiServer.Infrastructure.Repositories
 
         public IEnumerable<ScaleEntity> GetAll()
         {
-            var readings = _context.Scale.ToList();
-            return readings;
+            var values = _context.Scale.ToList();
+            return values;
         }
     }
 }

@@ -1,14 +1,11 @@
-﻿using ApiServer.Core.Entities;
-
-namespace ApiServer.Core.DTOs
+﻿namespace ApiServer.Core.Entities
 {
-    public class ScaleReadingDto
+    public class ScaleReadingEntity
     {
         public string ScaleName { get; set; }
         public string ItemName { get; set; }
         public decimal SingleItemWeight { get; set; }
         public bool IsConnected { get; set; }
-        public decimal? Quantity { get; set; }
-        public DateTime? LatestReadingDate { get; set; }
+        public ReadingEntity? LatestReading { get; set; }
     }
 }

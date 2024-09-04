@@ -18,8 +18,8 @@ namespace ApiServer.API.Controllers
         [HttpGet("all")] // .../api/Scale/all
         public ActionResult<IEnumerable<ScaleDto>> GetAll()
         {
-            var readings = _service.GetAll();
-            return Ok(readings);
+            var values = _service.GetAll();
+            return Ok(values);
         }
 
     }
