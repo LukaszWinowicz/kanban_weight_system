@@ -30,8 +30,10 @@
     <FluentDataGrid Id="scaleReadingsGrid" Items="@scalesWithLatestReadings"  TGridItem="ScaleReadingDto" ShowHover="true">
         <PropertyColumn Title="Scale Name" Property="@(c => c!.ScaleName)" Align="Align.Start" />
         <PropertyColumn Title="Item Name" Property="@(c => c!.ItemName)" Align="Align.Start" />
+        <PropertyColumn Title="Single Item Weight" Property="@(c => c!.SingleItemWeight != null ? Math.Floor(c.SingleItemWeight).ToString() : "N/A")" Align="Align.Start" />
+        <PropertyColumn Title="Total Weight" Property="@(c => c!.Value != null ? Math.Floor(c.Value).ToString() : "N/A")" Align="Align.Start" />
         <PropertyColumn Title="Qty in the box" Property="@(c => c!.Quantity != null ? Math.Floor(c.Quantity.Value).ToString() : "N/A")" Align="Align.Start" />
-        <PropertyColumn Title="Latest Reading Date" Property="@(c => c!.LatestReading != null ? c.LatestReading.Date.ToString("yyyy-MM-dd HH:mm:ss") : "N/A")" Align="Align.Start" />
+        <PropertyColumn Title="Latest Reading Date" Property="@(c => c!.ReadingDate != null ? c.ReadingDate.Value.ToString("yyyy-MM-dd HH:mm:ss") : "N/A")" Align="Align.Start" />
         <TemplateColumn Title="Is Connected?">
             <span style="color: @(context.IsConnected ? "green" : "red");">
                 @(context.IsConnected ? "Connected" : "Disconnected")
