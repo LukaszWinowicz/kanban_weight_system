@@ -79,3 +79,4 @@ C:\Users\lwino\Desktop\BlazorApp\bin\Debug\net8.0\BlazorApp.dll
 C:\Users\lwino\Desktop\BlazorApp\bin\Debug\net8.0\BlazorApp.pdb
 C:\Users\lwino\Desktop\BlazorApp\obj\Debug\net8.0\BlazorApp.genruntimeconfig.cache
 C:\Users\lwino\Desktop\BlazorApp\obj\Debug\net8.0\ref\BlazorApp.dll
+D:\kanban_weight_system\BlazorApp\bin\Debug\net8.0\Newtonsoft.Json.dll

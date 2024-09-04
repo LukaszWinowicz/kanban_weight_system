@@ -1,0 +1,74 @@
+﻿@page "/database"
+@using BlazorApp.Models.Scale
+@using BlazorApp.Services
+
+@inject ApiService ApiService
+@rendermode InteractiveServer
+
+<PageTitle>Database</PageTitle>
+<h3>Select a Reading</h3>
+
+@if (isLoading || !isConnected)
+{
+    <FluentMessageBar Title="Connection Status" Intent="@GetMessageBarIntent()">
+        @if (isLoading)
+        {
+            <span>Sprawdzanie połączenia z API...</span>
+        }
+        else if (!isConnected)
+        {
+            <span>Nie można połączyć się z API. Proszę spróbować później lub skontaktować się z administratorem.</span>
+        }
+    </FluentMessageBar>
+}
+
+@if (isConnected && scales != null)
+{
+    <FluentCombobox Placeholder="Select a scale..." Items="@scales.Select(r => r.ScaleName)" @bind-Value="@selectedScale" Height="200px" />
+}
+
+@code {
+    private IQueryable<ScaleDto>? scales;
+    private IQueryable<ScaleReadingDto>? readings;
+    private string? selectedScale;
+    private bool isLoading = true;
+    private bool isConnected = false;
+    private bool showSuccessMessage = false;
+    private string? currentScaleName;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _ = CheckApiConnectionAsync();
+        
+    }
+
+    private MessageIntent GetMessageBarIntent()
+    {
+        return isLoading ? MessageIntent.Info : MessageIntent.Error;
+    }
+
+    private async Task CheckApiConnectionAsync()
+    {
+        try
+        {
+            isLoading = true;
+            StateHasChanged();
+
+            isConnected = await ApiService.CheckApiConnection();
+
+            if (isConnected)
+            {
+                scales = (await ApiService.GetAllAsync()).AsQueryable();
+            }
+        }
+        catch
+        {
+            isConnected = false;
+        }
+        finally
+        {
+            isLoading = false;
+            StateHasChanged();
+        }
+    }
+}

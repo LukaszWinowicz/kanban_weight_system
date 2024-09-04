@@ -1,4 +1,5 @@
 ﻿using ApiServer.Core.DTOs;
+using ApiServer.Core.Entities;
 using ApiServer.Core.Interfaces;
 using AutoMapper;
 
@@ -18,6 +19,13 @@ namespace ApiServer.Core.Services
         public IEnumerable<ScaleDto> GetAll()
         {
             var entity = _repository.GetAll();
+            var dto = _mapper.Map<IEnumerable<ScaleDto>>(entity);
+            return dto;
+        }
+
+        public IEnumerable<ScaleDto> GetScalesWithAnyReadings()
+        {
+            var entity = _repository.GetScalesWithAnyReadings();
             var dto = _mapper.Map<IEnumerable<ScaleDto>>(entity);
             return dto;
         }

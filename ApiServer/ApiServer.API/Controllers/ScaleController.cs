@@ -1,4 +1,5 @@
 ﻿using ApiServer.Core.DTOs;
+using ApiServer.Core.Entities;
 using ApiServer.Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,11 +16,18 @@ namespace ApiServer.API.Controllers
             _service = service;
         }
 
-        [HttpGet("all")] // .../api/Scale/all
+        [HttpGet("all")]
         public ActionResult<IEnumerable<ScaleDto>> GetAll()
         {
             var values = _service.GetAll();
             return Ok(values);
+        }
+
+        [HttpGet("withreadings")]
+        public ActionResult<IEnumerable<ScaleDto>> GetScalesWithAnyReadings()
+        {
+            var readings = _service.GetScalesWithAnyReadings();
+            return Ok(readings);
         }
 
     }

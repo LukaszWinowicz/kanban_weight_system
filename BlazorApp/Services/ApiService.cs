@@ -1,6 +1,4 @@
-﻿using BlazorApp.Models;
-using BlazorApp.Models.Scale;
-using System.Net.Http;
+﻿using BlazorApp.Models.Scale;
 using System.Text.Json;
 
 namespace BlazorApp.Services
@@ -21,7 +19,7 @@ namespace BlazorApp.Services
             return response.IsSuccessStatusCode;
         }
 
-        #region ScaleView
+        // TO: ScaleView
         public async Task<IEnumerable<ScaleReadingDto>> GetLatestReadingForEveryScaleAsync()
         {
             var response = await _httpClient.GetAsync($"{_baseUrl}/Readings/latest");
@@ -31,6 +29,7 @@ namespace BlazorApp.Services
             return json;
         }
 
+        // TO: ScaleView
         public async Task<IList<ScaleDto>> GetAllAsync()
         {
             var response = await _httpClient.GetAsync($"{_baseUrl}/Scale/all");
@@ -39,6 +38,17 @@ namespace BlazorApp.Services
             var json = JsonSerializer.Deserialize<IList<ScaleDto>>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
             return json;
         }
-        #endregion
+
+        // TO: DatabaseView
+        public async Task<IList<ScaleDto>> GetScalesWithAnyReadingsAsync()
+        {
+            var response = await _httpClient.GetAsync($"{_baseUrl}/Scale/withreadings");
+            response.EnsureSuccessStatusCode();
+            var content = await response.Content.ReadAsStringAsync();
+            var json = JsonSerializer.Deserialize<IList<ScaleDto>>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+
+            return json;
+        }
+
     }
 }

@@ -18,5 +18,11 @@ namespace ApiServer.Infrastructure.Repositories
             var values = _context.Scale.ToList();
             return values;
         }
+
+        public IEnumerable<ScaleEntity> GetScalesWithAnyReadings()
+        {
+            var values = _context.Scale.Where(s => s.Readings.Any(r => r.ScaleName == s.ScaleName)).ToList();
+            return values;
+        }
     }
 }
