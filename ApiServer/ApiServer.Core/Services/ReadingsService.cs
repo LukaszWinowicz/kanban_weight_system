@@ -28,15 +28,21 @@ namespace ApiServer.Core.Services
                     readingsValues,
                     scale => scale.ScaleName,
                     reading => reading.ScaleName,
-                    (scale, readings) => new ScaleReadingEntity
+                    (scale, readings) =>
                     {
-                        ScaleName = scale.ScaleName,
-                        ItemName = scale.ItemName,
-                        SingleItemWeight = scale.SingleItemWeight,
-                        IsConnected = scale.IsConnected,
-                        LatestReading = readings
+                        var latestReading = readings
                             .OrderByDescending(r => r.Date)
-                            .FirstOrDefault()
+                            .FirstOrDefault();
+
+                        return new ScaleReadingEntity
+                        {
+                            ScaleName = scale.ScaleName,
+                            ItemName = scale.ItemName,
+                            SingleItemWeight = scale.SingleItemWeight,
+                            IsConnected = scale.IsConnected,
+                            Reading = latestReading,
+                            Value = latestReading?.Value
+                        };
                     }
                 )
                 .ToList();

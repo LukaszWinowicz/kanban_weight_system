@@ -13,14 +13,18 @@ namespace ApiServer.Core.Mapper
            .ForMember(
                dest => dest.Quantity,
                opt => opt.MapFrom(src =>
-                   src.LatestReading != null && src.SingleItemWeight > 0
-                       ? (decimal?)(src.LatestReading.Value / src.SingleItemWeight)
+                   src.Reading != null && src.SingleItemWeight > 0
+                       ? (decimal?)Math.Floor(src.Reading.Value / src.SingleItemWeight)
                        : null
                )
            )
            .ForMember(
-               dest => dest.LatestReadingDate,
-               opt => opt.MapFrom(src => src.LatestReading != null ? src.LatestReading.Date : (DateTime?)null)
+               dest => dest.ReadingDate,
+               opt => opt.MapFrom(src => src.Reading != null ? src.Reading.Date : (DateTime?)null)
+           )
+           .ForMember(
+               dest => dest.Value,
+               opt => opt.MapFrom(src => src.Value)
            );
         }
     }
