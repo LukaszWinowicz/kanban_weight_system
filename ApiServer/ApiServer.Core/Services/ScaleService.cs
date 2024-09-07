@@ -29,5 +29,14 @@ namespace ApiServer.Core.Services
             var dto = _mapper.Map<IEnumerable<ScaleDto>>(entity);
             return dto;
         }
+        public bool CreateScale(ScaleCreateDto scale)
+        {
+            // Mapowanie ScaleCreateDto na ScaleEntity
+            var entity = _mapper.Map<ScaleEntity>(scale);
+
+            // Wywołanie metody CreateScale z repozytorium, która przyjmuje ScaleEntity i zwraca bool
+            var result = _repository.CreateScale(entity);
+            return result;
+        }
     }
 }

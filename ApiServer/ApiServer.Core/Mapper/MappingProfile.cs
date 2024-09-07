@@ -9,6 +9,7 @@ namespace ApiServer.Core.Mapper
         public MappingProfile() 
         {
             CreateMap<ScaleEntity, ScaleDto>();
+            CreateMap<ScaleEntity, ScaleCreateDto>().ReverseMap();
             CreateMap<ScaleReadingEntity, ScaleReadingDto>()
            .ForMember(
                dest => dest.Quantity,

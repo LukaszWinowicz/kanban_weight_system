@@ -1,5 +1,4 @@
-﻿using ApiServer.Core.DTOs;
-using ApiServer.Core.Entities;
+﻿using ApiServer.Core.Entities;
 using ApiServer.Core.Interfaces;
 using ApiServer.Infrastructure.Database;
 
@@ -24,6 +23,20 @@ namespace ApiServer.Infrastructure.Repositories
         {
             var values = _context.Scale.Where(s => s.Readings.Any(r => r.ScaleName == s.ScaleName)).ToList();
             return values;
+        }
+
+        public bool CreateScale(ScaleEntity scale)
+        {
+            try
+            {
+                _context.Scale.Add(scale);
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
     }
 }

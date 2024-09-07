@@ -1,0 +1,41 @@
+﻿@using BlazorApp.Models.Scale
+@implements IDialogContentComponent<ScaleCreateDto>
+
+<FluentDialogHeader ShowDismiss="false">
+    <FluentStack VerticalAlignment="VerticalAlignment.Center">
+        <FluentIcon Value="@(new Icons.Regular.Size24.Save())" />
+        <FluentLabel Typo="Typography.PaneHeader">
+            @Dialog.Instance.Parameters.Title
+        </FluentLabel>
+    </FluentStack>
+</FluentDialogHeader>
+
+<FluentTextField Label="Name" @bind-Value="@Content.ScaleName" />
+<FluentTextField Label="Item Name" @bind-Value="@Content.ItemName" />
+<FluentNumberField Label="SingleItemWeight" @bind-Value="@Content.SingleItemWeight" />
+<FluentCheckbox Label="Is Connected" @bind-Value="@Content.IsConnected" />
+
+<FluentDialogFooter>
+    <FluentButton Appearance="Appearance.Accent" IconStart="@(new Icons.Regular.Size20.Save())" OnClick="@SaveAsync">Save</FluentButton>
+    <FluentButton Appearance="Appearance.Neutral" OnClick="@CancelAsync">Cancel</FluentButton>
+</FluentDialogFooter>
+
+@code {
+
+    [Parameter]
+    public ScaleCreateDto Content { get; set; } = default!;
+
+    [CascadingParameter]
+    public FluentDialog Dialog { get; set; } = default!;
+
+    private async Task SaveAsync()
+    {
+        await Dialog.CloseAsync(Content);
+    }
+
+    private async Task CancelAsync()
+    {
+        await Dialog.CancelAsync();
+    }
+
+}

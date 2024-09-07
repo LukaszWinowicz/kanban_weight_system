@@ -81,7 +81,7 @@
 
             if (isConnected)
             {
-                scales = await DataLoadingHelper.LoadDataAsync<ScaleDto>(ApiService.GetAllAsync);
+                scales = await DataLoadingHelper.LoadDataAsync<ScaleDto>(ApiService.GetScalesWithAnyReadingsAsync);
             }
         }
         catch

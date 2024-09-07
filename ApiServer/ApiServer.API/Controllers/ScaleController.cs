@@ -30,5 +30,22 @@ namespace ApiServer.API.Controllers
             return Ok(readings);
         }
 
+        [HttpPost]
+        public ActionResult CreateScale([FromBody] ScaleCreateDto dto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var id = _service.CreateScale(dto);
+
+            if (id == true)
+            {
+                return Ok(id);
+            }
+
+            return Conflict();
+        }
     }
 }
