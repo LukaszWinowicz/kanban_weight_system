@@ -76,7 +76,7 @@
 
             if (isConnected)
             {
-                scalesWithLatestReadings = await DataLoadingHelper.LoadDataAsync(ApiService.GetLatestReadingForEveryScaleAsync);
+                scalesWithLatestReadings = await DataLoadingHelper.LoadDataAsync<ScaleReadingDto>(ApiService.GetLatestReadingForEveryScaleAsync);
             }
         }
         catch

@@ -30,22 +30,22 @@ namespace BlazorApp.Services
         }
 
         // TO: ScaleView
-        public async Task<IList<ScaleDto>> GetAllAsync()
+        public async Task<IEnumerable<ScaleDto>> GetAllAsync()
         {
             var response = await _httpClient.GetAsync($"{_baseUrl}/Scale/all");
             response.EnsureSuccessStatusCode();
             var content = await response.Content.ReadAsStringAsync();
-            var json = JsonSerializer.Deserialize<IList<ScaleDto>>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            var json = JsonSerializer.Deserialize<IEnumerable<ScaleDto>>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
             return json;
         }
 
         // TO: DatabaseView
-        public async Task<IList<ScaleDto>> GetScalesWithAnyReadingsAsync()
+        public async Task<IEnumerable<ScaleDto>> GetScalesWithAnyReadingsAsync()
         {
             var response = await _httpClient.GetAsync($"{_baseUrl}/Scale/withreadings");
             response.EnsureSuccessStatusCode();
             var content = await response.Content.ReadAsStringAsync();
-            var json = JsonSerializer.Deserialize<IList<ScaleDto>>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            var json = JsonSerializer.Deserialize<IEnumerable<ScaleDto>>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
             return json;
         }
