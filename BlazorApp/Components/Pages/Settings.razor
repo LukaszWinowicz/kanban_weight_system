@@ -31,11 +31,11 @@
         _ = CheckApiConnectionAsync();
     }
 
-    private async Task LoadDataAsync()
-    {
-        var result = await ApiService.GetAllAsync();
-        scales = result.AsQueryable();
-    }
+    // private async Task LoadDataAsync()
+    // {
+    //     var result = await ApiService.GetAllAsync();
+    //     scales = result.AsQueryable();
+    // }
 
     private async Task CheckApiConnectionAsync()
     {
@@ -48,7 +48,7 @@
 
             if (isConnected)
             {
-                await LoadDataAsync();
+                scales = await DataLoadingHelper.LoadDataAsync(ApiService.GetLatestReadingForEveryScaleAsync);
             }
         }
         catch
