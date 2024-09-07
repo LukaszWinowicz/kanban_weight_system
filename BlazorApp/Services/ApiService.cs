@@ -61,14 +61,23 @@ namespace BlazorApp.Services
         }
 
         // TO: SettingsView
-        public async Task<string> CreateScaleAsync(ScaleCreateDto dto)
+        public async Task<bool> CreateScaleAsync(ScaleCreateDto dto)
         {
             try
             {
                 var response = await _httpClient.PostAsJsonAsync($"{_baseUrl}/Scale", dto);
-                response.EnsureSuccessStatusCode();
-                var result = await response.Content.ReadAsStringAsync();
-                return result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    // Zwraca true, jeśli odpowiedź wskazuje na sukces
+                    return true;
+                }
+                else
+                {
+                    // Wypisuje komunikat błędu, jeśli odpowiedź nie wskazuje na sukces
+                    Console.WriteLine($"Error creating scale: {response.ReasonPhrase}");
+                    return false;
+                }
             }
             catch (HttpRequestException e)
             {
@@ -76,6 +85,30 @@ namespace BlazorApp.Services
                 throw;
             }
         }
+        // TO: SettingsView        
+        public async Task<bool> DeleteScaleByName(string scaleName)
+        {
+            try
+            {
+                var response = await _httpClient.DeleteAsync($"{_baseUrl}/Scale/delete/{scaleName}");
+                if (response.IsSuccessStatusCode)
+                {
+                    // Zwraca true, jeśli odpowiedź wskazuje na sukces
+                    return true;
+                }
+                else
+                {
+                    // Wypisuje komunikat błędu, jeśli odpowiedź nie wskazuje na sukces
+                    Console.WriteLine($"Error creating scale: {response.ReasonPhrase}");
+                    return false;
+                }
+            }
+            catch (HttpRequestException e)
+            {
 
+                Console.WriteLine($"Error delete scale: {e.Message}");
+                throw;
+            }
+        }
     }
 }

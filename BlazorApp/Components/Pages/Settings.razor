@@ -28,14 +28,14 @@
     <FluentButton IconStart="@(new Icons.Regular.Size20.Add())" OnClick="@(() => AddInDialog())">Add</FluentButton>
     @if (scales != null)
     {
-        <FluentDataGrid Id="scaleReadingsGrid" Items="@scales" GridTemplateColumns="0.1fr 0.1fr 0.1fr 0.2fr 0.1fr" TGridItem="ScaleDto" ShowHover="true" agination="@pagination">
-            <PropertyColumn Title="Scale Name" Property="@(c => c!.ScaleName)" />
+        <FluentDataGrid Id="scaleReadingsGrid" Items="@scales" TGridItem="ScaleDto" ShowHover="true" agination="@pagination">
+            <PropertyColumn Title="Scale Name" Property="@(c => c!.ScaleName)"/>
             <PropertyColumn Title="Item Name" Property="@(c => c!.ItemName)" />
             <PropertyColumn Title="Single item weight" Property="@(c => c!.SingleItemWeight)" />
             <PropertyColumn Title="Is Connected?" Property="@(c => c!.IsConnected)" />
 
             <TemplateColumn Title="Actions">
-                @* <FluentButton IconStart="@(new Icons.Regular.Size20.Delete())" OnClick="@(() => DeleteScale(context))" /> *@
+                <FluentButton IconStart="@(new Icons.Regular.Size20.Delete())" OnClick="@(() => DeleteScale(context))" />
 
             </TemplateColumn>
 
@@ -51,6 +51,7 @@
     PaginationState pagination = new PaginationState { ItemsPerPage = 15 };
     private bool isLoading = true;
     private bool isConnected = false;
+    bool? canceled;
 
     protected override async Task OnInitializedAsync()
     {
@@ -114,8 +115,60 @@
             {
                 return;
             }
-            await ApiService.CreateScaleAsync(newItem);
+
+            bool uploadResult = await ApiService.CreateScaleAsync(newItem);
+
+            if (uploadResult)
+            {
+                var dialog =await DialogService.ShowSuccessAsync($"Utworzono nową wagę {newItem.ScaleName}.");
+                var response = await dialog.Result;
+                canceled = response.Cancelled;
+            }
+            else
+            {
+                var dialog = await DialogService.ShowErrorAsync($"Waga o nazwie {newItem.ScaleName}, jest już w systemie.");
+                var response = await dialog.Result;
+                canceled = response.Cancelled;
+            }
+
             scales = await DataLoadingHelper.LoadDataAsync<ScaleDto>(ApiService.GetAllAsync);
+        }
+    
+    }
+    
+    private async Task DeleteScale(ScaleDto item)
+    {
+        // Check if the item is null
+        if (item is null)
+        {
+            return;
+        }
+
+        // Create and show a dialog to confirm the delete
+        IDialogReference dialog = await DialogService.ShowConfirmationAsync(
+            $"Are you sure you want to delete the scale '{item.ScaleName}'?",
+            "Yes",
+            "No",
+            "Delete Scale?");
+        DialogResult result = await dialog.Result;
+
+        // If cancelled, return
+        if (result.Cancelled)
+        {
+            return;
+        }
+
+        // Delete the item
+        try
+        {
+            await ApiService.DeleteScaleByName(item.ScaleName);
+            scales = await DataLoadingHelper.LoadDataAsync<ScaleDto>(ApiService.GetAllAsync);
+        }
+        catch (Exception exc)
+        {
+            string errorMessage = exc.InnerException?.Message ?? exc.Message;
+            await DialogService.ShowErrorAsync("Error", errorMessage);
+
         }
     }
 }

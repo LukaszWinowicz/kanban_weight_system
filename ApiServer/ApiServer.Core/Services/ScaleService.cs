@@ -38,5 +38,10 @@ namespace ApiServer.Core.Services
             var result = _repository.CreateScale(entity);
             return result;
         }
+        public bool DeleteScale(string scaleName)
+        {
+            var scale = _repository.DeleteScale(scaleName);
+            return scale;
+        }
     }
 }

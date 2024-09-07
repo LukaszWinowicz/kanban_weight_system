@@ -38,14 +38,33 @@ namespace ApiServer.API.Controllers
                 return BadRequest(ModelState);
             }
 
-            var id = _service.CreateScale(dto);
+            var isCreated = _service.CreateScale(dto);
 
-            if (id == true)
+            if (isCreated == true)
             {
-                return Ok(id);
+                return CreatedAtAction(nameof(CreateScale), new { isCreated = dto.ItemName }, dto);
+            }
+            else
+            {
+                return StatusCode(500, "An error occurred while creating the scale.");
+            }
+        }
+
+        [HttpDelete("delete/{scaleName}")]
+        public ActionResult DeleteScale([FromRoute] string scaleName)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
             }
 
-            return Conflict();
+            var isDeleted = _service.DeleteScale(scaleName);
+            if (isDeleted == true)
+            {
+                return NoContent();
+            }
+
+            return NotFound();
         }
     }
 }

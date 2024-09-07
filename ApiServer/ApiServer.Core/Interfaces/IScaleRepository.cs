@@ -8,5 +8,6 @@ namespace ApiServer.Core.Interfaces
         IEnumerable<ScaleEntity> GetAll();
         IEnumerable<ScaleEntity> GetScalesWithAnyReadings();
         bool CreateScale(ScaleEntity scale);
+        bool DeleteScale(string scaleName);
     }
 }

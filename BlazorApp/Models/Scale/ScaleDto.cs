@@ -1,4 +1,5 @@
 ﻿using BlazorApp.Models.Reading;
+using System.ComponentModel.DataAnnotations;
 
 namespace BlazorApp.Models.Scale
 {
