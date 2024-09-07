@@ -61,7 +61,7 @@ namespace BlazorApp.Services
         }
 
         // TO: SettingsView
-        public async Task<string> CreateScale(ScaleCreateDto dto)
+        public async Task<string> CreateScaleAsync(ScaleCreateDto dto)
         {
             try
             {
