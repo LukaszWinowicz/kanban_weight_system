@@ -1,5 +1,64 @@
-﻿<h3>Settings</h3>
+﻿@page "/settings"
+@using BlazorApp.Models.Scale
+@using BlazorApp.Services
+@using Helpers
+@inject ApiService ApiService
+
+<PageTitle>Settings</PageTitle>
+<h3>Settings</h3>
+
+@if (isLoading || !isConnected)
+{
+    <FluentMessageBar Title="Connection Status" Intent="@MessageIntentHelper.GetMessageBarIntent(isLoading)">
+        @if (isLoading)
+        {
+            <span>Sprawdzanie połączenia z API...</span>
+        }
+        else if (!isConnected)
+        {
+            <span>Nie można połączyć się z API. Proszę spróbować później lub skontaktować się z administratorem.</span>
+        }
+    </FluentMessageBar>
+}
 
 @code {
+    private IQueryable<ScaleDto>? scales;
+    private bool isLoading = true;
+    private bool isConnected = false;
 
+    protected override async Task OnInitializedAsync()
+    {
+        _ = CheckApiConnectionAsync();
+    }
+
+    private async Task LoadDataAsync()
+    {
+        var result = await ApiService.GetAllAsync();
+        scales = result.AsQueryable();
+    }
+
+    private async Task CheckApiConnectionAsync()
+    {
+        try
+        {
+            isLoading = true;
+            StateHasChanged();
+
+            isConnected = await ApiService.CheckApiConnection();
+
+            if (isConnected)
+            {
+                await LoadDataAsync();
+            }
+        }
+        catch
+        {
+            isConnected = false;
+        }
+        finally
+        {
+            isLoading = false;
+            StateHasChanged();
+        }
+    }
 }

@@ -70,6 +70,12 @@
         }
     }
 
+    private async Task LoadDataAsync()
+    {
+        var result = await ApiService.GetAllAsync();
+        scales = result.AsQueryable();
+    }
+
     private async Task CheckApiConnectionAsync()
     {
         try
@@ -81,7 +87,8 @@
 
             if (isConnected)
             {
-                scales = (await ApiService.GetAllAsync()).AsQueryable();
+               // scales = (await ApiService.GetAllAsync()).AsQueryable();
+                await LoadDataAsync();
             }
         }
         catch
