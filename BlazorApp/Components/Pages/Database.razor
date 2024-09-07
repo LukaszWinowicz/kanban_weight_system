@@ -1,6 +1,7 @@
 ﻿@page "/database"
 @using BlazorApp.Models.Scale
 @using BlazorApp.Services
+@using Helpers
 
 @inject ApiService ApiService
 @rendermode InteractiveServer
@@ -10,7 +11,7 @@
 
 @if (isLoading || !isConnected)
 {
-    <FluentMessageBar Title="Connection Status" Intent="@GetMessageBarIntent()">
+    <FluentMessageBar Title="Connection Status" Intent="@MessageIntentHelper.GetMessageBarIntent(isLoading)">
         @if (isLoading)
         {
             <span>Sprawdzanie połączenia z API...</span>
@@ -67,11 +68,6 @@
                 readings = (await ApiService.GetAllReadingsByScaleNameAsync(scale.ScaleName)).AsQueryable();
             }
         }
-    }
-
-    private MessageIntent GetMessageBarIntent()
-    {
-        return isLoading ? MessageIntent.Info : MessageIntent.Error;
     }
 
     private async Task CheckApiConnectionAsync()

@@ -2,6 +2,7 @@
 @using BlazorApp.Models.Scale
 @using BlazorApp.Services
 @using Microsoft.FluentUI.AspNetCore.Components
+@using Helpers
 @inject ApiService ApiService
 @inject IDialogService DialogService
 @inject IMessageService MessageService
@@ -13,7 +14,7 @@
 
 @if (isLoading || !isConnected)
 {
-    <FluentMessageBar Title="Connection Status" Intent="@GetMessageBarIntent()">
+    <FluentMessageBar Title="Connection Status" Intent="@MessageIntentHelper.GetMessageBarIntent(isLoading)">
         @if (isLoading)
         {
             <span>Sprawdzanie połączenia z API...</span>
@@ -68,11 +69,6 @@
     {
         var result = await ApiService.GetLatestReadingForEveryScaleAsync();
         scalesWithLatestReadings = result.AsQueryable();
-    }
-
-    private MessageIntent GetMessageBarIntent()
-    {
-        return isLoading ? MessageIntent.Info : MessageIntent.Error;
     }
 
     private async Task CheckApiConnectionAsync()
