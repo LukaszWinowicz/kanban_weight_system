@@ -1,4 +1,4 @@
-using ApiServer.WindowsForms.Services;
+using ApiServer.Core.Services;
 
 namespace ApiServer.WindowsForms
 {

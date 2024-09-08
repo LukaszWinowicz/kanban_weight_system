@@ -1,7 +1,6 @@
 ﻿using System.Diagnostics;
-using System.Net.Sockets;
 
-namespace ApiServer.WindowsForms.Services
+namespace ApiServer.Core.Services
 {
     public class MosquittoService : IDisposable
     {

@@ -25,6 +25,7 @@ namespace ApiServer.API
             services.AddScoped<IScaleRepository, ScaleRepository>();
             services.AddScoped<IScaleService, ScaleService>();
             services.AddScoped<Esp32DataService>();
+            services.AddScoped<MosquittoService>();
 
             services.AddAutoMapper(typeof(MappingProfile));
 
