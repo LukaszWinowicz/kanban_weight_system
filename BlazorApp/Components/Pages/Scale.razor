@@ -43,7 +43,7 @@
         <TemplateColumn Title="New reading">
             @if (context.IsConnected)
             {
-                <FluentIcon Value="@(new Icons.Regular.Size24.Alert())" />
+                <FluentIcon Value="@(new Icons.Regular.Size24.Alert())" @onclick="async () => await ReadNewDataFromScale(context)" />
             }
             else
             {
@@ -59,10 +59,25 @@
     private bool isConnected = false;
     private bool showSuccessMessage = false;
     private string? currentScaleName;
+    bool? canceled;
 
     protected override async Task OnInitializedAsync()
     {
         _ = CheckApiConnectionAsync();
+    }
+
+    private async Task ReadNewDataFromScale(ScaleReadingDto scale)
+    {
+        currentScaleName = scale.ScaleName;
+        bool result = await ApiService.ReadNewDataFromScale(scale.ScaleName);
+        if (!result)
+        {
+            var dialog = await DialogService.ShowErrorAsync($"Nieudany odczyt, waga nie jest aktualnie podłączona do sieci.");
+            var response = await dialog.Result;
+            canceled = response.Cancelled;
+        }
+
+        scalesWithLatestReadings = await DataLoadingHelper.LoadDataAsync<ScaleReadingDto>(ApiService.GetLatestReadingForEveryScaleAsync);
     }
 
     private async Task CheckApiConnectionAsync()

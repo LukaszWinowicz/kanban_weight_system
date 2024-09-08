@@ -29,6 +29,12 @@ namespace BlazorApp.Services
             return json;
         }
 
+        // TO: ScaleView
+        public async Task<bool> ReadNewDataFromScale(string scaleName)
+        {
+            return false;
+        }
+
         // TO: DatabaseView
         public async Task<IEnumerable<ScaleDto>> GetScalesWithAnyReadingsAsync()
         {
