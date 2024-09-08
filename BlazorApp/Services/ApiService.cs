@@ -33,7 +33,7 @@ namespace BlazorApp.Services
         // TO: ScaleView
         public async Task<bool> ReadNewDataFromScale(string scaleName)
         {
-            var response = await _httpClient.GetAsync($"{_baseUrl}/Readings/getNewReading/{scaleName}");
+            var response = await _httpClient.GetAsync($"{_baseUrl}/Readings/getNewReading");
             if (response.IsSuccessStatusCode)
             {
                 // Zwraca true, jeśli odpowiedź wskazuje na sukces

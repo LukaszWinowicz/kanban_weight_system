@@ -24,6 +24,7 @@ namespace ApiServer.API
             services.AddScoped<IReadingsService, ReadingsService>();
             services.AddScoped<IScaleRepository, ScaleRepository>();
             services.AddScoped<IScaleService, ScaleService>();
+            services.AddScoped<Esp32DataService>();
 
             services.AddAutoMapper(typeof(MappingProfile));
 

@@ -1,5 +1,6 @@
 ﻿using ApiServer.Core.DTOs;
 using ApiServer.Core.Interfaces;
+using ApiServer.Core.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiServer.API.Controllers
@@ -8,24 +9,26 @@ namespace ApiServer.API.Controllers
     [ApiController]
     public class ReadingsController : ControllerBase
     {
-        private readonly IReadingsService _service;
+        private readonly IReadingsService _readingsService;
+        private readonly Esp32DataService _esp32DataService;
 
-        public ReadingsController(IReadingsService service)
+        public ReadingsController(IReadingsService readingsService, Esp32DataService esp32DataService)
         {
-            _service = service;
+            _readingsService = readingsService;
+            _esp32DataService = esp32DataService;
         }
 
         [HttpGet("latest")]
         public ActionResult<IEnumerable<ScaleReadingDto>> GetLatestReadingForEveryScale()
         {
-            var value = _service.GetLatestReadingForEveryScale();
+            var value = _readingsService.GetLatestReadingForEveryScale();
             return Ok(value);
         }
 
         [HttpGet("getByScaleName/{scaleName}")]
         public ActionResult<IEnumerable<ScaleReadingDto>> GetReadingsByScaleName(string scaleName)
         {
-            var result = _service.GetAllReadingsByScaleName(scaleName);
+            var result = _readingsService.GetAllReadingsByScaleName(scaleName);
 
             if (result == null)
             {
@@ -35,16 +38,19 @@ namespace ApiServer.API.Controllers
             return Ok(result);
         }
 
-        [HttpGet("getNewReading /{scaleName}")]
-        public ActionResult GetNewDataFromScale(string scaleName)
+        [HttpGet("getNewReading")]
+        public ActionResult GetNewDataFromScale()
         {
-            var result = _service.GetNewDataFromScale(scaleName);
-            if (result == true)
+            var isConnected = _esp32DataService.IsScaleConnectedAsync();
+           
+            if (isConnected == true)
             {
-                return NoContent();
+                return Ok();
             }
 
             return NotFound();
+
+
         }
     }
 }

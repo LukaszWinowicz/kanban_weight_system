@@ -1,5 +1,4 @@
-﻿using ApiServer.Core.DTOs;
-using ApiServer.Core.Entities;
+﻿using ApiServer.Core.Entities;
 using ApiServer.Core.Interfaces;
 using ApiServer.Infrastructure.Database;
 
