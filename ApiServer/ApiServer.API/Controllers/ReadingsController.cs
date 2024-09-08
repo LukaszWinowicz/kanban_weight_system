@@ -34,6 +34,18 @@ namespace ApiServer.API.Controllers
 
             return Ok(result);
         }
+
+        [HttpGet("getNewReading /{scaleName}")]
+        public ActionResult GetNewDataFromScale(string scaleName)
+        {
+            var result = _service.GetNewDataFromScale(scaleName);
+            if (result == true)
+            {
+                return NoContent();
+            }
+
+            return NotFound();
+        }
     }
 }
 

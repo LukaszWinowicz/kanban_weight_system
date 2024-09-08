@@ -72,6 +72,10 @@ namespace ApiServer.Core.Services
             var dtoList = _mapper.Map<IEnumerable<ScaleReadingDto>>(readings);
             return dtoList;
         }
+        public bool GetNewDataFromScale(string scaleName)
+        {
+            return false;
+        }
 
     }
 }

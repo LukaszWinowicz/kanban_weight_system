@@ -1,4 +1,5 @@
 ﻿using BlazorApp.Models.Scale;
+using Microsoft.AspNetCore.Http.HttpResults;
 using System.Text.Json;
 
 namespace BlazorApp.Services
@@ -32,7 +33,18 @@ namespace BlazorApp.Services
         // TO: ScaleView
         public async Task<bool> ReadNewDataFromScale(string scaleName)
         {
-            return false;
+            var response = await _httpClient.GetAsync($"{_baseUrl}/Readings/getNewReading/{scaleName}");
+            if (response.IsSuccessStatusCode)
+            {
+                // Zwraca true, jeśli odpowiedź wskazuje na sukces
+                return true;
+            }
+            else
+            {
+                // Wypisuje komunikat błędu, jeśli odpowiedź nie wskazuje na sukces
+                Console.WriteLine($"Error creating scale: {response.ReasonPhrase}");
+                return false;
+            }
         }
 
         // TO: DatabaseView
