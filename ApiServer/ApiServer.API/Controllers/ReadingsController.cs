@@ -38,10 +38,10 @@ namespace ApiServer.API.Controllers
             return Ok(result);
         }
 
-        [HttpGet("getNewReading")]
-        public ActionResult GetNewDataFromScale()
+        [HttpGet("getNewReading/{scaleName}")]
+        public ActionResult GetNewDataFromScale(string scaleName)
         {
-            var isConnected = _esp32DataService.IsScaleConnectedAsync();
+            var isConnected = _esp32DataService.IsScaleConnectedAsync(scaleName);
            
             if (isConnected == true)
             {
