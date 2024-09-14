@@ -35,20 +35,20 @@
         <PropertyColumn Title="Total Weight" Property="@(c => c!.Value != null ? c.Value.ToString() : "N/A")" Align="Align.Start" />
         <PropertyColumn Title="Qty in the box" Property="@(c => c!.Quantity != null ? Math.Floor(c.Quantity.Value).ToString() : "N/A")" Align="Align.Start" />
         <PropertyColumn Title="Latest Reading Date" Property="@(c => c!.ReadingDate != null ? c.ReadingDate.Value.ToString("yyyy-MM-dd HH:mm:ss") : "N/A")" Align="Align.Start" />
-        <TemplateColumn Title="Is Connected?">
+       @*  <TemplateColumn Title="Is Connected?">
             <span style="color: @(context.IsConnected ? "green" : "red");">
                 @(context.IsConnected ? "Connected" : "Disconnected")
             </span>
-        </TemplateColumn>
+        </TemplateColumn> *@
         <TemplateColumn Title="New reading">
-            @if (context.IsConnected)
-            {
+           @*  @if (context.IsConnected)
+            { *@
                 <FluentIcon Value="@(new Icons.Regular.Size24.Alert())" @onclick="async () => await ReadNewDataFromScale(context)" />
-            }
+       @*      }
             else
             {
                 <FluentIcon Value="@(new Icons.Regular.Size24.AlertOff())" />
-            }
+            } *@
         </TemplateColumn>
     </FluentDataGrid>
 }
