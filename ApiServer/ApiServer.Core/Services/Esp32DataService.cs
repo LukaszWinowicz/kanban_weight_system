@@ -86,15 +86,5 @@ namespace ApiServer.Core.Services
                 return false;
             }
         }
-
-        //public bool IsScaleConnectedAsync(string scaleName)
-        //{
-        //    var scales = ScalesList();
-
-        //    var scale = scales.FirstOrDefault(s => s.ScaleName.Equals(scaleName, StringComparison.OrdinalIgnoreCase));
-
-        //    return scale != null && scale.IsConnected;
-
-        //}
     }
 }
