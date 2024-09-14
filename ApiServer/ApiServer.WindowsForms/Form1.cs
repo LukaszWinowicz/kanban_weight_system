@@ -22,9 +22,10 @@ namespace ApiServer.WindowsForms
 
             // Tworzenie instancji ScaleRepository z przekazanym kontekstem
             IScaleRepository scaleRepository = new ScaleRepository(context);
+            IReadingsRepository readingsRepository = new ReadingsRepository(context);
 
             // Tworzenie instancji serwisu Esp32DataService z repozytorium
-            _esp32DataService = new Esp32DataService(scaleRepository);
+            _esp32DataService = new Esp32DataService(scaleRepository, readingsRepository);
         }
 
         private void btnRunMqtt_Click(object sender, EventArgs e)

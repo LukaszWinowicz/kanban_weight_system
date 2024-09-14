@@ -6,5 +6,6 @@ namespace ApiServer.Core.Interfaces
     public interface IReadingsRepository
     {
         IEnumerable<ReadingEntity> GetAll();
+        ReadingEntity AddReading(ReadingEntity readingEntity);
     }
 }

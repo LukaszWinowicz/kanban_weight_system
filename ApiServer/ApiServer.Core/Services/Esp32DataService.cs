@@ -10,14 +10,16 @@ namespace ApiServer.Core.Services
     public class Esp32DataService
     {
         private readonly IScaleRepository _scaleRepository;
+        private readonly IReadingsRepository _readingsRepository;
         private readonly IMqttClient _mqttClient; // IMqttClient: Reprezentuje klienta MQTT, który będzie używany do nawiązywania połączeń z brokerem MQTT.
         private readonly MqttClientOptions _mqttOptions; // MqttClientOptions: Ustawia opcje klienta, takie jak ID klienta, adres serwera, port i dane uwierzytelniające.
         private CancellationTokenSource _cancellationTokenSource; // Token do anulowania zadania
         private bool _isPollingActive = false; // Flaga wskazująca, czy odpytywanie jest aktywne
 
-        public Esp32DataService(IScaleRepository scaleRepository) 
+        public Esp32DataService(IScaleRepository scaleRepository, IReadingsRepository readingsRepository) 
         {
             _scaleRepository = scaleRepository;
+            _readingsRepository = readingsRepository;
 
             // Tworzenie fabryki MQTT
             // MqttFactory: Tworzy instancję fabryki klienta MQTT, która umożliwia tworzenie nowych klientów MQTT.
@@ -37,52 +39,123 @@ namespace ApiServer.Core.Services
             var entities = _scaleRepository.GetAll();
             return entities;
         }
+        /*
+                public bool IsScaleConnected(string deviceNumber)
+                {
+                    try
+                    {
+                        // Połączenie z brokerem MQTT
+                        _mqttClient.ConnectAsync(_mqttOptions).Wait(); // Synchronicznie oczekujemy na połączenie
 
-        public bool IsScaleConnected(string deviceNumber)
+                        // TaskCompletionSource do oczekiwania na odpowiedź
+                        var tcs = new TaskCompletionSource<bool>();
+
+                        // Obsługa przychodzących wiadomości MQTT
+                        _mqttClient.ApplicationMessageReceivedAsync += e =>
+                        {
+                            var topic = e.ApplicationMessage.Topic;
+                            var payload = Encoding.UTF8.GetString(e.ApplicationMessage.Payload);
+
+                            // Sprawdź, czy temat wiadomości jest odpowiedzią od ESP32
+                            if (topic == $"response/{deviceNumber}")
+                            {
+                                tcs.SetResult(true); // Ustaw wynik na true, jeśli otrzymamy odpowiedź
+                            }
+
+                            return Task.CompletedTask; // Zwraca ukończone zadanie
+                        };
+
+                        // Subskrypcja na temat odpowiedzi od konkretnego ESP32
+                        _mqttClient.SubscribeAsync($"response/{deviceNumber}").Wait();
+
+                        // Wysłanie zapytania do konkretnego ESP32
+                        var message = new MqttApplicationMessageBuilder()
+                            .WithTopic($"request/{deviceNumber}") // Wysyłanie do konkretnego urządzenia
+                            .WithPayload("check") // Przykładowa wiadomość "check"
+                            .WithQualityOfServiceLevel(MQTTnet.Protocol.MqttQualityOfServiceLevel.ExactlyOnce) // Ustawienie poziomu QoS
+                            .WithRetainFlag(false)
+                            .Build();
+
+                        _mqttClient.PublishAsync(message).Wait(); // Synchronicznie wysyłamy wiadomość
+
+                        // Oczekiwanie na odpowiedź przez maksymalnie 5 sekund
+                        bool isEsp32Connected = tcs.Task.Wait(5000) && tcs.Task.Result;
+
+                        // Rozłączenie się z brokerem MQTT
+                        _mqttClient.DisconnectAsync().Wait(); // Synchronicznie rozłączamy się
+
+                        return isEsp32Connected;
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Błąd podczas sprawdzania ESP32: {ex.Message}");
+                        return false;
+                    }
+                }
+        */
+        public bool IsScaleConnected(string scaleName)
         {
             try
             {
                 // Połączenie z brokerem MQTT
-                _mqttClient.ConnectAsync(_mqttOptions).Wait(); // Synchronicznie oczekujemy na połączenie
+                _mqttClient.ConnectAsync(_mqttOptions).Wait();
 
                 // TaskCompletionSource do oczekiwania na odpowiedź
                 var tcs = new TaskCompletionSource<bool>();
 
                 // Obsługa przychodzących wiadomości MQTT
-                _mqttClient.ApplicationMessageReceivedAsync += e =>
+                Func<MqttApplicationMessageReceivedEventArgs, Task> messageHandler = e =>
                 {
                     var topic = e.ApplicationMessage.Topic;
                     var payload = Encoding.UTF8.GetString(e.ApplicationMessage.Payload);
 
                     // Sprawdź, czy temat wiadomości jest odpowiedzią od ESP32
-                    if (topic == $"response/{deviceNumber}")
+                    if (topic == $"response/{scaleName}")
                     {
-                        tcs.SetResult(true); // Ustaw wynik na true, jeśli otrzymamy odpowiedź
+                        if (!tcs.Task.IsCompleted)
+                        {
+                            tcs.SetResult(true);
+
+                            // Jeśli waga jest podłączona, parsujemy odczyt
+                            var reading = ParseReading(payload, scaleName);
+                            if (reading != null)
+                            {
+                                // Zapis do bazy danych
+                                _readingsRepository.AddReading(reading);
+                                Console.WriteLine($"Odczyt zapisany do bazy danych: {payload}");
+                            }
+                        }
                     }
 
-                    return Task.CompletedTask; // Zwraca ukończone zadanie
+                    return Task.CompletedTask;
                 };
 
+                // Subskrybuj wiadomości
+                _mqttClient.ApplicationMessageReceivedAsync += messageHandler;
+
                 // Subskrypcja na temat odpowiedzi od konkretnego ESP32
-                _mqttClient.SubscribeAsync($"response/{deviceNumber}").Wait();
+                _mqttClient.SubscribeAsync($"response/{scaleName}").Wait();
 
                 // Wysłanie zapytania do konkretnego ESP32
                 var message = new MqttApplicationMessageBuilder()
-                    .WithTopic($"request/{deviceNumber}") // Wysyłanie do konkretnego urządzenia
-                    .WithPayload("check") // Przykładowa wiadomość "check"
-                    .WithQualityOfServiceLevel(MQTTnet.Protocol.MqttQualityOfServiceLevel.ExactlyOnce) // Ustawienie poziomu QoS
+                    .WithTopic($"request/{scaleName}")
+                    .WithPayload("check")
+                    .WithQualityOfServiceLevel(MQTTnet.Protocol.MqttQualityOfServiceLevel.AtMostOnce)
                     .WithRetainFlag(false)
                     .Build();
 
-                _mqttClient.PublishAsync(message).Wait(); // Synchronicznie wysyłamy wiadomość
+                _mqttClient.PublishAsync(message).Wait();
 
                 // Oczekiwanie na odpowiedź przez maksymalnie 5 sekund
-                bool isEsp32Connected = tcs.Task.Wait(5000) && tcs.Task.Result;
+                bool messageReceived = tcs.Task.Wait(5000);
+
+                // Odsubskrybowanie wiadomości po otrzymaniu odpowiedzi lub po upłynięciu czasu
+                _mqttClient.ApplicationMessageReceivedAsync -= messageHandler;
 
                 // Rozłączenie się z brokerem MQTT
-                _mqttClient.DisconnectAsync().Wait(); // Synchronicznie rozłączamy się
+                _mqttClient.DisconnectAsync().Wait();
 
-                return isEsp32Connected;
+                return messageReceived;
             }
             catch (Exception ex)
             {
@@ -91,55 +164,40 @@ namespace ApiServer.Core.Services
             }
         }
 
-        //public void StartPollingScales()
-        //{
-        //    // Sprawdź, czy odpytywanie już jest aktywne, aby zapobiec wielokrotnemu uruchamianiu
-        //    if (_isPollingActive)
-        //    {
-        //        Console.WriteLine("Odpytywanie jest już aktywne.");
-        //        return;
-        //    }
+        private ReadingEntity ParseReading(string payload, string scaleName)
+        {
+            try
+            {
+                // Zakładamy, że payload jest w formacie: "Device: ESP32-001, ID: ESP32_xxxx, Number: X"
+                var parts = payload.Split(new[] { ", " }, StringSplitOptions.None);
 
-        //    _isPollingActive = true; // Ustaw flagę na aktywne
+                if (parts.Length < 3) return null;
 
-        //    // Inicjujemy CancellationTokenSource, który pozwala zatrzymać zadanie w razie potrzeby
-        //    _cancellationTokenSource = new CancellationTokenSource();
-        //    var cancellationToken = _cancellationTokenSource.Token;
+                var date = DateTime.Now; // Aktualna data i czas odczytu
+                var valuePart = parts[2].Split(new[] { ": " }, StringSplitOptions.None);
+                if (valuePart.Length < 2) return null;
 
-        //    // Uruchamiamy zadanie asynchroniczne, które będzie działać w tle
-        //    Task.Run(async () =>
-        //    {
-        //        while (!cancellationToken.IsCancellationRequested)
-        //        {
-        //            try
-        //            {
-        //                // Pobieranie listy urządzeń do odpytywania
-        //                var scales = ScalesList();
+                // Zamiana odczytanej wartości na decimal
+                decimal value;
+                if (!decimal.TryParse(valuePart[1], out value))
+                {
+                    Console.WriteLine("Nieprawidłowy format wartości odczytu.");
+                    return null;
+                }
 
-        //                foreach (var scale in scales)
-        //                {
-        //                    // Sprawdzenie, czy urządzenie jest połączone
-        //                    if (IsScaleConnected(scale.ScaleName))
-        //                    {
-        //                        // Jeśli urządzenie jest połączone, odczytujemy wartość
-        //                        Console.WriteLine($"Urządzenie {scale.ScaleName} jest połączone.");
-        //                    }
-        //                    else
-        //                    {
-        //                        Console.WriteLine($"Urządzenie {scale.ScaleName} nie odpowiada.");
-        //                    }
-        //                }
-        //            }
-        //            catch (Exception ex)
-        //            {
-        //                Console.WriteLine($"Błąd podczas odpytywania: {ex.Message}");
-        //            }
-
-        //            // Oczekiwanie przez minutę przed kolejnym cyklem
-        //            await Task.Delay(TimeSpan.FromMinutes(1), cancellationToken);
-        //        }
-        //    }, cancellationToken);
-        //}
+                return new ReadingEntity
+                {
+                    Date = date,
+                    Value = value,
+                    ScaleName = scaleName
+                };
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Błąd podczas parsowania odczytu: {ex.Message}");
+                return null; // W przypadku błędu zwróć null
+            }
+        }
 
         public void StartPollingScales()
         {
