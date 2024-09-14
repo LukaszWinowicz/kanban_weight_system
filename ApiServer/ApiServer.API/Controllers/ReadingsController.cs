@@ -41,7 +41,7 @@ namespace ApiServer.API.Controllers
         [HttpGet("getNewReading/{scaleName}")]
         public ActionResult GetNewDataFromScale(string scaleName)
         {
-            var isConnected = _esp32DataService.IsScaleConnectedAsync(scaleName);
+            var isConnected = _esp32DataService.IsScaleConnected(scaleName);
            
             if (isConnected == true)
             {

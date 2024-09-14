@@ -1215,7 +1215,8 @@
       },
       "ApiServer.Core/1.0.0": {
         "dependencies": {
-          "AutoMapper": "13.0.1"
+          "AutoMapper": "13.0.1",
+          "MQTTnet": "4.3.6.1152"
         },
         "runtime": {
           "ApiServer.Core.dll": {

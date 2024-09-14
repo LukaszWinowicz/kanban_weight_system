@@ -53,6 +53,10 @@
             "AutoMapper": {
               "target": "Package",
               "version": "[13.0.1, )"
+            },
+            "MQTTnet": {
+              "target": "Package",
+              "version": "[4.3.6.1152, )"
             }
           },
           "imports": [
