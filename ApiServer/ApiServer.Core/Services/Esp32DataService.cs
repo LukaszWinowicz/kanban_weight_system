@@ -3,6 +3,7 @@ using ApiServer.Core.Interfaces;
 using MQTTnet;
 using MQTTnet.Client;
 using System.Text;
+using System.Threading;
 
 namespace ApiServer.Core.Services
 {
@@ -11,6 +12,9 @@ namespace ApiServer.Core.Services
         private readonly IScaleRepository _scaleRepository;
         private readonly IMqttClient _mqttClient; // IMqttClient: Reprezentuje klienta MQTT, który będzie używany do nawiązywania połączeń z brokerem MQTT.
         private readonly MqttClientOptions _mqttOptions; // MqttClientOptions: Ustawia opcje klienta, takie jak ID klienta, adres serwera, port i dane uwierzytelniające.
+        private CancellationTokenSource _cancellationTokenSource; // Token do anulowania zadania
+        private bool _isPollingActive = false; // Flaga wskazująca, czy odpytywanie jest aktywne
+
         public Esp32DataService(IScaleRepository scaleRepository) 
         {
             _scaleRepository = scaleRepository;
@@ -85,6 +89,69 @@ namespace ApiServer.Core.Services
                 Console.WriteLine($"Błąd podczas sprawdzania ESP32: {ex.Message}");
                 return false;
             }
+        }
+
+        public void StartPollingScales()
+        {
+            // Sprawdź, czy odpytywanie już jest aktywne, aby zapobiec wielokrotnemu uruchamianiu
+            if (_isPollingActive)
+            {
+                Console.WriteLine("Odpytywanie jest już aktywne.");
+                return;
+            }
+
+            _isPollingActive = true; // Ustaw flagę na aktywne
+
+            // Inicjujemy CancellationTokenSource, który pozwala zatrzymać zadanie w razie potrzeby
+            _cancellationTokenSource = new CancellationTokenSource();
+            var cancellationToken = _cancellationTokenSource.Token;
+
+            // Uruchamiamy zadanie asynchroniczne, które będzie działać w tle
+            Task.Run(async () =>
+            {
+                while (!cancellationToken.IsCancellationRequested)
+                {
+                    try
+                    {
+                        // Pobieranie listy urządzeń do odpytywania
+                        var scales = ScalesList();
+
+                        foreach (var scale in scales)
+                        {
+                            // Sprawdzenie, czy urządzenie jest połączone
+                            if (IsScaleConnected(scale.ScaleName))
+                            {
+                                // Jeśli urządzenie jest połączone, odczytujemy wartość
+                                Console.WriteLine($"Urządzenie {scale.ScaleName} jest połączone.");
+                            }
+                            else
+                            {
+                                Console.WriteLine($"Urządzenie {scale.ScaleName} nie odpowiada.");
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Błąd podczas odpytywania: {ex.Message}");
+                    }
+
+                    // Oczekiwanie przez minutę przed kolejnym cyklem
+                    await Task.Delay(TimeSpan.FromMinutes(1), cancellationToken);
+                }
+            }, cancellationToken);
+        }
+        public void StopPollingScales()
+        {
+            if (!_isPollingActive)
+            {
+                Console.WriteLine("Odpytywanie nie jest aktywne.");
+                return;
+            }
+
+            // Anulujemy zadanie
+            _cancellationTokenSource.Cancel();
+            _isPollingActive = false; // Ustaw flagę na nieaktywne
+            Console.WriteLine("Odpytywanie zostało zatrzymane.");
         }
     }
 }

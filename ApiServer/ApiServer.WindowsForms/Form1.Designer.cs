@@ -31,12 +31,13 @@
             btnRunMqtt = new Button();
             lblMain = new Label();
             btnCloseMqtt = new Button();
-            btnSub = new Button();
+            btnStart = new Button();
+            btnStop = new Button();
             SuspendLayout();
             // 
             // btnRunMqtt
             // 
-            btnRunMqtt.Location = new Point(90, 88);
+            btnRunMqtt.Location = new Point(161, 88);
             btnRunMqtt.Name = "btnRunMqtt";
             btnRunMqtt.Size = new Size(100, 57);
             btnRunMqtt.TabIndex = 0;
@@ -57,7 +58,7 @@
             // 
             // btnCloseMqtt
             // 
-            btnCloseMqtt.Location = new Point(224, 88);
+            btnCloseMqtt.Location = new Point(296, 88);
             btnCloseMqtt.Name = "btnCloseMqtt";
             btnCloseMqtt.Size = new Size(100, 57);
             btnCloseMqtt.TabIndex = 2;
@@ -65,22 +66,33 @@
             btnCloseMqtt.UseVisualStyleBackColor = true;
             btnCloseMqtt.Click += btnCloseMqtt_Click;
             // 
-            // btnSub
+            // btnStart
             // 
-            btnSub.Location = new Point(357, 88);
-            btnSub.Name = "btnSub";
-            btnSub.Size = new Size(100, 57);
-            btnSub.TabIndex = 3;
-            btnSub.Text = "Sub";
-            btnSub.UseVisualStyleBackColor = true;
-            btnSub.Click += btnSub_Click;
+            btnStart.Location = new Point(161, 171);
+            btnStart.Name = "btnStart";
+            btnStart.Size = new Size(100, 57);
+            btnStart.TabIndex = 3;
+            btnStart.Text = "Sub";
+            btnStart.UseVisualStyleBackColor = true;
+            btnStart.Click += btnStart_Click;
+            // 
+            // btnStop
+            // 
+            btnStop.Location = new Point(296, 171);
+            btnStop.Name = "btnStop";
+            btnStop.Size = new Size(100, 57);
+            btnStop.TabIndex = 4;
+            btnStop.Text = "uSub";
+            btnStop.UseVisualStyleBackColor = true;
+            btnStop.Click += btnStop_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(567, 318);
-            Controls.Add(btnSub);
+            Controls.Add(btnStop);
+            Controls.Add(btnStart);
             Controls.Add(btnCloseMqtt);
             Controls.Add(lblMain);
             Controls.Add(btnRunMqtt);
@@ -95,6 +107,7 @@
         private Button btnRunMqtt;
         private Label lblMain;
         private Button btnCloseMqtt;
-        private Button btnSub;
+        private Button btnStart;
+        private Button btnStop;
     }
 }
