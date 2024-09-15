@@ -32,7 +32,6 @@
             <PropertyColumn Title="Scale Name" Property="@(c => c!.ScaleName)"/>
             <PropertyColumn Title="Item Name" Property="@(c => c!.ItemName)" />
             <PropertyColumn Title="Single item weight" Property="@(c => c!.SingleItemWeight)" />
-            <PropertyColumn Title="Is Connected?" Property="@(c => c!.IsConnected)" />
 
             <TemplateColumn Title="Actions">
                 <FluentButton IconStart="@(new Icons.Regular.Size20.Delete())" OnClick="@(() => DeleteScale(context))" />

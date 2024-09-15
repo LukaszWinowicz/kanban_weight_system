@@ -39,7 +39,6 @@ namespace ApiServer.Core.Services
                             ScaleName = scale.ScaleName,
                             ItemName = scale.ItemName,
                             SingleItemWeight = scale.SingleItemWeight,
-                            IsConnected = scale.IsConnected,
                             Reading = latestReading,
                             Value = latestReading?.Value
                         };
@@ -63,7 +62,6 @@ namespace ApiServer.Core.Services
                      ScaleName = r.Scale.ScaleName,
                      ItemName = r.Scale.ItemName,
                      SingleItemWeight = r.Scale.SingleItemWeight,
-                     IsConnected = r.Scale.IsConnected,
                      Reading = r,
                      Value = r?.Value,
                 })

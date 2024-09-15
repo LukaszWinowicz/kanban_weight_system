@@ -26,8 +26,6 @@
         <ValidationMessage For="@(() => Content.SingleItemWeight)" />
     </FluentNumberField>
 
-    <FluentCheckbox Label="Is Connected" @bind-Value="@Content.IsConnected" />
-
     <FluentDialogFooter>
         <FluentButton Type="ButtonType.Submit" Appearance="Appearance.Accent" IconStart="@(new Icons.Regular.Size20.Save())">Save</FluentButton>
         <FluentButton Appearance="Appearance.Neutral" OnClick="@CancelAsync">Cancel</FluentButton>

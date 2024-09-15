@@ -39,7 +39,6 @@ namespace ApiServer.Infrastructure.Database
                 entity.Property(e => e.ScaleName).IsRequired().HasMaxLength(50);
                 entity.Property(e => e.ItemName).IsRequired().HasMaxLength(50);
                 entity.Property(e => e.SingleItemWeight).IsRequired().HasColumnType("decimal(18,2)");
-                entity.Property(e => e.IsConnected).IsRequired();
             });
         }
 
