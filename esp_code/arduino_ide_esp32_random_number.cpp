@@ -7,12 +7,12 @@ const char* ssid = "";
 const char* password = "";
 
 // Dane do połączenia z brokerem MQTT
-const char* mqtt_server = "";
+const char* mqtt_server = "192.168.1.32";
 const char* mqtt_user = "mqtt_user";  // Nazwa użytkownika MQTT
 const char* mqtt_password = "mqtt_pass";  // Hasło użytkownika MQTT
 
-// Unikalny identyfikator urządzenia, np. "esp32_c3_01"
-const char* device_number = "esp32_c3_02";
+// Unikalny identyfikator urządzenia, np. "ESP32-001"
+const char* device_number = "ESP32-001";
 
 // Uzyskanie unikalnego identyfikatora ESP32
 String getUniqueID() {
@@ -87,8 +87,8 @@ void callback(char* topic, byte* payload, unsigned int length) {
   Serial.println();
 
   if (String(topic).equals(String("request/") + device_number)) {
-    // Losowanie liczby z zakresu 0-9
-    int randomNumber = random(0, 10);
+    // Losowanie liczby z zakresu 10-999
+    int randomNumber = random(10, 100);
 
     // Komponowanie wiadomości do publikacji
     String message = "Device: " + String(device_number) + ", ID: " + device_id + ", Number: " + String(randomNumber);

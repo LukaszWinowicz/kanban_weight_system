@@ -7,8 +7,6 @@ namespace ApiServer.WindowsForms
 {
     public partial class Form1 : Form
     {
-        // netstat -an | find "1883"
-
         private readonly MosquittoService _mosquittoService;
         private readonly Esp32DataService _esp32DataService;
 
@@ -50,7 +48,6 @@ namespace ApiServer.WindowsForms
                 Console.WriteLine("Obiekt _esp32DataService nie zosta³ zainicjalizowany.");
             }
         }
-
         private void btnStop_Click(object sender, EventArgs e)
         {
             if (_esp32DataService != null)

@@ -26,7 +26,7 @@ namespace ApiServer.Infrastructure.Database
                 entity.Property(e => e.Date).IsRequired();
                 entity.Property(e => e.Value).IsRequired().HasColumnType("decimal(18,2)");
 
-                // Prosta konfiguracja relacji z użyciem ScaleName jako klucza obcego
+                // Kkonfiguracja relacji z użyciem ScaleName jako klucza obcego
                 entity.HasOne(r => r.Scale)
                       .WithMany(s => s.Readings)
                       .HasForeignKey(r => r.ScaleName); // Klucz obcy

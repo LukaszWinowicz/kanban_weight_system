@@ -1,6 +1,4 @@
-﻿using ApiServer.Core.Entities;
-
-namespace ApiServer.Core.DTOs
+﻿namespace ApiServer.Core.DTOs
 {
     public class ScaleReadingDto
     {

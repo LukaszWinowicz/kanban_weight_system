@@ -3,7 +3,6 @@ using ApiServer.Core.Interfaces;
 using MQTTnet;
 using MQTTnet.Client;
 using System.Text;
-using System.Threading;
 
 namespace ApiServer.Core.Services
 {
@@ -56,7 +55,7 @@ namespace ApiServer.Core.Services
                     var topic = e.ApplicationMessage.Topic;
                     var payload = Encoding.UTF8.GetString(e.ApplicationMessage.Payload);
 
-                    // Sprawdź, czy temat wiadomości jest odpowiedzią od ESP32
+                    // Sprawdzanie, czy temat wiadomości jest odpowiedzią od ESP32
                     if (topic == $"response/{scaleName}")
                     {
                         if (!tcs.Task.IsCompleted)
@@ -115,7 +114,7 @@ namespace ApiServer.Core.Services
         {
             try
             {
-                // Zakładamy, że payload jest w formacie: "Device: ESP32-001, ID: ESP32_xxxx, Number: X"
+                // Payload jest w formacie: "Device: ESP32-001, ID: ESP32_xxxx, Number: X"
                 var parts = payload.Split(new[] { ", " }, StringSplitOptions.None);
 
                 if (parts.Length < 3) return null;
@@ -145,62 +144,7 @@ namespace ApiServer.Core.Services
                 return null; // W przypadku błędu zwróć null
             }
         }
-
-        //public void StartPollingScales()
-        //{
-        //    // Sprawdź, czy odpytywanie jest już aktywne, aby zapobiec wielokrotnemu uruchamianiu
-        //    if (_isPollingActive)
-        //    {
-        //        Console.WriteLine("Odpytywanie jest już aktywne.");
-        //        return;
-        //    }
-
-        //    _isPollingActive = true; // Ustaw flagę na aktywne
-
-        //    // Inicjujemy CancellationTokenSource, który pozwala zatrzymać zadanie w razie potrzeby
-        //    _cancellationTokenSource = new CancellationTokenSource();
-        //    var cancellationToken = _cancellationTokenSource.Token;
-
-        //    // Uruchamiamy zadanie asynchroniczne, które będzie działać w tle
-        //    Task.Run(async () =>
-        //    {
-        //        while (!cancellationToken.IsCancellationRequested)
-        //        {
-        //            try
-        //            {
-        //                // Pobieranie listy urządzeń do odpytywania
-        //                var scales = ScalesList();
-
-        //                foreach (var scale in scales)
-        //                {
-        //                    // Odczytaj wartość z ESP32 dla każdego urządzenia
-        //                    string response = GetEsp32Value(scale.ScaleName);
-
-        //                    // Jeśli otrzymaliśmy odpowiedź, wyświetlamy ją w terminalu
-        //                    if (!string.IsNullOrEmpty(response))
-        //                    {
-        //                        Console.WriteLine($"Otrzymana wartość z {scale.ScaleName}: {response}");
-        //                    }
-        //                    else
-        //                    {
-        //                        Console.WriteLine($"Nie otrzymano odpowiedzi od {scale.ScaleName}.");
-        //                    }
-
-        //                    // Odczekaj sekundę między odpytywaniem kolejnych urządzeń, aby zredukować obciążenie sieci
-        //                    await Task.Delay(TimeSpan.FromSeconds(1), cancellationToken);
-        //                }
-        //            }
-        //            catch (Exception ex)
-        //            {
-        //                Console.WriteLine($"Błąd podczas odpytywania: {ex.Message}");
-        //            }
-
-        //            // Oczekiwanie przez minutę przed kolejnym cyklem
-        //            await Task.Delay(TimeSpan.FromMinutes(1), cancellationToken);
-        //        }
-        //    }, cancellationToken);
-        //}
-
+      
         public void StartPollingScales()
         {
             if (_isPollingActive)
@@ -241,7 +185,7 @@ namespace ApiServer.Core.Services
                             await Task.Delay(TimeSpan.FromSeconds(1), cancellationToken);
                         }
 
-                        // Zapisujemy paczkę danych do bazy co minutę
+                        // Zapisujemy paczkę danych do bazy co 1 minutę
                         if (readingsBatch.Any())
                         {
                             _readingsRepository.AddReadingsBatch(readingsBatch); // Zapisujemy paczkę danych
@@ -289,19 +233,19 @@ namespace ApiServer.Core.Services
                     var topic = e.ApplicationMessage.Topic;
                     var payload = Encoding.UTF8.GetString(e.ApplicationMessage.Payload);
 
-                    // Sprawdź, czy temat wiadomości jest odpowiedzią od ESP32
+                    // Sprawdzenie, czy temat wiadomości jest odpowiedzią od ESP32
                     if (topic == $"response/{deviceNumber}")
                     {
-                        if (!tcs.Task.IsCompleted) // Sprawdź, czy zadanie nie jest już zakończone
+                        if (!tcs.Task.IsCompleted) // Sprawdzenie, czy zadanie nie jest już zakończone
                         {
-                            tcs.SetResult(payload); // Ustaw wynik na payload wiadomości
+                            tcs.SetResult(payload); // Ustawienie wyniku na payload wiadomości
                         }
                     }
 
                     return Task.CompletedTask;
                 };
 
-                // Subskrybuj wiadomości
+                // Subskrybcja wiadomości
                 _mqttClient.ApplicationMessageReceivedAsync += messageHandler;
 
                 // Subskrypcja na temat odpowiedzi od konkretnego ESP32
