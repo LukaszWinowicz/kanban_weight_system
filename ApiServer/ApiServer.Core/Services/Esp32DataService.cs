@@ -114,37 +114,88 @@ namespace ApiServer.Core.Services
         {
             try
             {
-                // Payload jest w formacie: "Device: ESP32-001, ID: ESP32_xxxx, Number: X"
+                Console.WriteLine($"Otrzymano payload: {payload}");
+
+                // Spodziewany format: "Urządzenie: ESP32-001, Waga: X.XX gram"
                 var parts = payload.Split(new[] { ", " }, StringSplitOptions.None);
 
-                if (parts.Length < 3) return null;
+                if (parts.Length < 2)
+                {
+                    Console.WriteLine("Błąd: Nieoczekiwany format danych.");
+                    return null;
+                }
 
                 var date = DateTime.Now; // Aktualna data i czas odczytu
-                var valuePart = parts[2].Split(new[] { ": " }, StringSplitOptions.None);
-                if (valuePart.Length < 2) return null;
 
-                // Zamiana odczytanej wartości na decimal
-                decimal value;
-                if (!decimal.TryParse(valuePart[1], out value))
+                // Parsowanie wartości wagi
+                var weightPart = parts[1].Split(new[] { ": " }, StringSplitOptions.None);
+                if (weightPart.Length < 2)
                 {
-                    Console.WriteLine("Nieprawidłowy format wartości odczytu.");
+                    Console.WriteLine("Błąd: Nieoczekiwany format wagi.");
+                    return null;
+                }
+
+                // Wyodrębnienie liczbowej wartości wagi
+                var weightString = weightPart[1].Replace(" gram", "").Trim();
+                Console.WriteLine($"Parsowana wartość wagi: {weightString}");
+
+                decimal weight;
+                if (!decimal.TryParse(weightString, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out weight))
+                {
+                    Console.WriteLine("Nieprawidłowy format wartości wagi.");
                     return null;
                 }
 
                 return new ReadingEntity
                 {
                     Date = date,
-                    Value = value,
+                    Value = weight,
                     ScaleName = scaleName
                 };
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Błąd podczas parsowania odczytu: {ex.Message}");
-                return null; // W przypadku błędu zwróć null
+                return null;
             }
         }
-      
+
+
+        //private ReadingEntity ParseReading(string payload, string scaleName)
+        //{
+        //    try
+        //    {
+        //        // Payload jest w formacie: "Device: ESP32-001, ID: ESP32_xxxx, Number: X"
+        //        var parts = payload.Split(new[] { ", " }, StringSplitOptions.None);
+
+        //        if (parts.Length < 3) return null;
+
+        //        var date = DateTime.Now; // Aktualna data i czas odczytu
+        //        var valuePart = parts[2].Split(new[] { ": " }, StringSplitOptions.None);
+        //        if (valuePart.Length < 2) return null;
+
+        //        // Zamiana odczytanej wartości na decimal
+        //        decimal value;
+        //        if (!decimal.TryParse(valuePart[1], out value))
+        //        {
+        //            Console.WriteLine("Nieprawidłowy format wartości odczytu.");
+        //            return null;
+        //        }
+
+        //        return new ReadingEntity
+        //        {
+        //            Date = date,
+        //            Value = value,
+        //            ScaleName = scaleName
+        //        };
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine($"Błąd podczas parsowania odczytu: {ex.Message}");
+        //        return null; // W przypadku błędu zwróć null
+        //    }
+        //}
+
         public void StartPollingScales()
         {
             if (_isPollingActive)
