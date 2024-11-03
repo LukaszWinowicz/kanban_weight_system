@@ -28,7 +28,7 @@ namespace ApiServer.Core.Services
             // Konfiguracja opcji klienta MQTT
             _mqttOptions = new MqttClientOptionsBuilder()
                 .WithClientId("esp32-monitor-server") // Unikalny identyfikator klienta (serwera)
-                .WithTcpServer("192.168.1.32", 1883) // Adres i port Twojego brokera MQTT
+                .WithTcpServer("172.20.10.2", 1883) // Adres i port Twojego brokera MQTT
                 .WithCredentials("mqtt_user", "mqtt_pass") // Dane logowania do brokera MQTT
                 .Build();
         }
